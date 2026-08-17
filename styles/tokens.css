@@ -1,0 +1,49 @@
+/* ============================================================
+   IGNIS — "Ignition" theme. Dark cinematic green-black with emerald
+   structure and an orange flame accent. Rebuilt from the MotionSites
+   design language (liquid glass, glow, blur reveals, ambient light).
+   ============================================================ */
+:root {
+  /* base surfaces */
+  --bg: #173324;          /* lifted forest, softer than near-black */
+  --bg-2: #1f3f2c;        /* raised panel */
+  --bg-3: #294f38;        /* card fill */
+
+  /* brand greens */
+  --emerald: #00712d;     /* Rich Emerald */
+  --emerald-lite: #21b45a;/* lifted emerald — accents on dark */
+  --sacramento: #0d4715;
+  --sap: #66a63a;         /* Sap Green, brightened for dark bg */
+
+  /* flame accent (the fire / ignition) */
+  --flame: #e8792b;
+  --flame-lite: #f7a24e;
+  --flame-deep: #c85a15;
+
+  /* text */
+  --text: #eef4ee;
+  --muted: rgba(238, 244, 238, 0.62);
+  --faint: rgba(238, 244, 238, 0.40);
+
+  /* lines & glass */
+  --line: rgba(255, 255, 255, 0.10);
+  --line-em: rgba(33, 180, 90, 0.28);
+  --glass: rgba(255, 255, 255, 0.02);
+
+  /* structural */
+  --nav-h: 76px;
+  /* fluid: fill ~94% of the viewport (small margins), capped so text never
+     stretches to unreadable line lengths on very wide screens */
+  --maxw: min(1720px, 94vw);
+  --gut: clamp(16px, 2vw, 32px);
+
+  /* motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* fonts (wired by next/font in layout) */
+  --font-display: 'Archivo';
+  --font-body: 'IBM Plex Sans';
+  --font-mono: 'IBM Plex Mono';
+  --font-serif: 'Instrument Serif';
+}

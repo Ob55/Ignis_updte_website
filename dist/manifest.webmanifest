@@ -1,0 +1,14 @@
+{
+  "name": "IGNIS Innovation Africa",
+  "short_name": "IGNIS",
+  "description": "Steam kitchens for institutions across Africa.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d4715",
+  "theme_color": "#0d4715",
+  "icons": [
+    { "src": "/icon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}

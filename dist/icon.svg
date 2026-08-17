@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="IGNIS">
+  <!-- The valve node from the pipe spine: reads as a valve and an ignition
+       switch, legible at 16px, no text. Emerald ring on Sacramento field,
+       signal bar through it, flame-orange ignition dot (PRD §8.3). -->
+  <rect width="512" height="512" fill="#0d4715"/>
+  <circle cx="256" cy="256" r="150" fill="none" stroke="#19a24c" stroke-width="48"/>
+  <rect x="150" y="234" width="212" height="44" rx="0" fill="#fbfcfb"/>
+  <circle cx="256" cy="256" r="30" fill="#e8792b"/>
+</svg>
