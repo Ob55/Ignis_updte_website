@@ -26,8 +26,8 @@ export function MissionVision() {
               <span className="ey">Mission</span>
               <h3>Help Africa cook smarter, cleaner, and with dignity.</h3>
               <p>
-                We design, manufacture, and deploy clean cooking solutions for households and
-                institutions that blend finance and innovation to make the transition real.
+                We manage and implement clean energy programmes for institutions and households,
+                blending finance and delivery to make the transition real.
               </p>
             </div>
           </Reveal>

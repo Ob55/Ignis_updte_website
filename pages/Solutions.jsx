@@ -8,13 +8,13 @@ import { Compare } from '@/components/home/Compare';
 import { FinanceSplit } from '@/components/home/FinanceSplit';
 
 export default function Solutions() {
-  useTitle('Steam Kitchen System, Model & Financing | IGNIS');
+  useTitle('Clean Energy Solutions, Model & Financing | IGNIS');
   return (
     <>
       <PageHero
         eyebrow="Solutions"
-        segments={['Steam', 'kitchens,', { text: 'end to end.', className: 'serif grad-flame' }]}
-        sub="Combustion happens once, in a sealed boiler outside the kitchen. We design the system, finance it, build it, and run it, you cook."
+        segments={['Clean energy,', 'delivered', { text: 'end to end.', className: 'serif grad-flame' }]}
+        sub="One agreement covers design, delivery, maintenance and monitoring. You pay a fixed fee from your existing fuel budget, with no upfront capital and ownership transferring at the end of term."
       />
       <Flow />
       <Serve />

@@ -4,31 +4,32 @@
    design language (liquid glass, glow, blur reveals, ambient light).
    ============================================================ */
 :root {
-  /* base surfaces */
-  --bg: #173324;          /* lifted forest, softer than near-black */
-  --bg-2: #1f3f2c;        /* raised panel */
-  --bg-3: #294f38;        /* card fill */
+  /* base surfaces — light theme (warm cream + white panels) */
+  --bg: #f9f6f1;          /* warm cream page background */
+  --bg-2: #ffffff;        /* raised panel */
+  --bg-3: #ffffff;        /* card fill */
+  --tint: #dcecdf;        /* soft green — alternating section surface */
 
-  /* brand greens */
+  /* brand greens — darkened so they read on light surfaces */
   --emerald: #00712d;     /* Rich Emerald */
-  --emerald-lite: #21b45a;/* lifted emerald — accents on dark */
+  --emerald-lite: #0b7a3b;/* accent green on light bg */
   --sacramento: #0d4715;
-  --sap: #66a63a;         /* Sap Green, brightened for dark bg */
+  --sap: #4c7a1e;         /* Sap Green, deepened for light bg */
 
-  /* flame accent (the fire / ignition) */
-  --flame: #e8792b;
-  --flame-lite: #f7a24e;
-  --flame-deep: #c85a15;
+  /* flame accent (the fire / ignition) — deepened for legibility on light */
+  --flame: #e07b00;
+  --flame-lite: #c96a00;
+  --flame-deep: #b85e00;
 
-  /* text */
-  --text: #eef4ee;
-  --muted: rgba(238, 244, 238, 0.62);
-  --faint: rgba(238, 244, 238, 0.40);
+  /* text — near-black warm on cream */
+  --text: #14140f;
+  --muted: rgba(20, 20, 15, 0.60);
+  --faint: rgba(20, 20, 15, 0.40);
 
   /* lines & glass */
-  --line: rgba(255, 255, 255, 0.10);
-  --line-em: rgba(33, 180, 90, 0.28);
-  --glass: rgba(255, 255, 255, 0.02);
+  --line: rgba(20, 20, 15, 0.12);
+  --line-em: rgba(0, 113, 45, 0.22);
+  --glass: rgba(255, 255, 255, 0.60);
 
   /* structural */
   --nav-h: 76px;

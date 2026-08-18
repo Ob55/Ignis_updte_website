@@ -4,6 +4,7 @@ import { WhoWeAre } from '@/components/home/WhoWeAre';
 import { Highlights } from '@/components/home/Highlights';
 import { SavingsCalc } from '@/components/home/SavingsCalc';
 import { StatBar } from '@/components/home/StatBar';
+import { CleanCookIQ } from '@/components/home/CleanCookIQ';
 import { Geography } from '@/components/home/Geography';
 import { Partners } from '@/components/home/Partners';
 
@@ -11,7 +12,7 @@ import { Partners } from '@/components/home/Partners';
 // Hero (vision), Who we are, Highlights (what we offer), Savings (why it pays),
 // Impact (proof at scale), Geography (reach), Partners (trust), CTA.
 export default function Home() {
-  useTitle('Powering Africa\'s Clean Cooking Transition | IGNIS');
+  useTitle('Africa\'s Energy Services Platform for Institutions & Industry | IGNIS');
   return (
     <>
       <Hero />
@@ -19,6 +20,7 @@ export default function Home() {
       <Highlights />
       <SavingsCalc />
       <StatBar />
+      <CleanCookIQ />
       <Geography />
       <Partners />
     </>

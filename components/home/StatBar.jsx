@@ -13,16 +13,16 @@ export function StatBar() {
         <Reveal className="stats">
           <div className="stats-card glass">
             <div className="stat">
-              <div className="n"><CountUp to={1400} format suffix="+" /></div>
-              <span className="l">Institutions in pipeline</span>
+              <div className="n"><CountUp to={300} format suffix="+" /></div>
+              <span className="l">Institutions assessed</span>
             </div>
             <div className="stat">
               <div className="n"><CountUp to={10000} format suffix="+ t" /></div>
               <span className="l">Tonnes CO2 reduced</span>
             </div>
             <div className="stat">
-              <div className="n"><CountUp to={3} /></div>
-              <span className="l">Countries reached</span>
+              <div className="n"><CountUp to={5} /></div>
+              <span className="l">Markets active</span>
             </div>
             <div className="stat">
               <div className="n"><CountUp to={500000} format suffix="+" /></div>

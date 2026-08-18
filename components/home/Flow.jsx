@@ -4,7 +4,7 @@ const STAGES = [
   { icon: Flame, h: "Fuel in", p: "One controlled burn point, outside the kitchen, on a measured schedule.", rd: "Briquette / LPG" },
   { icon: Boxes, h: "Boiler", p: "Water becomes steam. The only combustion on site, in an enclosure.", rd: "~4 bar" },
   { icon: Waves, h: "Steam line", p: "Insulated pipe carries heat to each station. No smoke travels with it.", rd: "120 kg/h" },
-  { icon: Soup, h: "Jacketed pots", p: "Steam heats the pot's jacket. Food never touches flame, nothing scorches.", rd: "300\u20131,000 L" },
+  { icon: Soup, h: "Jacketed pots", p: "Steam heats the pot's jacket. Food never touches flame, nothing scorches.", rd: "300-1,000 L" },
   { icon: UtensilsCrossed, h: "Meals out", p: "Same menus, faster. Cooks work in clean air instead of smoke.", rd: "Trained on handover" }
 ];
 export function Flow() {

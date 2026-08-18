@@ -2,7 +2,7 @@ export const institutions = [
   {
     id: "schools",
     name: "Schools",
-    meta: "800 \u2013 2,500 meals/day",
+    meta: "800-2,500 meals/day",
     body: "Three meals a day for a boarding population, then exam-term surges. Firewood is often the second-largest line item after salaries."
   },
   {

@@ -1,9 +1,9 @@
 import { Reveal } from "@/components/motion/Reveal";
 const FAQS = [
-  ["What does it cost upfront?", "Nothing. You pay a monthly figure out of your existing fuel budget \u2014 it sits below what firewood was costing you, and servicing and fuel supply are inside that figure."],
+  ["What does it cost upfront?", "Nothing. You pay a monthly figure out of your existing fuel budget, it sits below what firewood was costing you, and servicing and fuel supply are inside that figure."],
   ["Who owns the equipment?", "Ignis owns, operates and maintains the system for the length of the contract. If the kitchen goes down, that is our problem to fix."],
   ["What happens if it breaks during term?", "Monitored uptime and a servicing contract mean we respond fast. Steam holds temperature between services, so a single fault rarely stops meals."],
-  ["Can we keep our existing cooks?", "Yes. We train your cooks on handover \u2014 same menus, faster, in clean air instead of smoke."],
+  ["Can we keep our existing cooks?", "Yes. We train your cooks on handover, same menus, faster, in clean air instead of smoke."],
   ["How long is the contract?", "Structured around the payback from fuel savings. We size it during the assessment and share the terms up front."],
   ["Do you work outside Kenya?", "Our current sites are in Kenya; the model is built to extend across the continent as the pipeline grows."]
 ];

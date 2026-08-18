@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { Flame, Building2, Workflow, Landmark, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 const CARDS = [
-  { icon: Flame, k: "The system", h: "No fire in the room", p: "A sealed boiler outside the kitchen. Steam does the cooking \u2014 no smoke where the food is." },
-  { icon: Building2, k: "Who we serve", h: "The biggest kitchens", p: "Schools, hospitals and correctional facilities \u2014 the largest single firewood consumers." },
+  { icon: Flame, k: "The system", h: "No fire in the room", p: "A sealed boiler outside the kitchen. Steam does the cooking, no smoke where the food is." },
+  { icon: Building2, k: "Who we serve", h: "The biggest kitchens", p: "Schools, hospitals and correctional facilities, the largest single firewood consumers." },
   { icon: Workflow, k: "The model", h: "We run the energy", p: "Design, finance, deploy, operate. You pay from fuel savings, not a capital budget." },
   { icon: Landmark, k: "Financing", h: "Contracted demand", p: "Blended debt plus concessional capital and carbon revenue. 400 institutions by 2027." }
 ];

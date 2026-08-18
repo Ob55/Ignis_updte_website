@@ -1,8 +1,8 @@
 import { Reveal } from "@/components/motion/Reveal";
 const STEPS = [
-  { n: "01", h: "Design", p: "We survey the kitchen, count real meal volumes across a term, and size the system to the peak \u2014 not the average.", m: "14-day survey" },
+  { n: "01", h: "Design", p: "We survey the kitchen, count real meal volumes across a term, and size the system to the peak, not the average.", m: "14-day survey" },
   { n: "02", h: "Finance", p: "Blended senior debt plus concessional capital. The institution pays out of fuel savings, not its capital budget.", m: "0 upfront capex" },
-  { n: "03", h: "Deploy", p: "Fabrication, install, cook training and commissioning \u2014 scheduled inside a school holiday or ward rotation.", m: "6\u201310 weeks" },
+  { n: "03", h: "Deploy", p: "Fabrication, install, cook training and commissioning, scheduled inside a school holiday or ward rotation.", m: "6-10 weeks" },
   { n: "04", h: "Operate", p: "Servicing, fuel supply, monitored uptime. If the kitchen goes down, that is our problem to fix.", m: "Monthly service" }
 ];
 export function Model() {

@@ -16,16 +16,16 @@ export function AboutCompany() {
           <Reveal delay={100}>
             <div className="who-body">
               <p>
-                Founded in Kenya to address Africa&apos;s persistent clean cooking crisis, IGNIS
-                Innovation Africa is driven by a mission to make clean, safe, and affordable cooking a
-                reality for every household and institution. With over 970 million people in Africa
-                still relying on polluting fuels, we bridge the energy access gap through innovative
-                steam-based technologies, digital transparency, and scalable deployment.
+                Founded in Kenya to close Africa&apos;s institutional clean cooking gap, IGNIS
+                Innovation Africa is an energy services company. Institutional energy transition
+                already has the demand, the economics, and the technology. What it lacked was the
+                delivery and financing infrastructure to connect them. We build it, funded from
+                the fuel budgets institutions already spend.
               </p>
               <p className="who-mission">
-                Our mission: provide high-impact clean cooking solutions that are user-centric,
-                verifiable, and transformative, catalyzing health improvements, gender equity,
-                climate action, and sustainable development across the continent.
+                Our mission: manage and implement clean energy programmes that are user-centric,
+                verifiable, and transformative, so the savings build the system and the health,
+                equity, and climate gains follow across the continent.
               </p>
             </div>
           </Reveal>

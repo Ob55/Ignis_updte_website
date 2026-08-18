@@ -11,11 +11,11 @@ export function Ambient({ specks = true }) {
       />
       <span
         className="blob steam"
-        style={{ width: 720, height: 720, right: "2%", top: "18%", animation: "drift2 26s ease-in-out infinite", opacity: 0.4 }}
+        style={{ width: 720, height: 720, right: "2%", top: "18%", animation: "drift2 26s ease-in-out infinite", opacity: 0.14 }}
       />
       <span
         className="blob ember"
-        style={{ width: 480, height: 480, left: "38%", bottom: "-8%", animation: "drift2 30s ease-in-out infinite", opacity: 0.35 }}
+        style={{ width: 480, height: 480, left: "38%", bottom: "-8%", animation: "drift2 30s ease-in-out infinite", opacity: 0.12 }}
       />
       {specks && (
         <div className="embers">

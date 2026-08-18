@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 
+// Merged information architecture: top-level routes plus a "Who we serve"
+// dropdown of the four audiences (backed by /who-we-serve#<id> anchors).
 const LINKS = [
-  { to: '/', label: 'Home' },
   { to: '/solutions', label: 'Solutions' },
-  { to: '/about', label: 'About Us' },
-  { to: '/blog', label: 'Blog & Posts' },
-  { to: '/contact', label: 'Contact' },
+  {
+    label: 'Who we serve',
+    children: [
+      { to: '/who-we-serve#institutions', label: 'Institutions' },
+      { to: '/who-we-serve#industry', label: 'Industry' },
+      { to: '/who-we-serve#financiers', label: 'Financiers' },
+      { to: '/who-we-serve#delivery-partners', label: 'Delivery partners' },
+    ],
+  },
+  { to: '/#cleancookiq', label: 'CleanCookIQ' },
+  { to: '/#partners', label: 'Projects & Partners' },
+  { to: '/about', label: 'About' },
+  { to: '/blog', label: 'Insights' },
 ];
 
 // Top bar: standalone logo far-left, a glass pill of route links + flame CTA on
@@ -15,6 +26,7 @@ const LINKS = [
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
+  const [openGroup, setOpenGroup] = useState(null); // mobile: expanded dropdown
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 20);
@@ -22,6 +34,11 @@ export function Nav() {
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const closeMobile = () => {
+    setOpen(false);
+    setOpenGroup(null);
+  };
 
   return (
     <header className={`topbar${solid ? ' solid' : ''}`}>
@@ -32,16 +49,35 @@ export function Nav() {
 
       <div className="nav-pill glass">
         <nav className="nav-links" aria-label="Primary">
-          {LINKS.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              end={l.to === '/'}
-              className={({ isActive }) => (isActive ? 'active' : undefined)}
-            >
-              {l.label}
-            </NavLink>
-          ))}
+          {LINKS.map((l) =>
+            l.children ? (
+              <div className="nav-dd" key={l.label}>
+                <button type="button" className="nav-dd-btn" aria-haspopup="true">
+                  {l.label} <ChevronDown size={13} strokeWidth={2.2} />
+                </button>
+                <div className="nav-menu glass" role="menu">
+                  {l.children.map((c) => (
+                    <Link key={c.label} to={c.to} role="menuitem">
+                      {c.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : l.to.includes('#') ? (
+              <Link key={l.to} to={l.to}>
+                {l.label}
+              </Link>
+            ) : (
+              <NavLink
+                key={l.to}
+                to={l.to}
+                end={l.to === '/'}
+                className={({ isActive }) => (isActive ? 'active' : undefined)}
+              >
+                {l.label}
+              </NavLink>
+            )
+          )}
         </nav>
       </div>
 
@@ -62,21 +98,49 @@ export function Nav() {
 
       {open && (
         <div className="nav-overlay" role="dialog" aria-label="Menu">
-          <button className="nav-overlay-close" onClick={() => setOpen(false)} aria-label="Close menu">
+          <button className="nav-overlay-close" onClick={closeMobile} aria-label="Close menu">
             <X size={28} />
           </button>
-          {LINKS.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              end={l.to === '/'}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) => `nav-overlay-link${isActive ? ' active' : ''}`}
-            >
-              {l.label}
-            </NavLink>
-          ))}
-          <Link className="btn btn-flame" to="/contact" onClick={() => setOpen(false)} style={{ marginTop: 24, alignSelf: 'flex-start' }}>
+          {LINKS.map((l) =>
+            l.children ? (
+              <div className="nav-overlay-group" key={l.label}>
+                <button
+                  type="button"
+                  className={`nav-overlay-link nav-overlay-toggle${openGroup === l.label ? ' open' : ''}`}
+                  aria-expanded={openGroup === l.label}
+                  onClick={() => setOpenGroup((g) => (g === l.label ? null : l.label))}
+                >
+                  {l.label} <ChevronDown size={22} strokeWidth={2.2} />
+                </button>
+                {openGroup === l.label &&
+                  l.children.map((c) => (
+                    <Link
+                      key={c.label}
+                      to={c.to}
+                      onClick={closeMobile}
+                      className="nav-overlay-sublink"
+                    >
+                      {c.label}
+                    </Link>
+                  ))}
+              </div>
+            ) : l.to.includes('#') ? (
+              <Link key={l.to} to={l.to} onClick={closeMobile} className="nav-overlay-link">
+                {l.label}
+              </Link>
+            ) : (
+              <NavLink
+                key={l.to}
+                to={l.to}
+                end={l.to === '/'}
+                onClick={closeMobile}
+                className={({ isActive }) => `nav-overlay-link${isActive ? ' active' : ''}`}
+              >
+                {l.label}
+              </NavLink>
+            )
+          )}
+          <Link className="btn btn-flame" to="/contact" onClick={closeMobile} style={{ marginTop: 24, alignSelf: 'flex-start' }}>
             Book assessment <ArrowUpRight size={16} />
           </Link>
         </div>

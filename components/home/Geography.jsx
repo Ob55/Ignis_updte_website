@@ -2,21 +2,23 @@ import { Reveal } from "@/components/motion/Reveal";
 
 const COUNTRIES = [
   { flag: "🇰🇪", name: "Kenya", status: "Active" },
-  { flag: "🇹🇿", name: "Tanzania", status: "Active" },
-  { flag: "🇺🇬", name: "Uganda", status: "Active" },
+  { flag: "🇪🇹", name: "Ethiopia", status: "Market development" },
+  { flag: "🇸🇱", name: "Sierra Leone", status: "Market development" },
+  { flag: "🇲🇿", name: "Mozambique", status: "Market development" },
+  { flag: "🇺🇬", name: "Uganda", status: "Market development" },
 ];
 
-// Our Geographical Presence, East Africa operations.
+// Our Geographical Presence, Kenya-proven and working across Africa.
 export function Geography() {
   return (
     <section id="presence" className="section">
       <div className="wrap">
         <Reveal className="section-head">
           <span className="eyebrow">Where we work</span>
-          <h2>Our geographical presence.</h2>
+          <h2>Kenya-proven, working across Africa.</h2>
           <p>
-            We operate across East Africa through on-ground teams and delivery partners, supporting
-            institutional clean cooking and energy systems with local maintenance and training.
+            We deliver through on-ground teams and delivery partners, supporting institutional
+            clean energy programmes with local delivery, maintenance and verification.
           </p>
         </Reveal>
 

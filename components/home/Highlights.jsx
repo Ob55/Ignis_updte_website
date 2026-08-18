@@ -1,21 +1,21 @@
-import { Boxes, Flame, Gauge, Wrench } from "lucide-react";
+import { Layers, Wrench, Wallet, Activity } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 
 const ITEMS = [
-  { icon: Boxes, h: "Institutional Cookers", p: "Steam-based systems for high-volume, smoke-free cooking." },
-  { icon: Flame, h: "LPG & Clean Fuels", p: "Hybrid fuel solutions for low-emission institutional kitchens." },
-  { icon: Gauge, h: "Energy Efficiency", p: "Cut energy waste by up to 60% with advanced cooking technology." },
-  { icon: Wrench, h: "Maintenance & Support", p: "Ongoing training, telemetry, and after-sales service." },
+  { icon: Layers, h: "Programme management", p: "We design, run and verify clean energy programmes for governments, donors, counties and corporates." },
+  { icon: Wrench, h: "Programme implementation", p: "We deliver and operate projects for institutions and financiers, from assessment to verified performance." },
+  { icon: Wallet, h: "No upfront capital", p: "Institutions pay a fixed fee from existing fuel budgets. Ownership transfers at the end of term." },
+  { icon: Activity, h: "Measured and verified", p: "Digital monitoring from commissioning through CleanCookIQ, the trigger for verified savings." },
 ];
 
-// Key Highlights, solutions engineered for safety, performance and operations.
+// Two pillars: what Ignis manages and what it implements, end to end.
 export function Highlights() {
   return (
     <section className="section">
       <div className="wrap">
         <Reveal className="section-head">
-          <span className="eyebrow">Key highlights</span>
-          <h2>Engineered for safety, performance, and institutional operations.</h2>
+          <span className="eyebrow">Two pillars</span>
+          <h2>One company, two pillars, end to end.</h2>
         </Reveal>
         <div className="teaser-grid" style={{ marginTop: 44 }}>
           {ITEMS.map(({ icon: Icon, h, p }, i) => (

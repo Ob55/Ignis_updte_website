@@ -5,7 +5,6 @@ import { MissionVision } from '@/components/about/MissionVision';
 import { CoreValues } from '@/components/about/CoreValues';
 import { Culture } from '@/components/about/Culture';
 import { Crew } from '@/components/team/Crew';
-import { AssessmentCta } from '@/components/home/AssessmentCta';
 
 export default function About() {
   useTitle('About Us, IGNIS Innovation Africa');
@@ -13,15 +12,14 @@ export default function About() {
     <>
       <PageHero
         eyebrow="About us"
-        segments={['Clean, safe, affordable cooking ,', { text: 'for everyone.', className: 'serif grad-flame' }]}
-        sub="A Kenyan clean energy company making dignified cooking a reality for households and institutions across Africa."
+        segments={['An energy services company,', { text: 'built in Kenya.', className: 'serif grad-flame' }]}
+        sub="Kenya-proven and working across Africa. We build the delivery and financing infrastructure for institutional clean energy, connecting the demand, the economics and the technology."
       />
       <AboutCompany />
       <MissionVision />
       <CoreValues />
       <Culture />
       <Crew />
-      <AssessmentCta />
     </>
   );
 }
