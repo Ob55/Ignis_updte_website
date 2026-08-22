@@ -3,16 +3,16 @@ import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 
 // Merged information architecture: top-level routes plus a "Who we serve"
-// dropdown of the four audiences (backed by /who-we-serve#<id> anchors).
+// dropdown of the four audiences (each its own /who-we-serve/<id> page).
 const LINKS = [
   { to: '/solutions', label: 'Solutions' },
   {
     label: 'Who we serve',
     children: [
-      { to: '/who-we-serve#institutions', label: 'Institutions' },
-      { to: '/who-we-serve#industry', label: 'Industry' },
-      { to: '/who-we-serve#financiers', label: 'Financiers' },
-      { to: '/who-we-serve#delivery-partners', label: 'Delivery partners' },
+      { to: '/who-we-serve/institutions', label: 'Institutions' },
+      { to: '/who-we-serve/industry', label: 'Industry' },
+      { to: '/who-we-serve/financiers', label: 'Financiers' },
+      { to: '/who-we-serve/delivery-partners', label: 'Delivery partners' },
     ],
   },
   { to: '/#cleancookiq', label: 'CleanCookIQ' },

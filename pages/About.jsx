@@ -1,4 +1,4 @@
-import { useTitle } from '@/lib/useTitle';
+import { useSeo } from '@/lib/seo';
 import { PageHero } from '@/components/chrome/PageHero';
 import { AboutCompany } from '@/components/about/AboutCompany';
 import { MissionVision } from '@/components/about/MissionVision';
@@ -7,7 +7,11 @@ import { Culture } from '@/components/about/Culture';
 import { Crew } from '@/components/team/Crew';
 
 export default function About() {
-  useTitle('About Us, IGNIS Innovation Africa');
+  useSeo({
+    title: 'About IGNIS Innovation Africa',
+    description: 'Kenya-proven and working across Africa, IGNIS builds the delivery and financing infrastructure for institutional clean energy, connecting demand, economics and technology.',
+    path: '/about',
+  });
   return (
     <>
       <PageHero

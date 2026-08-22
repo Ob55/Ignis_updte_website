@@ -9,7 +9,7 @@ export function CleanCookIQ() {
   return (
     <section id="cleancookiq" className="section" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <Reveal className="kitchen-cta glass">
+        <Reveal className="kitchen-cta kitchen-cta--center glass">
           <div>
             <span className="k">CleanCookIQ</span>
             <h3>Measured, reported, verified.</h3>

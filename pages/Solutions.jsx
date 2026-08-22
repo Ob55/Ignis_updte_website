@@ -1,4 +1,4 @@
-import { useTitle } from '@/lib/useTitle';
+import { useSeo } from '@/lib/seo';
 import { PageHero } from '@/components/chrome/PageHero';
 import { Flow } from '@/components/home/Flow';
 import { Serve } from '@/components/home/Serve';
@@ -8,7 +8,11 @@ import { Compare } from '@/components/home/Compare';
 import { FinanceSplit } from '@/components/home/FinanceSplit';
 
 export default function Solutions() {
-  useTitle('Clean Energy Solutions, Model & Financing | IGNIS');
+  useSeo({
+    title: 'Clean Energy Solutions, Model & Financing | IGNIS',
+    description: 'One agreement covers design, delivery, maintenance and monitoring. You pay a fixed fee from your existing fuel budget, with no upfront capital and ownership at end of term.',
+    path: '/solutions',
+  });
   return (
     <>
       <PageHero

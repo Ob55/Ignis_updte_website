@@ -6,7 +6,7 @@ export function StatBar() {
   return (
     <section id="impact" className="section" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <Reveal className="section-head" style={{ textAlign: "center", marginBottom: 40 }}>
+        <Reveal className="section-head" style={{ textAlign: "center", marginBottom: 64 }}>
           <span className="eyebrow" style={{ margin: "0 auto" }}>Impact numbers</span>
           <h2 style={{ marginLeft: "auto", marginRight: "auto" }}>Scale and outcomes across our operations.</h2>
         </Reveal>
