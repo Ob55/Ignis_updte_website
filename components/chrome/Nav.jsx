@@ -5,6 +5,7 @@ import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 // Merged information architecture: top-level routes plus a "Who we serve"
 // dropdown of the four audiences (each its own /who-we-serve/<id> page).
 const LINKS = [
+  { to: '/', label: 'Home' },
   { to: '/solutions', label: 'Solutions' },
   {
     label: 'Who we serve',
@@ -15,10 +16,9 @@ const LINKS = [
       { to: '/who-we-serve/delivery-partners', label: 'Delivery partners' },
     ],
   },
-  { to: '/#cleancookiq', label: 'CleanCookIQ' },
-  { to: '/#partners', label: 'Projects & Partners' },
+  { to: '/cleancookiq', label: 'CleanCookIQ' },
   { to: '/about', label: 'About' },
-  { to: '/blog', label: 'Insights' },
+  { to: '/blog', label: 'Blogs' },
 ];
 
 // Top bar: standalone logo far-left, a glass pill of route links + flame CTA on

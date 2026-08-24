@@ -1,13 +1,13 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Reveal } from "@/components/motion/Reveal";
 
-// CleanCookIQ marketing strip. Per the PRD, CleanCookIQ is a separate standalone
-// MRV platform: the site links to it, it is not embedded here.
-const CLEANCOOKIQ_URL = "https://cleancookiq.com/";
-
+// CleanCookIQ marketing strip on the home page. CleanCookIQ has its own detail
+// page (/cleancookiq); this teaser links there. Balanced section padding keeps
+// the card centered with breathing room from the sections above and below.
 export function CleanCookIQ() {
   return (
-    <section id="cleancookiq" className="section" style={{ paddingTop: 0 }}>
+    <section id="cleancookiq" className="section">
       <div className="wrap">
         <Reveal className="kitchen-cta kitchen-cta--center glass">
           <div>
@@ -19,9 +19,9 @@ export function CleanCookIQ() {
               impact at every site, the data that triggers payment and that financiers rely on.
             </p>
           </div>
-          <a className="btn btn-flame" href={CLEANCOOKIQ_URL} target="_blank" rel="noopener noreferrer">
+          <Link className="btn btn-flame" to="/cleancookiq">
             Explore CleanCookIQ <ArrowUpRight size={16} />
-          </a>
+          </Link>
         </Reveal>
       </div>
     </section>

@@ -9,6 +9,7 @@ import WhoWeServe from '@/pages/WhoWeServe';
 import Audience from '@/pages/Audience';
 import About from '@/pages/About';
 import Blog from '@/pages/Blog';
+import CleanCookIQ from '@/pages/CleanCookIQ';
 import Contact from '@/pages/Contact';
 import Privacy from '@/pages/Privacy';
 import ThankYou from '@/pages/ThankYou';
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="/who-we-serve/:audience" element={<Audience />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/cleancookiq" element={<CleanCookIQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/thank-you" element={<ThankYou />} />
