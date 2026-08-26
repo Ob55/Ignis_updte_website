@@ -2,9 +2,11 @@ import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { BlurText } from "@/components/motion/BlurText";
 
 // Acreage-style cinematic hero: full-bleed looping video, dark-green scrim,
-// giant serif headline, editorial two-column copy. Video is a free Pixabay
-// asset (swap for local clean-cooking footage in public/ any time).
-const HERO_VIDEO = "https://cdn.pixabay.com/video/2025/01/22/254016_large.mp4";
+// giant serif headline, editorial two-column copy. 27s cinematic forest drone
+// flythrough (Pixabay, free license), self-hosted and compressed to 1080p/~5MB
+// so it starts fast; the poster still paints instantly while it buffers.
+const HERO_VIDEO = "/hero.mp4";
+const HERO_POSTER = "/hero-poster.jpg";
 
 export function Hero() {
   return (
@@ -15,7 +17,8 @@ export function Hero() {
         muted
         loop
         playsInline
-        poster="/serve/schools.jpg"
+        preload="auto"
+        poster={HERO_POSTER}
         aria-hidden="true"
       >
         <source src={HERO_VIDEO} type="video/mp4" />

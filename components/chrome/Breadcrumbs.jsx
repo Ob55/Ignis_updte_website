@@ -9,7 +9,7 @@ const LABELS = {
   solutions: 'Solutions',
   'who-we-serve': 'Who we serve',
   about: 'About',
-  blog: 'Insights',
+  blog: 'Blogs',
   contact: 'Contact',
   privacy: 'Privacy',
   'thank-you': 'Thank you',

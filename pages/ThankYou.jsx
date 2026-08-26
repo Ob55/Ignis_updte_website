@@ -19,7 +19,7 @@ export default function ThankYou() {
         segments={['Thank you.', { text: "We're on it.", className: 'serif grad-flame' }]}
         sub="Your enquiry is in. Our team reviews meal volumes and fuel spend, then replies within two working days with a system design and a savings figure, not a brochure."
       />
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="wrap">
           <Reveal className="ty-actions">
             <a className="btn btn-flame" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer">

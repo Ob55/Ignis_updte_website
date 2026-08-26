@@ -42,9 +42,9 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* fonts (wired by next/font in layout) */
-  --font-display: 'Archivo';
-  --font-body: 'IBM Plex Sans';
+  /* fonts */
+  --font-display: 'Inter';
+  --font-body: 'Atkinson Hyperlegible';
   --font-mono: 'IBM Plex Mono';
   --font-serif: 'Instrument Serif';
 }

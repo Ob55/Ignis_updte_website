@@ -10,7 +10,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-body), 'IBM Plex Sans', system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
   font-size: 17px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -19,10 +19,10 @@ body {
 }
 
 h1, h2, h3, h4, .disp {
-  font-family: var(--font-display), 'Archivo', sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
 }
 
 /* the signature accent face — serif italic, one word at a time */
@@ -57,12 +57,9 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 .flame-text { color: var(--flame-lite); }
 .emerald-text { color: var(--emerald-lite); }
 
-/* flame-gradient clip for accent words */
+/* solid flame accent for accent words */
 .grad-flame {
-  background: linear-gradient(100deg, var(--flame-lite) 0%, var(--flame) 45%, var(--emerald-lite) 120%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--flame);
 }
 
 /* ============ LAYOUT ============ */

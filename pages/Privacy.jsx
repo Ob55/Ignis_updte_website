@@ -16,7 +16,7 @@ export default function Privacy() {
         segments={['Privacy', { text: 'policy.', className: 'serif grad-flame' }]}
         sub="How we handle the information you share with us. Last updated August 2026."
       />
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="wrap">
           <Reveal className="legal">
             <h2>Who we are</h2>

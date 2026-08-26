@@ -30,7 +30,7 @@ export default function CleanCookIQ() {
         sub="Our standalone measurement, reporting and verification platform. Digital monitoring runs from commissioning, tracking fuel savings, uptime and verified impact at every site, the data that triggers payment and that financiers rely on."
       />
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="wrap">
           <Reveal className="section-head">
             <span className="eyebrow">Why it exists</span>
@@ -42,7 +42,7 @@ export default function CleanCookIQ() {
             </p>
           </Reveal>
 
-          <div className="teaser-grid" style={{ marginTop: 44 }}>
+          <div className="step-grid" style={{ marginTop: 44 }}>
             {STEPS.map(({ icon: Icon, h, p }, i) => (
               <Reveal key={h} delay={i * 80}>
                 <div className="teaser-card glass">
@@ -58,9 +58,9 @@ export default function CleanCookIQ() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="wrap">
-          <div className="fin-grid" style={{ marginTop: 0 }}>
+          <div className="fin-grid">
             <Reveal>
               <div className="fin-card glass">
                 <span className="ey">For institutions</span>
@@ -85,7 +85,7 @@ export default function CleanCookIQ() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="wrap">
           <Reveal className="kitchen-cta kitchen-cta--center glass">
             <div>

@@ -20,7 +20,7 @@ export default function WhoWeServe() {
         segments={['Four audiences,', { text: 'one model.', className: 'serif grad-flame' }]}
         sub="Institutions, industry, financiers and delivery partners, all connected by one energy services model funded from the fuel budgets institutions already spend. Kenya-proven, working across Africa."
       />
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="wrap">
           <div className="service-grid">
             {audiences.map((a, i) => (

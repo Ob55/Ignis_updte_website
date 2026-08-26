@@ -76,10 +76,10 @@
 .hero .sub { color: var(--muted); font-size: clamp(17px, 2vw, 21px); max-width: 60ch; margin: 30px auto 0; }
 .hero .hero-btns { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
 /* ---------- ACREAGE-STYLE CINEMATIC VIDEO HERO ---------- */
-.hero--video { min-height: 100vh; display: flex; align-items: flex-end; padding: 0; overflow: hidden; background: #08170e; }
+.hero--video { min-height: 100vh; min-height: 100svh; height: 100vh; height: 100dvh; display: flex; align-items: flex-end; padding: 0; overflow: hidden; background: #08170e; }
 .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .hero-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(to top, rgba(6,22,13,0.95) 0%, rgba(6,22,13,0.60) 52%, rgba(6,22,13,0.30) 100%); }
+  background: linear-gradient(to top, rgba(6,22,13,0.88) 0%, rgba(6,22,13,0.42) 45%, rgba(6,22,13,0.12) 100%); }
 .hero--video .hero-inner { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: 1.5fr 1fr; gap: 44px; align-items: end; text-align: left;
   padding-top: calc(var(--nav-h) + 40px); padding-bottom: clamp(80px, 12vh, 140px); }
 .hero-eyebrow { display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #9fe0b0; margin-bottom: 22px; }
@@ -282,6 +282,20 @@
 .teaser-card p { color: var(--muted); font-size: 14px; }
 @media (max-width: 980px) { .teaser-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .teaser-grid { grid-template-columns: 1fr; } }
+/* "two pillars" variant: two merged cards, each pillar + its supporting point */
+.teaser-grid--pillars { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 640px) { .teaser-grid--pillars { grid-template-columns: 1fr; } }
+/* 5-step process row (CleanCookIQ) — balanced, never a lone trailing card */
+.step-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.step-grid .teaser-card { padding: 24px; }
+@media (max-width: 1100px) { .step-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px) { .step-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .step-grid { grid-template-columns: 1fr; } }
+.pillar-card { display: flex; flex-direction: column; }
+.pillar-sub { display: flex; gap: 14px; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
+.pillar-sub-icon { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: var(--emerald-lite); background: rgba(0,113,45,0.07); }
+.pillar-sub h4 { font-size: 16px; margin-bottom: 6px; }
+.pillar-sub p { color: var(--muted); font-size: 14px; }
 
 /* ---------- CREW (team) ---------- */
 .crew-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -364,7 +378,8 @@
 .geo-card h3 { font-size: 24px; }
 .geo-status { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--emerald-lite); }
 .geo-status .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--emerald-lite); box-shadow: 0 0 10px var(--emerald-lite); }
-@media (max-width: 720px) { .geo-grid { grid-template-columns: 1fr; } }
+@media (max-width: 960px) { .geo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .geo-grid { grid-template-columns: 1fr; } }
 
 /* ---------- PARTNERS (moving logo wall) ---------- */
 .partner-marquee .marquee-track { gap: 28px; padding-right: 28px; align-items: center; }
@@ -470,6 +485,8 @@
 
 /* ---------- CASE STUDIES / REVIEWS ---------- */
 .case-metric { display: inline-block; margin-top: 16px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--flame-lite); }
+/* stacked column of published case studies, sits to the right of the intro */
+.case-col { display: grid; gap: 18px; align-content: start; }
 .case-empty { border-radius: 20px; padding: 30px; }
 .case-empty p { color: var(--muted); font-size: 15px; }
 .review-card { display: flex; flex-direction: column; }

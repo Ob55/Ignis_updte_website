@@ -25,7 +25,7 @@ export default function NotFound() {
         segments={['This page has', { text: 'gone cold.', className: 'serif grad-flame' }]}
         sub="The page you were looking for does not exist or has moved. Here is the way back."
       />
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section">
         <div className="wrap">
           <div className="service-grid">
             {LINKS.map((l, i) => (
