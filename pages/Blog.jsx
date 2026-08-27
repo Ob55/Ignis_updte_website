@@ -15,6 +15,8 @@ export default function Blog() {
         eyebrow="Blog & posts"
         segments={['Field notes from', { text: 'live sites.', className: 'serif grad-flame' }]}
         sub="Commissioning reports, fuel consumption data, and what breaks in month eight, the data a financier actually reads."
+        image="/img/blog.jpg"
+        imageAlt="Institutional cooking on firewood, documented in the field"
       />
       <CaseStudies />
       <LogTeaser />

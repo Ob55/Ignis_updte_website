@@ -25,12 +25,13 @@ h1, h2, h3, h4, .disp {
   line-height: 1.02;
 }
 
-/* the signature accent face — serif italic, one word at a time */
+/* accent words inside a heading — same Archivo face as the heading, set apart
+   by weight + the flame colour (not by a second typeface) */
 .serif {
-  font-family: var(--font-serif), 'Instrument Serif', serif;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
 .mono {

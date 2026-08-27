@@ -19,6 +19,8 @@ export default function Solutions() {
         eyebrow="Solutions"
         segments={['Clean energy,', 'delivered', { text: 'end to end.', className: 'serif grad-flame' }]}
         sub="One agreement covers design, delivery, maintenance and monitoring. You pay a fixed fee from your existing fuel budget, with no upfront capital and ownership transferring at the end of term."
+        image="/img/solutions.jpg"
+        imageAlt="Institutional steam kitchen cooking at scale"
       />
       <Flow />
       <Serve />

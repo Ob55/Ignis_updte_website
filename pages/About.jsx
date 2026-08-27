@@ -18,6 +18,8 @@ export default function About() {
         eyebrow="About us"
         segments={['An energy services company,', { text: 'built in Kenya.', className: 'serif grad-flame' }]}
         sub="Kenya-proven and working across Africa. We build the delivery and financing infrastructure for institutional clean energy, connecting the demand, the economics and the technology."
+        image="/img/about.jpg"
+        imageAlt="An IGNIS field technician at work"
       />
       <AboutCompany />
       <MissionVision />

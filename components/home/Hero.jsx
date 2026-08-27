@@ -1,5 +1,6 @@
 import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { BlurText } from "@/components/motion/BlurText";
+import { Ambient } from "@/components/motion/Ambient";
 
 // Acreage-style cinematic hero: full-bleed looping video, dark-green scrim,
 // giant serif headline, editorial two-column copy. 27s cinematic forest drone
@@ -24,6 +25,7 @@ export function Hero() {
         <source src={HERO_VIDEO} type="video/mp4" />
       </video>
       <div className="hero-scrim" aria-hidden="true" />
+      <Ambient />
 
       <div className="wrap hero-inner">
         <div className="hero-copy">
@@ -52,7 +54,7 @@ export function Hero() {
           </div>
           <div className="hero-btns fade-up" style={{ animationDelay: "0.9s" }}>
             <a className="btn btn-flame" href="/contact">
-              Book a kitchen assessment <ArrowUpRight size={16} />
+              Get in touch <ArrowUpRight size={16} />
             </a>
             <a className="btn btn-glass-d" href="#calc">
               See the savings <ArrowDown size={15} />

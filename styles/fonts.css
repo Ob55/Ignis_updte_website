@@ -1,5 +1,13 @@
 /* Self-hosted faces (replaces next/font). Served from /public/fonts. */
-/* Headings — Inter (variable 400–700), highly legible neutral sans. */
+/* Headings — Archivo (variable 400–800). One display face for every heading,
+   site-wide. A confident grotesque that reads as energy-infrastructure. */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-var.woff2') format('woff2');
+  font-weight: 400 800;
+  font-display: swap;
+}
+/* Inter kept as a neutral UI/system fallback for display. */
 @font-face {
   font-family: 'Inter';
   src: url('/fonts/inter-var.woff2') format('woff2');

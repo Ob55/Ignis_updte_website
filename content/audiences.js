@@ -6,6 +6,7 @@ export const audiences = [
   {
     id: 'institutions',
     eyebrow: 'Institutions',
+    image: '/serve/schools.jpg',
     // PageHero segments: strings, plus one accented serif fragment.
     segments: ['Clean energy for schools, hospitals,', { text: 'prisons and faith institutions.', className: 'serif grad-flame' }],
     intro:
@@ -21,6 +22,7 @@ export const audiences = [
   {
     id: 'industry',
     eyebrow: 'Industry',
+    image: '/img/industry.jpg',
     segments: ['Clean energy for industry', { text: 'and commercial operations.', className: 'serif grad-flame' }],
     intro:
       'Clean energy services for industrial and commercial operations with significant thermal energy demand across Africa. This market is opening, and we are looking for early partners with significant thermal loads.',
@@ -33,6 +35,7 @@ export const audiences = [
   {
     id: 'financiers',
     eyebrow: 'Financiers',
+    image: '/img/financiers.jpg',
     segments: ['Structured, verified,', { text: 'portfolio-level assets.', className: 'serif grad-flame' }],
     intro:
       'For banks, DFIs, impact investors and carbon partners: a bankable pipeline delivered to one performance standard and verified from commissioning.',
@@ -46,6 +49,7 @@ export const audiences = [
   {
     id: 'delivery-partners',
     eyebrow: 'Delivery partners',
+    image: '/img/delivery.jpg',
     segments: ['OEMs, EPCs, fabricators and O&M,', { text: 'one performance standard.', className: 'serif grad-flame' }],
     intro:
       'Delivering clean energy infrastructure into a growing institutional portfolio.',

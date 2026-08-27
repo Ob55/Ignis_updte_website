@@ -28,6 +28,8 @@ export default function CleanCookIQ() {
         eyebrow="CleanCookIQ"
         segments={["Measured, reported,", { text: "verified.", className: "serif grad-flame" }]}
         sub="Our standalone measurement, reporting and verification platform. Digital monitoring runs from commissioning, tracking fuel savings, uptime and verified impact at every site, the data that triggers payment and that financiers rely on."
+        image="/img/cleancookiq.jpg"
+        imageAlt="A live monitoring dashboard tracking fuel savings and uptime"
       />
 
       <section className="section">

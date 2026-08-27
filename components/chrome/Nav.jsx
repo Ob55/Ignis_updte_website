@@ -83,7 +83,7 @@ export function Nav() {
 
       <div className="nav-right">
         <Link className="btn btn-flame nav-cta" to="/contact">
-          Book assessment <ArrowUpRight size={15} />
+          Get in touch <ArrowUpRight size={15} />
         </Link>
 
         <button
@@ -141,7 +141,7 @@ export function Nav() {
             )
           )}
           <Link className="btn btn-flame" to="/contact" onClick={closeMobile} style={{ marginTop: 24, alignSelf: 'flex-start' }}>
-            Book assessment <ArrowUpRight size={16} />
+            Get in touch <ArrowUpRight size={16} />
           </Link>
         </div>
       )}

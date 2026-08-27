@@ -6,7 +6,7 @@ export function FinanceSplit() {
                 item is what pays for the steam kitchen, no capital request, no equipment tender, no
                 donor.
               </p><p>We install, you cook, and the monthly cost sits below what firewood was costing you. Servicing and fuel supply are inside that figure.</p><a className="lnk" href="/contact">
-                Book a kitchen assessment <ArrowUpRight size={14} /></a></div></Reveal><Reveal delay={100}><div className="fin-card glass"><span className="ey">For financiers &amp; partners</span><h3>Defined demand, proven hardware, contracted revenue.</h3><p>
+                Get in touch <ArrowUpRight size={14} /></a></div></Reveal><Reveal delay={100}><div className="fin-card glass"><span className="ey">For financiers &amp; partners</span><h3>Defined demand, proven hardware, contracted revenue.</h3><p>
                 Kenyan schools alone burn ~1M tonnes of firewood a year, about KES 6B, and the
                 National School Meals Programme is expanding. The demand is a recurring bill that
                 already exists.

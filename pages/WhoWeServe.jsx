@@ -19,6 +19,8 @@ export default function WhoWeServe() {
         eyebrow="Who we serve"
         segments={['Four audiences,', { text: 'one model.', className: 'serif grad-flame' }]}
         sub="Institutions, industry, financiers and delivery partners, all connected by one energy services model funded from the fuel budgets institutions already spend. Kenya-proven, working across Africa."
+        image="/img/kitchen.jpg"
+        imageAlt="An institutional kitchen cooking at scale"
       />
       <section className="section">
         <div className="wrap">

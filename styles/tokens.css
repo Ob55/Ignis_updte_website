@@ -18,8 +18,9 @@
 
   /* flame accent (the fire / ignition) — deepened for legibility on light */
   --flame: #e07b00;
-  --flame-lite: #c96a00;
+  --flame-lite: #a34d00;   /* burnt orange — small mono labels now clear 4.5:1 on light (≈5.3:1) */
   --flame-deep: #b85e00;
+  --flame-on-dark: #f5a63f;/* lighter orange for small text on the dark-green footer/pills (≈5.4:1) */
 
   /* text — near-black warm on cream */
   --text: #14140f;
@@ -42,9 +43,10 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* fonts */
-  --font-display: 'Inter';
+  /* fonts — one heading face (Archivo) everywhere, a distinct body face
+     (Atkinson), a mono for labels. Inter/Instrument kept only as fallbacks. */
+  --font-display: 'Archivo';
   --font-body: 'Atkinson Hyperlegible';
   --font-mono: 'IBM Plex Mono';
-  --font-serif: 'Instrument Serif';
+  --font-serif: 'Archivo';
 }

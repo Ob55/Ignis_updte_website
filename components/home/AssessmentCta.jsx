@@ -17,6 +17,7 @@ export function AssessmentCta({ heading, blurb } = {}) {
       institution: fd.get("institution")?.trim(),
       phone: fd.get("phone")?.trim(),
       email: fd.get("email")?.trim(),
+      company: fd.get("company") || "", // honeypot — humans leave this empty
     };
     setStatus("sending");
     try {
@@ -50,6 +51,15 @@ export function AssessmentCta({ heading, blurb } = {}) {
                 "Meal volumes, current fuel spend, a few photos. We come back with a system design and a savings figure for your institution, not a brochure."}
             </p>
             <form className="cta-form" onSubmit={onSubmit}>
+              {/* honeypot: hidden from users, catches bots that fill every field */}
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+              />
               <input type="text" name="name" placeholder="Name" aria-label="Name" required />
               <input type="text" name="institution" placeholder="Institution" aria-label="Institution" />
               <input type="tel" name="phone" placeholder="Phone number" aria-label="Phone number" required />

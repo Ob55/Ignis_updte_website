@@ -23,7 +23,7 @@ export default function Audience() {
 
   return (
     <>
-      <PageHero eyebrow={a.eyebrow} segments={a.segments} sub={a.intro} />
+      <PageHero eyebrow={a.eyebrow} segments={a.segments} sub={a.intro} image={a.image} imageAlt={`${a.eyebrow} — IGNIS clean energy`} />
 
       <section className="section">
         <div className="wrap">

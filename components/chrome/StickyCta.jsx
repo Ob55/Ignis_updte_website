@@ -12,7 +12,7 @@ export function StickyCta() {
   return (
     <div className="sticky-cta" role="region" aria-label="Quick actions">
       <Link className="sticky-cta-btn primary" to="/contact">
-        <CalendarCheck size={18} strokeWidth={1.9} /> Book assessment
+        <CalendarCheck size={18} strokeWidth={1.9} /> Get in touch
       </Link>
       <a
         className="sticky-cta-btn"
