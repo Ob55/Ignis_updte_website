@@ -2,6 +2,7 @@
 // sales team, and sends the enquirer a confirmation. Server-only; reads SMTP
 // creds from environment variables (never exposed to the client).
 import { makeTransport, leadEmail, confirmationEmail } from "../scripts/mailer.mjs";
+import { isRateLimited } from "../scripts/rateLimit.mjs";
 
 const list = (v) => (v || "").split(",").map((s) => s.trim()).filter(Boolean);
 
@@ -41,21 +42,6 @@ function originAllowed(req) {
   return false;
 }
 
-// ---- Best-effort in-memory rate limit --------------------------------------
-// Per warm serverless instance (resets on cold start). Not a substitute for a
-// shared store, but a cheap deterrent against bursts from a single IP.
-const WINDOW_MS = 10 * 60 * 1000;
-const MAX_HITS = 5;
-const hits = new Map(); // ip -> number[] (timestamps)
-
-function rateLimited(ip, now) {
-  const arr = (hits.get(ip) || []).filter((t) => now - t < WINDOW_MS);
-  arr.push(now);
-  hits.set(ip, arr);
-  if (hits.size > 5000) hits.clear(); // bound memory
-  return arr.length > MAX_HITS;
-}
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
@@ -66,9 +52,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  const now = Date.now();
   const ip = (req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "unknown";
-  if (rateLimited(ip, now)) {
+  if (await isRateLimited(ip)) {
     res.status(429).json({ error: "Too many requests. Please try again later." });
     return;
   }
