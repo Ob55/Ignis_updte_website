@@ -68,18 +68,28 @@
 .pagehero-h1 .serif { font-weight: 700; }
 .pagehero-sub { color: var(--muted); font-size: clamp(17px, 1.6vw, 20px); max-width: 60ch; margin-top: 26px; }
 
-/* page hero with a full-bleed background photo, dark scrim + rising embers */
-.pagehero--bg { position: relative; background: #08170e; overflow: hidden; padding: calc(var(--nav-h) + 120px) 0 88px; min-height: 60vh; display: flex; align-items: flex-end; }
+/* page hero with a full-bleed background photo, dark scrim + rising embers.
+   Copy is a left-anchored, vertically-centred column; the scrim is weighted to
+   the left so the text stays legible while the photo breathes on the right. */
+.pagehero--bg { position: relative; background: #08170e; overflow: hidden; padding: calc(var(--nav-h) + 96px) 0 76px; min-height: 62vh; display: flex; align-items: flex-end; }
+/* the wrap must fill the row so its content sits at the left gutter, not shrink
+   to its content and get re-centred by margin:0 auto inside the flex hero */
+.pagehero--bg .wrap { width: 100%; }
 .pagehero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .pagehero-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(to top, rgba(6,22,13,0.93) 0%, rgba(6,22,13,0.66) 42%, rgba(6,22,13,0.34) 100%); }
+  background: linear-gradient(100deg, rgba(6,22,13,0.95) 0%, rgba(6,22,13,0.82) 30%, rgba(6,22,13,0.46) 62%, rgba(6,22,13,0.12) 100%); }
 .pagehero--bg .ambient { z-index: 1; }
-.pagehero--bg .pagehero-h1 { color: #fff; max-width: 20ch; overflow-wrap: break-word; }
+.pagehero--bg .pagehero-h1 { color: #fff; max-width: 16ch; overflow-wrap: break-word; }
 .pagehero--bg .pagehero-h1 .blur-word { white-space: pre-wrap; }
-.pagehero--bg .pagehero-sub { color: rgba(255,255,255,0.82); max-width: 54ch; }
+.pagehero--bg .pagehero-sub { color: rgba(255,255,255,0.82); max-width: 40ch; }
 .pagehero--bg .breadcrumbs, .pagehero--bg .breadcrumbs a, .pagehero--bg .breadcrumbs span { color: rgba(255,255,255,0.66); }
 .pagehero--bg .breadcrumbs a:hover { color: #fff; }
-@media (max-width: 640px) { .pagehero--bg { min-height: 66vh; } }
+@media (max-width: 640px) {
+  .pagehero--bg { min-height: 66vh; align-items: flex-end; }
+  .pagehero-scrim { background: linear-gradient(to top, rgba(6,22,13,0.94) 0%, rgba(6,22,13,0.70) 45%, rgba(6,22,13,0.30) 100%); }
+  .pagehero--bg .pagehero-h1 { max-width: 100%; }
+  .pagehero--bg .pagehero-sub { max-width: 100%; }
+}
 
 /* ---------- HERO ---------- */
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: calc(var(--nav-h) + 40px) 0 150px; overflow: hidden; }
