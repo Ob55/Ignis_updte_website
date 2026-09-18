@@ -1,7 +1,6 @@
 import { useSeo } from '@/lib/seo';
 import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
-import { Reveal } from '@/components/motion/Reveal';
 import { SITE } from '@/lib/site';
 
 export default function Terms() {
@@ -15,7 +14,9 @@ export default function Terms() {
       />
       <section className="section">
         <div className="wrap">
-          <Reveal className="legal">
+          {/* No scroll-reveal here: this is the page's entire body, so animating it
+              would leave the page blank until the visitor happens to scroll. */}
+          <div className="legal">
             <h2>Who we are</h2>
             <p>
               This website is operated by {SITE.legalName}, an energy services company registered in
@@ -86,7 +87,7 @@ export default function Terms() {
             <p>
               We may update these terms. The date above shows when they last changed.
             </p>
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

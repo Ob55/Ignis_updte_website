@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useSeo } from '@/lib/seo';
 import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
-import { Reveal } from '@/components/motion/Reveal';
 import { SITE } from '@/lib/site';
 import { openCookiePreferences } from '@/lib/consent';
 
@@ -32,7 +31,9 @@ export default function CookiePolicy() {
       />
       <section className="section">
         <div className="wrap">
-          <Reveal className="legal">
+          {/* No scroll-reveal here: this is the page's entire body, so animating it
+              would leave the page blank until the visitor happens to scroll. */}
+          <div className="legal">
             <h2>The short version</h2>
             <p>
               This site sets one essential cookie to remember your cookie choice. It sets no
@@ -99,7 +100,7 @@ export default function CookiePolicy() {
               <Link to="/privacy">privacy policy</Link> explains what we do with the information you
               send us, and our <Link to="/terms">terms of use</Link> cover the rest of the site.
             </p>
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

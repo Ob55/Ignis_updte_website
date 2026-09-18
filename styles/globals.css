@@ -167,12 +167,13 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 }
 
 /* ============ FADE-RISE (the workhorse reveal) ============ */
-/* Content is visible by default so prerendered HTML paints real text. The
-   hidden state applies only once Reveal has armed it in a layout effect, which
-   means no-JS and pre-hydration visitors always see the copy. */
+/* Content is visible by default, so prerendered HTML paints real text and a
+   no-JS visitor (or a crawler) always sees the copy. The hidden state is gated
+   behind .js-motion, which an inline <head> script sets before first paint, so
+   JS visitors never see text appear and then vanish. */
 .reveal { }
-.reveal-armed { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), filter 0.8s var(--ease); }
-.reveal-armed.in { opacity: 1; transform: none; filter: none; }
+.js-motion .reveal:not(.in) { opacity: 0; transform: translateY(26px); filter: blur(6px); }
+.js-motion .reveal { transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), filter 0.8s var(--ease); }
 
 /* on-load reveals (CSS, replacing framer-motion) */
 @keyframes blurUp { from { opacity: 0; transform: translateY(38px); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
@@ -192,5 +193,5 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.001ms !important; animation: none !important; }
-  .reveal, .reveal-armed { opacity: 1; transform: none; filter: none; }
+  .reveal, .js-motion .reveal:not(.in) { opacity: 1 !important; transform: none !important; filter: none !important; }
 }

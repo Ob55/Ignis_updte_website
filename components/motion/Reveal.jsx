@@ -6,14 +6,15 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 // pre-paint timing in the browser, where it is what prevents a flash.
 const useArmEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-// Scroll-in wrapper. Since every route is prerendered, the hidden state must NOT
-// be the default: if it were, the static HTML would paint invisible text and a
-// visitor who never scrolls (or whose JS fails) would see a blank page. That is
-// exactly what happened on the legal pages, whose whole body sits below the fold.
+// Scroll-in wrapper.
 //
-// So content ships visible, and this effect "arms" the animation on mount.
-// useLayoutEffect runs before paint, so above-the-fold elements are armed and
-// shown in the same frame, with no flash.
+// The hidden state lives in CSS behind `.js-motion`, which an inline <head>
+// script sets before first paint. This component therefore only ever ADDS the
+// `in` class -- it never hides anything itself. That ordering matters: hiding
+// from JS after hydration made prerendered copy paint and then disappear.
+//
+// Long-form pages (privacy, terms, cookie policy) deliberately do not use this
+// wrapper at all, because their whole body is one block below the fold.
 export function Reveal({ children, className, as: Tag = "div", delay = 0, style }) {
   const ref = useRef(null);
 
@@ -27,7 +28,6 @@ export function Reveal({ children, className, as: Tag = "div", delay = 0, style 
     if (reduced) return; // leave it visible, never animate
 
     const show = () => el.classList.add("in");
-    el.classList.add("reveal-armed");
 
     const r = el.getBoundingClientRect();
     if (r.top < window.innerHeight * 0.9) {

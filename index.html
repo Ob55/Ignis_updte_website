@@ -10,6 +10,11 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#00712d" />
 
+    <!-- Motion gate. Scroll-reveal animations are opt-in for JS visitors only,
+         and this runs before first paint so prerendered copy is never painted
+         and then hidden. Without JS (and for crawlers) nothing is ever hidden. -->
+    <script>document.documentElement.classList.add("js-motion");</script>
+
     <title>Africa's Energy Services Platform for Institutions & Industry | IGNIS</title>
     <meta
       name="description"
