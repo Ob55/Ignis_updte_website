@@ -1,14 +1,11 @@
 import { useSeo } from '@/lib/seo';
+import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
 import { Reveal } from '@/components/motion/Reveal';
 import { SITE } from '@/lib/site';
 
 export default function Terms() {
-  useSeo({
-    title: 'Terms of Use | IGNIS',
-    description: 'The terms on which IGNIS Innovation Africa makes this website and its assessment request service available.',
-    path: '/terms',
-  });
+  useSeo(seoFor('/terms'));
   return (
     <>
       <PageHero

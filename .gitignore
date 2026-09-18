@@ -11,3 +11,8 @@ logo-src.png
 .vercel
 .env*
 /dist
+
+# local verification harness (not part of the site)
+/GATES.md
+/.verify/
+/.ssr-dist

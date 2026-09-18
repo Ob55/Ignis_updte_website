@@ -1,14 +1,11 @@
 import { useSeo } from '@/lib/seo';
+import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
 import { CaseStudies } from '@/components/insights/CaseStudies';
 import { LogTeaser } from '@/components/home/LogTeaser';
 
 export default function Blog() {
-  useSeo({
-    title: 'Insights, Field Notes & Fuel Data | IGNIS',
-    description: 'Commissioning reports, fuel consumption data and case studies from live IGNIS institutional clean energy sites across Africa.',
-    path: '/blog',
-  });
+  useSeo(seoFor('/blog'));
   return (
     <>
       <PageHero

@@ -13,6 +13,7 @@ import CleanCookIQ from '@/pages/CleanCookIQ';
 import Contact from '@/pages/Contact';
 import Privacy from '@/pages/Privacy';
 import Terms from '@/pages/Terms';
+import CookiePolicy from '@/pages/CookiePolicy';
 import ThankYou from '@/pages/ThankYou';
 import NotFound from '@/pages/NotFound';
 import { StickyCta } from '@/components/chrome/StickyCta';
@@ -67,6 +68,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

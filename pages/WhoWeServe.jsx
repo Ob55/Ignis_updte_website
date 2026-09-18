@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { useSeo } from '@/lib/seo';
+import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
 import { Reveal } from '@/components/motion/Reveal';
 import { audiences } from '@/content/audiences';
@@ -8,11 +9,7 @@ import { audiences } from '@/content/audiences';
 // Hub for "Who we serve": one card per audience, each routing to its own page
 // at /who-we-serve/<id>. The four audiences share one energy services model.
 export default function WhoWeServe() {
-  useSeo({
-    title: 'Who We Serve | IGNIS',
-    description: 'Institutions, industry, financiers and delivery partners, all connected by one energy services model funded from the fuel budgets institutions already spend.',
-    path: '/who-we-serve',
-  });
+  useSeo(seoFor('/who-we-serve'));
   return (
     <>
       <PageHero

@@ -76,11 +76,25 @@ export default async function handler(req, res) {
     const transport = makeTransport();
     const from = process.env.SMTP_FROM || process.env.SMTP_USER;
 
+    // Where leads go. If LEAD_TO is unset the whole endpoint used to die with
+    // "No recipients defined" (a 500 for the visitor, and a lost enquiry), so
+    // fall back to the mailbox we are already authenticated as.
+    const leadTo = list(process.env.LEAD_TO);
+    if (!leadTo.length && process.env.SMTP_USER) {
+      leadTo.push(process.env.SMTP_USER);
+      console.warn("LEAD_TO is not set; routing this lead to SMTP_USER instead.");
+    }
+    if (!leadTo.length) {
+      console.error("No lead recipient configured (set LEAD_TO or SMTP_USER).");
+      res.status(500).json({ error: "send failed" });
+      return;
+    }
+
     // 1) Notify the team.
     const lead = leadEmail({ name, phone, email });
     await transport.sendMail({
       from,
-      to: list(process.env.LEAD_TO),
+      to: leadTo,
       cc: list(process.env.LEAD_CC),
       replyTo: lead.replyTo,
       subject: lead.subject,

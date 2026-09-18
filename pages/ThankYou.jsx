@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
 import { useSeo } from '@/lib/seo';
+import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
 import { Reveal } from '@/components/motion/Reveal';
 import { SITE } from '@/lib/site';
 
 export default function ThankYou() {
-  useSeo({
-    title: 'Thank you | IGNIS',
-    description: 'Thank you for your enquiry. The IGNIS team will reply within two working days with a system design and a savings figure.',
-    path: '/thank-you',
-    noindex: true,
-  });
+  useSeo(seoFor('/thank-you'));
   return (
     <>
       <PageHero

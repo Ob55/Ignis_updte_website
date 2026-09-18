@@ -1,6 +1,7 @@
 import { Navigate, useParams, Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { useSeo } from '@/lib/seo';
+import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
 import { Reveal } from '@/components/motion/Reveal';
 import { audiences, getAudience } from '@/content/audiences';
@@ -11,11 +12,7 @@ export default function Audience() {
   const { audience: id } = useParams();
   const a = getAudience(id);
 
-  useSeo({
-    title: a ? `${a.eyebrow} | Who We Serve | IGNIS` : 'Who We Serve | IGNIS',
-    description: a ? a.intro : 'Institutions, industry, financiers and delivery partners, connected by one energy services model.',
-    path: a ? `/who-we-serve/${a.id}` : '/who-we-serve',
-  });
+  useSeo(seoFor(a ? `/who-we-serve/${a.id}` : '/who-we-serve'));
 
   if (!a) return <Navigate to="/who-we-serve" replace />;
 

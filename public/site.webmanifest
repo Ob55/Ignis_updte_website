@@ -1,0 +1,18 @@
+{
+  "name": "IGNIS Innovation Africa",
+  "short_name": "IGNIS",
+  "description": "Institutional clean cooking for schools, hospitals and prisons across Africa, paid from existing fuel budgets.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00712d",
+  "icons": [
+    { "src": "/favicon-16x16.png", "type": "image/png", "sizes": "16x16" },
+    { "src": "/favicon-32x32.png", "type": "image/png", "sizes": "32x32" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ]
+}

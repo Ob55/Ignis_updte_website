@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SITE } from "@/lib/site";
+import { openCookiePreferences } from "@/lib/consent";
 
 const EXPLORE = [
   { to: "/solutions", label: "Solutions" },
@@ -9,7 +10,8 @@ const EXPLORE = [
   { to: "/blog", label: "Blogs" },
   { to: "/contact", label: "Contact" },
   { to: "/privacy", label: "Privacy" },
-  { to: "/terms", label: "Terms" }
+  { to: "/terms", label: "Terms" },
+  { to: "/cookie-policy", label: "Cookies" }
 ];
 
 // Sector references. Labels name exactly what each link opens — no placeholders.
@@ -58,8 +60,11 @@ export function Footer() {
         </div>
       </div>
       <div className="fbot">
-        <div className="wrap">
+        <div className="wrap fbot-row">
           <span>© 2026 {SITE.legalName}</span>
+          <button type="button" className="fbot-link" onClick={openCookiePreferences}>
+            Cookie preferences
+          </button>
         </div>
       </div>
       <div className="terminus" aria-hidden="true" />

@@ -1,14 +1,11 @@
 import { useSeo } from '@/lib/seo';
+import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
 import { Reveal } from '@/components/motion/Reveal';
 import { SITE } from '@/lib/site';
 
 export default function Privacy() {
-  useSeo({
-    title: 'Privacy Policy | IGNIS',
-    description: 'How IGNIS Innovation Africa collects, uses and protects the information you share when you enquire about our clean energy services.',
-    path: '/privacy',
-  });
+  useSeo(seoFor('/privacy'));
   return (
     <>
       <PageHero

@@ -1,4 +1,5 @@
 import { useSeo } from '@/lib/seo';
+import { seoFor } from '@/lib/seo-data';
 import { Hero } from '@/components/home/Hero';
 import { WhoWeAre } from '@/components/home/WhoWeAre';
 import { Highlights } from '@/components/home/Highlights';
@@ -13,11 +14,7 @@ import { Partners } from '@/components/home/Partners';
 // Hero (vision), Who we are, Highlights (what we offer), Savings (why it pays),
 // Impact (proof at scale), Geography (reach), Partners (trust), CTA.
 export default function Home() {
-  useSeo({
-    title: 'Africa\'s Energy Services Platform for Institutions & Industry | IGNIS',
-    description: 'IGNIS manages and implements clean energy programmes for institutions across Africa. Turn your fuel budget into modern cooking infrastructure, with no upfront capital.',
-    path: '/',
-  });
+  useSeo(seoFor('/'));
   return (
     <>
       <Hero />

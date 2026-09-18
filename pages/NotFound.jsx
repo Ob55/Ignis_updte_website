@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { useSeo } from '@/lib/seo';
+import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
 import { Reveal } from '@/components/motion/Reveal';
 
@@ -12,12 +13,7 @@ const LINKS = [
 ];
 
 export default function NotFound() {
-  useSeo({
-    title: 'Page not found | IGNIS',
-    description: 'The page you are looking for could not be found. Explore IGNIS clean energy services for institutions across Africa.',
-    path: '/404',
-    noindex: true,
-  });
+  useSeo(seoFor('/404'));
   return (
     <>
       <PageHero

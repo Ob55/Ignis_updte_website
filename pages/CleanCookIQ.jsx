@@ -1,5 +1,6 @@
 import { ArrowUpRight, Gauge, Flame, Timer, ShieldCheck, Banknote } from "lucide-react";
 import { useSeo } from "@/lib/seo";
+import { seoFor } from "@/lib/seo-data";
 import { PageHero } from "@/components/chrome/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -16,12 +17,7 @@ const STEPS = [
 ];
 
 export default function CleanCookIQ() {
-  useSeo({
-    title: "CleanCookIQ — Measured, Reported, Verified | IGNIS",
-    description:
-      "CleanCookIQ is IGNIS's standalone measurement, reporting and verification (MRV) platform. Digital monitoring from commissioning tracks fuel savings, uptime and verified impact at every site.",
-    path: "/cleancookiq",
-  });
+  useSeo(seoFor('/cleancookiq'));
   return (
     <>
       <PageHero
