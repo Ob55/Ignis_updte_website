@@ -1,7 +1,10 @@
+# Everything is crawlable by default, so no blanket "Allow: /" line here: paired
+# with a Disallow it makes the rule ambiguous for crawlers that take the first
+# match rather than the longest one, and /thank-you then leaks into indexes.
 User-agent: *
-Allow: /
-
-# Not useful in search: the post-submission page and the legacy paths that 301.
 Disallow: /thank-you
+
+# Favicons, the web manifest and every other asset are deliberately unblocked so
+# Google can fetch the site icon for search results.
 
 Sitemap: https://ignis-innovation.com/sitemap.xml
