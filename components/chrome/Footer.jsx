@@ -3,15 +3,16 @@ import { SITE } from "@/lib/site";
 import { openCookiePreferences } from "@/lib/consent";
 
 const EXPLORE = [
-  { to: "/solutions", label: "Solutions" },
-  { to: "/who-we-serve", label: "Who we serve" },
-  { to: "/cleancookiq", label: "CleanCookIQ" },
+  { to: "/services", label: "Solutions" },
+  { to: "/where-we-work", label: "Where we work" },
+  { to: "/platform", label: "CleanCookIQ" },
   { to: "/about", label: "About" },
   { to: "/blog", label: "Blogs" },
-  { to: "/contact", label: "Contact" },
+  { to: "/scoping-call", label: "Contact" },
   { to: "/privacy", label: "Privacy" },
   { to: "/terms", label: "Terms" },
-  { to: "/cookie-policy", label: "Cookies" }
+  { to: "/cookie-policy", label: "Cookies" },
+  { to: "/credits", label: "Credits" }
 ];
 
 // Sector references. Labels name exactly what each link opens — no placeholders.

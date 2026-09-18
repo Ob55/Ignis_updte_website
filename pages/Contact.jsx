@@ -7,7 +7,7 @@ import { MapDirections } from '@/components/contact/MapDirections';
 import { Faq } from '@/components/contact/Faq';
 
 export default function Contact() {
-  useSeo(seoFor('/contact'));
+  useSeo(seoFor('/scoping-call'));
   return (
     <>
       <PageHero

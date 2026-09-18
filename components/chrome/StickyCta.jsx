@@ -4,14 +4,14 @@ import { SITE } from '@/lib/site';
 
 // Fixed bottom action bar on small screens only (hidden >=760px via CSS).
 // Suppressed on pages where it would be redundant.
-const HIDE_ON = ['/contact', '/thank-you'];
+const HIDE_ON = ['/scoping-call', '/thank-you'];
 
 export function StickyCta() {
   const { pathname } = useLocation();
   if (HIDE_ON.includes(pathname)) return null;
   return (
     <div className="sticky-cta" role="region" aria-label="Quick actions">
-      <Link className="sticky-cta-btn primary" to="/contact">
+      <Link className="sticky-cta-btn primary" to="/scoping-call">
         <CalendarCheck size={18} strokeWidth={1.9} /> Get in touch
       </Link>
       <a

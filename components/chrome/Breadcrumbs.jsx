@@ -6,12 +6,16 @@ import { getAudience } from '@/content/audiences';
 
 // Human labels for path segments. Audience slugs resolve from content.
 const LABELS = {
-  solutions: 'Solutions',
-  'who-we-serve': 'Who we serve',
+  services: 'Services',
+  'where-we-work': 'Where we work',
+  platform: 'Platform',
   about: 'About',
   blog: 'Blogs',
-  contact: 'Contact',
+  'scoping-call': 'Scoping call',
+  credits: 'Credits',
   privacy: 'Privacy',
+  terms: 'Terms',
+  'cookie-policy': 'Cookie policy',
   'thank-you': 'Thank you',
 };
 

@@ -1,5 +1,5 @@
 // The four audiences for "Who we serve". Each now has its own page at
-// /who-we-serve/<id>; the base /who-we-serve route is a hub that links out.
+// /where-we-work/<id>; the base /who-we-serve route is a hub that links out.
 // Copy rules: no em dashes; bursar-readable everywhere except Financiers, the
 // only audience allowed technical financial language (CESA, AssetCo, dMRV).
 export const audiences = [

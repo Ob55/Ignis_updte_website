@@ -17,7 +17,7 @@ const STEPS = [
 ];
 
 export default function CleanCookIQ() {
-  useSeo(seoFor('/cleancookiq'));
+  useSeo(seoFor('/platform'));
   return (
     <>
       <PageHero

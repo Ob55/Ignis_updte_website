@@ -31,5 +31,32 @@
       ]
     }
   ],
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/solutions",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/cleancookiq",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/who-we-serve",
+      "destination": "/where-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/who-we-serve/:slug",
+      "destination": "/where-we-work/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/scoping-call",
+      "permanent": true
+    }
+  ]
 }

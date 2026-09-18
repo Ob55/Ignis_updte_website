@@ -6,10 +6,10 @@ import { PageHero } from '@/components/chrome/PageHero';
 import { Reveal } from '@/components/motion/Reveal';
 
 const LINKS = [
-  { to: '/solutions', label: 'Solutions', sub: 'How the model works, end to end' },
-  { to: '/who-we-serve', label: 'Who we serve', sub: 'Institutions, industry, financiers, partners' },
+  { to: '/services', label: 'Solutions', sub: 'How the model works, end to end' },
+  { to: '/where-we-work', label: 'Where we work', sub: 'Institutions, industry, financiers, partners' },
   { to: '/about', label: 'About', sub: 'The company and the team' },
-  { to: '/contact', label: 'Book an assessment', sub: 'Send us your kitchen' },
+  { to: '/scoping-call', label: 'Book an assessment', sub: 'Send us your kitchen' },
 ];
 
 export default function NotFound() {

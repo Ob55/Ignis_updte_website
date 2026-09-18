@@ -4,7 +4,8 @@ import App from './App.jsx';
 import { SEO, PRERENDER_ROUTES, DEFAULT_OG_IMAGE, abs } from '@/lib/seo-data';
 import { SITE } from '@/lib/site';
 
-export { PRERENDER_ROUTES };
+export { PRERENDER_ROUTES, SEO };
+export const SITE_URL = SITE.url;
 
 const esc = (s) =>
   String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));

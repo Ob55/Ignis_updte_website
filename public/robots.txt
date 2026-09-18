@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+
+# Not useful in search: the post-submission page and the legacy paths that 301.
 Disallow: /thank-you
 
 Sitemap: https://ignis-innovation.com/sitemap.xml

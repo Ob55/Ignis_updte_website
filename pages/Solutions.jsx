@@ -9,7 +9,7 @@ import { Compare } from '@/components/home/Compare';
 import { FinanceSplit } from '@/components/home/FinanceSplit';
 
 export default function Solutions() {
-  useSeo(seoFor('/solutions'));
+  useSeo(seoFor('/services'));
   return (
     <>
       <PageHero

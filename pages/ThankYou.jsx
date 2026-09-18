@@ -21,7 +21,7 @@ export default function ThankYou() {
             <a className="btn btn-flame" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer">
               <MessageCircle size={16} style={{ marginRight: 8 }} /> Reach us faster on WhatsApp
             </a>
-            <Link className="btn btn-glass glass" to="/solutions">
+            <Link className="btn btn-glass glass" to="/services">
               Explore how the model works <ArrowUpRight size={15} />
             </Link>
           </Reveal>

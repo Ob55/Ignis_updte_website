@@ -54,7 +54,7 @@ export function Hero() {
             <span className="pill pill--glass">Measured &amp; verified</span>
           </div>
           <div className="hero-btns fade-up" style={{ animationDelay: "0.9s" }}>
-            <Link className="btn btn-flame" to="/contact">
+            <Link className="btn btn-flame" to="/scoping-call">
               Get in touch <ArrowUpRight size={16} />
             </Link>
             <a className="btn btn-glass-d" href="#calc">

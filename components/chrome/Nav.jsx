@@ -2,21 +2,21 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
 
-// Merged information architecture: top-level routes plus a "Who we serve"
-// dropdown of the four audiences (each its own /who-we-serve/<id> page).
+// Merged information architecture: top-level routes plus a "Where we work"
+// dropdown of the four audiences (each its own /where-we-work/<id> page).
 const LINKS = [
   { to: '/', label: 'Home' },
-  { to: '/solutions', label: 'Solutions' },
+  { to: '/services', label: 'Solutions' },
   {
-    label: 'Who we serve',
+    label: 'Where we work',
     children: [
-      { to: '/who-we-serve/institutions', label: 'Institutions' },
-      { to: '/who-we-serve/industry', label: 'Industry' },
-      { to: '/who-we-serve/financiers', label: 'Financiers' },
-      { to: '/who-we-serve/delivery-partners', label: 'Delivery partners' },
+      { to: '/where-we-work/institutions', label: 'Institutions' },
+      { to: '/where-we-work/industry', label: 'Industry' },
+      { to: '/where-we-work/financiers', label: 'Financiers' },
+      { to: '/where-we-work/delivery-partners', label: 'Delivery partners' },
     ],
   },
-  { to: '/cleancookiq', label: 'CleanCookIQ' },
+  { to: '/platform', label: 'CleanCookIQ' },
   { to: '/about', label: 'About' },
   { to: '/blog', label: 'Blogs' },
 ];
@@ -82,7 +82,7 @@ export function Nav() {
       </div>
 
       <div className="nav-right">
-        <Link className="btn btn-flame nav-cta" to="/contact">
+        <Link className="btn btn-flame nav-cta" to="/scoping-call">
           Get in touch <ArrowUpRight size={15} />
         </Link>
 
@@ -140,7 +140,7 @@ export function Nav() {
               </NavLink>
             )
           )}
-          <Link className="btn btn-flame" to="/contact" onClick={closeMobile} style={{ marginTop: 24, alignSelf: 'flex-start' }}>
+          <Link className="btn btn-flame" to="/scoping-call" onClick={closeMobile} style={{ marginTop: 24, alignSelf: 'flex-start' }}>
             Get in touch <ArrowUpRight size={16} />
           </Link>
         </div>

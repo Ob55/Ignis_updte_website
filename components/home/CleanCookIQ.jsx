@@ -19,7 +19,7 @@ export function CleanCookIQ() {
               impact at every site, the data that triggers payment and that financiers rely on.
             </p>
           </div>
-          <Link className="btn btn-flame" to="/cleancookiq">
+          <Link className="btn btn-flame" to="/platform">
             Explore CleanCookIQ <ArrowUpRight size={16} />
           </Link>
         </Reveal>
