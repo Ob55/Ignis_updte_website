@@ -20,15 +20,14 @@ const esc = (s = "") =>
   String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 // Internal notification to the sales team.
-export function leadEmail({ name, institution, phone, email }) {
+export function leadEmail({ name, phone, email }) {
   const rows = [
     ["Name", name],
-    ["Institution", institution],
     ["Phone", phone],
     ["Email", email],
   ].filter(([, v]) => v);
   return {
-    subject: `New assessment request: ${name || institution || email || "enquiry"}`,
+    subject: `New assessment request: ${name || email || "enquiry"}`,
     text: rows.map(([k, v]) => `${k}: ${v}`).join("\n"),
     html:
       `<h2 style="font-family:system-ui">New assessment request</h2>` +

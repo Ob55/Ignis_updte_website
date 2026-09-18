@@ -7,21 +7,19 @@ import { isRateLimited } from "../scripts/rateLimit.mjs";
 const list = (v) => (v || "").split(",").map((s) => s.trim()).filter(Boolean);
 
 // ---- Input validation -------------------------------------------------------
-const LIMITS = { name: 120, institution: 160, phone: 40, email: 254 };
+const LIMITS = { name: 120, phone: 40, email: 254 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[0-9+()\-.\s]{5,40}$/;
 
 function validate(body) {
   const name = typeof body.name === "string" ? body.name.trim() : "";
-  const institution = typeof body.institution === "string" ? body.institution.trim() : "";
   const phone = typeof body.phone === "string" ? body.phone.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim() : "";
 
   if (!name || name.length > LIMITS.name) return { error: "Invalid name" };
-  if (institution.length > LIMITS.institution) return { error: "Invalid institution" };
   if (!PHONE_RE.test(phone)) return { error: "Invalid phone" };
   if (!email || email.length > LIMITS.email || !EMAIL_RE.test(email)) return { error: "Invalid email" };
-  return { data: { name, institution, phone, email } };
+  return { data: { name, phone, email } };
 }
 
 // ---- CSRF / origin allow-list ----------------------------------------------
@@ -73,13 +71,13 @@ export default async function handler(req, res) {
       res.status(400).json({ error });
       return;
     }
-    const { name, institution, phone, email } = data;
+    const { name, phone, email } = data;
 
     const transport = makeTransport();
     const from = process.env.SMTP_FROM || process.env.SMTP_USER;
 
     // 1) Notify the team.
-    const lead = leadEmail({ name, institution, phone, email });
+    const lead = leadEmail({ name, phone, email });
     await transport.sendMail({
       from,
       to: list(process.env.LEAD_TO),
@@ -90,15 +88,20 @@ export default async function handler(req, res) {
       html: lead.html,
     });
 
-    // 2) Confirm to the enquirer.
-    const conf = confirmationEmail({ name });
-    await transport.sendMail({
-      from,
-      to: email,
-      subject: conf.subject,
-      text: conf.text,
-      html: conf.html,
-    });
+    // 2) Confirm to the enquirer. The lead is already delivered at this point,
+    // so a failure here must not turn a received enquiry into a 500 for the user.
+    try {
+      const conf = confirmationEmail({ name });
+      await transport.sendMail({
+        from,
+        to: email,
+        subject: conf.subject,
+        text: conf.text,
+        html: conf.html,
+      });
+    } catch (e) {
+      console.error("confirmation send failed (lead was delivered):", e?.message || e);
+    }
 
     res.status(200).json({ ok: true });
   } catch (e) {

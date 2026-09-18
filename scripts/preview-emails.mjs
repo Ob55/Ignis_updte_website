@@ -4,7 +4,7 @@
 import { makeTransport, leadEmail, confirmationEmail } from "./mailer.mjs";
 
 const to = process.argv[2] || "brian55mwangi@gmail.com";
-const sample = { name: "Jane Bursar", institution: "Test Secondary School", phone: "+254 724 326256", email: to };
+const sample = { name: "Jane Bursar", phone: "+254 724 326256", email: to };
 
 const t = makeTransport();
 await t.verify();

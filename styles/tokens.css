@@ -26,6 +26,9 @@
   --text: #14140f;
   --muted: rgba(20, 20, 15, 0.60);
   --faint: rgba(20, 20, 15, 0.40);
+  /* placeholder/helper text: --faint is ~2.8:1 on the cream bg and fails WCAG AA.
+     This clears 4.5:1 and is used wherever real words are shown, not hairlines. */
+  --placeholder: rgba(20, 20, 15, 0.68);
 
   /* lines & glass */
   --line: rgba(20, 20, 15, 0.12);
