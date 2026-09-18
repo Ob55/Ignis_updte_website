@@ -167,8 +167,12 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 }
 
 /* ============ FADE-RISE (the workhorse reveal) ============ */
-.reveal { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), filter 0.8s var(--ease); }
-.reveal.in { opacity: 1; transform: none; filter: none; }
+/* Content is visible by default so prerendered HTML paints real text. The
+   hidden state applies only once Reveal has armed it in a layout effect, which
+   means no-JS and pre-hydration visitors always see the copy. */
+.reveal { }
+.reveal-armed { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), filter 0.8s var(--ease); }
+.reveal-armed.in { opacity: 1; transform: none; filter: none; }
 
 /* on-load reveals (CSS, replacing framer-motion) */
 @keyframes blurUp { from { opacity: 0; transform: translateY(38px); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
@@ -188,5 +192,5 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.001ms !important; animation: none !important; }
-  .reveal { opacity: 1; transform: none; filter: none; }
+  .reveal, .reveal-armed { opacity: 1; transform: none; filter: none; }
 }

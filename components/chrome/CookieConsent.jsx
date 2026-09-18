@@ -42,7 +42,7 @@ export function CookieConsent() {
           {choice === "granted" ? "Withdraw consent" : "Decline"}
         </button>
         <button type="button" className="cookie-btn primary" onClick={acceptCookies}>
-          Accept analytics
+          Accept
         </button>
       </div>
     </div>

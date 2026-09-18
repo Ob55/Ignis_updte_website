@@ -10,9 +10,12 @@ const CREW = [
     role: "Managing Director",
     discipline: "Leadership",
     photo: "/team/dennis.jpg",
-    teaser: "Dennis leads pipeline development, financing and digital monitoring for clean cooking solutions.",
+    teaser: "Dennis leads Ignis, holding together the project pipeline, the financing that pays for it and the monitoring that proves the savings were real.",
     bio: [
-      "Dennis leads pipeline development, financing, and digital monitoring for clean cooking solutions, integrating carbon finance and data-driven systems to accelerate adoption and expand access to modern energy technologies."
+      "Dennis is Managing Director at Ignis, where he leads pipeline development, financing and digital monitoring for institutional clean cooking. In practice that means holding three things together at once: the institutions that need cleaner kitchens, the capital that pays for them, and the evidence that the savings were real.",
+      "A lot of that work is financial plumbing in the least glamorous sense. Institutions rarely have a capital budget for a new kitchen, but every one of them already has a fuel bill. He structures blended finance and carbon revenue so that existing line item becomes the thing that funds the upgrade, with no upfront cost to a school, hospital or correctional facility.",
+      "He is equally stubborn about measurement. Ignis meters its sites and reports what they actually burn, because a savings figure nobody can check is a brochure claim, and bursars, financiers and regulators have all been handed enough of those. The digital monitoring platform exists so that every number the company quotes can be traced back to a meter reading.",
+      "He has spent his career in clean energy across African markets, and is most useful in the gap between a technology that works and an institution that cannot yet afford it. Closing that gap, at the scale the continent actually needs, is the job he took."
     ]
   },
   {
@@ -49,7 +52,7 @@ const CREW = [
     role: "People & Operations",
     discipline: "People & Operations",
     photo: "/team/joan.jpg",
-    teaser: "Wanjiku runs the part of the organisation that makes sure things don't fall apart.",
+    teaser: "Wanjiku runs the part of the organisation that makes sure things don't fall apart \u2014 the systems, the ownership and the follow-through that keep projects moving.",
     bio: [
       "Wanjiku runs the part of the organisation that makes sure things don't fall apart. She leads People & Operations. In practice, that means building the systems that keep the organisation running, helping the team work better together, keeping projects moving, and making sure important things don't quietly fall through the cracks.",
       "She likes structure, but not bureaucracy. She likes clear ownership, useful meetings, good processes, and knowing what needs to happen next. And she has a habit of asking, “Why are we doing it this way?” — especially when the answer is simply, “Because that's how we've always done it.”",
