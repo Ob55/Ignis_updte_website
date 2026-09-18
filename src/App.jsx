@@ -12,9 +12,11 @@ import Blog from '@/pages/Blog';
 import CleanCookIQ from '@/pages/CleanCookIQ';
 import Contact from '@/pages/Contact';
 import Privacy from '@/pages/Privacy';
+import Terms from '@/pages/Terms';
 import ThankYou from '@/pages/ThankYou';
 import NotFound from '@/pages/NotFound';
 import { StickyCta } from '@/components/chrome/StickyCta';
+import { CookieConsent } from '@/components/chrome/CookieConsent';
 import { trackPageview } from '@/lib/analytics';
 
 // Scroll on navigation: to a #section when the URL carries a hash, else to top.
@@ -64,12 +66,14 @@ export default function App() {
           <Route path="/cleancookiq" element={<CleanCookIQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <StickyCta />
       <Footer />
+      <CookieConsent />
     </>
   );
 }

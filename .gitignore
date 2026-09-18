@@ -10,3 +10,4 @@ next-env.d.ts
 logo-src.png
 .vercel
 .env*
+/dist

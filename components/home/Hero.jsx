@@ -1,5 +1,6 @@
 import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { BlurText } from "@/components/motion/BlurText";
+import { Link } from "react-router-dom";
 import { Ambient } from "@/components/motion/Ambient";
 
 // Acreage-style cinematic hero: full-bleed looping video, dark-green scrim,
@@ -53,9 +54,9 @@ export function Hero() {
             <span className="pill pill--glass">Measured &amp; verified</span>
           </div>
           <div className="hero-btns fade-up" style={{ animationDelay: "0.9s" }}>
-            <a className="btn btn-flame" href="/contact">
+            <Link className="btn btn-flame" to="/contact">
               Get in touch <ArrowUpRight size={16} />
-            </a>
+            </Link>
             <a className="btn btn-glass-d" href="#calc">
               See the savings <ArrowDown size={15} />
             </a>

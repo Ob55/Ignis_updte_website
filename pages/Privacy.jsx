@@ -14,7 +14,7 @@ export default function Privacy() {
       <PageHero
         eyebrow="Privacy"
         segments={['Privacy', { text: 'policy.', className: 'serif grad-flame' }]}
-        sub="How we handle the information you share with us. Last updated August 2026."
+        sub="How we handle the information you share with us. Last updated September 2026."
       />
       <section className="section">
         <div className="wrap">
@@ -28,11 +28,12 @@ export default function Privacy() {
 
             <h2>What we collect</h2>
             <p>
-              When you contact us or request a kitchen assessment we collect the details you choose
-              to share: your name, institution, contact details, meal volumes, current fuel spend
-              and any photos or documents you send. When you browse the site we collect standard
-              analytics data such as pages visited and approximate location, through Google
-              Analytics.
+              When you request an assessment we collect the three details the form asks for: your
+              full name, your email address and your phone number. If you then email or WhatsApp us,
+              we also hold whatever you choose to send in that conversation — meal volumes, current
+              fuel spend, photos of your kitchen. When you browse the site, and only if you accept
+              analytics cookies, we collect standard analytics data such as pages visited and
+              approximate location, through Google Analytics.
             </p>
 
             <h2>How we use it</h2>
@@ -66,8 +67,17 @@ export default function Privacy() {
 
             <h2>Cookies and analytics</h2>
             <p>
-              This site uses cookies to run Google Analytics. You can block cookies in your browser
-              settings; the site will still work.
+              Analytics cookies are off until you accept them. We ask once, using the banner at the
+              bottom of the screen, and remember your answer in your browser. If you decline, no
+              Google Analytics script is loaded at all. You can change your mind at any time by
+              clearing this site&apos;s data in your browser settings, and you can block cookies
+              there too — the site will still work either way.
+            </p>
+
+            <h2>Terms of use</h2>
+            <p>
+              Our <a href="/terms">terms of use</a> cover the basis on which we make this site
+              available.
             </p>
 
             <h2>Changes</h2>
