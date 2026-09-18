@@ -36,36 +36,78 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "@id": "https://ignis-innovation.com/#organization",
-        "name": "IGNIS Innovation Africa",
-        "alternateName": ["Ignis Innovations", "IGNIS"],
-        "url": "https://ignis-innovation.com",
-        "logo": { "@type": "ImageObject", "url": "https://ignis-innovation.com/logo-square.png", "width": 512, "height": 512 },
-        "image": "https://ignis-innovation.com/og-default.png",
-        "email": "info@ignis-innovation.com",
-        "description": "IGNIS Innovation Africa designs, finances and runs institutional clean cooking systems for schools, hospitals and prisons across Africa, funded from existing fuel budgets with no upfront capital.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "The Pavilion, Lower Kabete Road",
-          "postOfficeBoxNumber": "65603",
-          "postalCode": "00607",
-          "addressLocality": "Nairobi",
-          "addressRegion": "Nairobi",
-          "addressCountry": "KE"
-        },
-        "hasMap": "https://www.google.com/maps/search/?api=1&query=PQWX%2B232%20Nairobi",
-        "areaServed": [
-          { "@type": "Place", "name": "Kenya" },
-          { "@type": "Place", "name": "Ethiopia" },
-          { "@type": "Place", "name": "Sierra Leone" },
-          { "@type": "Place", "name": "Mozambique" },
-          { "@type": "Place", "name": "Uganda" }
-        ],
-        "sameAs": [
-          "https://www.linkedin.com/company/ignis-innovation-africa",
-          "https://www.instagram.com/ignis_innovation_africa/",
-          "https://x.com/igaborafrica"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://ignis-innovation.com/#organization",
+            "name": "Ignis Innovation",
+            "alternateName": ["IGNIS", "Ignis", "ignisinnovation", "IGNIS Innovation Africa"],
+            "legalName": "IGNIS Innovation Africa",
+            "url": "https://ignis-innovation.com",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://ignis-innovation.com/#logo",
+              "url": "https://ignis-innovation.com/logo-square.png",
+              "contentUrl": "https://ignis-innovation.com/logo-square.png",
+              "width": 512,
+              "height": 512,
+              "caption": "Ignis Innovation"
+            },
+            "image": { "@id": "https://ignis-innovation.com/#logo" },
+            "description": "Ignis Innovation delivers clean cooking and clean energy solutions for institutions across East Africa. Ignis designs, finances, installs and monitors institutional cooking systems that are paid for from the fuel budgets schools, hospitals and correctional facilities already spend.",
+            "slogan": "Cook Smarter, Live Better.",
+            "email": "info@ignis-innovation.com",
+            "telephone": "+254724326256",
+            "foundingDate": "2023",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "The Pavilion, Lower Kabete Road",
+              "postOfficeBoxNumber": "65603",
+              "postalCode": "00607",
+              "addressLocality": "Nairobi",
+              "addressRegion": "Nairobi",
+              "addressCountry": "KE"
+            },
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "contactType": "sales",
+                "email": "info@ignis-innovation.com",
+                "telephone": "+254724326256",
+                "areaServed": ["KE", "UG", "ET", "MZ", "SL"],
+                "availableLanguage": ["en", "sw"]
+              }
+            ],
+            "areaServed": [
+              { "@type": "Place", "name": "East Africa" },
+              { "@type": "Country", "name": "Kenya" },
+              { "@type": "Country", "name": "Uganda" },
+              { "@type": "Country", "name": "Ethiopia" },
+              { "@type": "Country", "name": "Mozambique" },
+              { "@type": "Country", "name": "Sierra Leone" }
+            ],
+            "knowsAbout": [
+              "Institutional clean cooking",
+              "Clean energy for schools and hospitals",
+              "Carbon finance",
+              "Digital monitoring, reporting and verification"
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/company/ignis-innovation-africa",
+              "https://www.instagram.com/ignis_innovation_africa/",
+              "https://x.com/igaborafrica"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://ignis-innovation.com/#website",
+            "url": "https://ignis-innovation.com",
+            "name": "Ignis Innovation",
+            "alternateName": "Ignis",
+            "description": "Ignis Innovation delivers clean cooking and clean energy solutions for institutions across East Africa.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://ignis-innovation.com/#organization" }
+          }
         ]
       }
     </script>

@@ -45,9 +45,9 @@ export function Hero() {
 
         <div className="hero-side">
           <p className="hero-desc fade-up" style={{ animationDelay: "0.6s" }}>
-            The upgrade hiding in your fuel bill. We manage and implement clean energy
-            programmes that turn institutional fuel waste into modern infrastructure, paid
-            for from existing budgets with no upfront capital.
+            The upgrade hiding in your fuel bill. Ignis Innovation manages and implements
+            clean cooking programmes that turn institutional fuel waste into modern
+            infrastructure, paid for from existing budgets with no upfront capital.
           </p>
           <div className="hero-pills fade-up" style={{ animationDelay: "0.75s" }}>
             <span className="pill pill--gold">Cook smarter</span>
