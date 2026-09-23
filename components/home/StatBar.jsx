@@ -17,7 +17,7 @@ export function StatBar() {
               <span className="l">Institutions assessed</span>
             </div>
             <div className="stat">
-              <div className="n"><CountUp to={10000} format suffix="+ t" /></div>
+              <div className="n"><CountUp to={10000} format suffix="+" /></div>
               <span className="l">Tonnes CO2 reduced</span>
             </div>
             <div className="stat">

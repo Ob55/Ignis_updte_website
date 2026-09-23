@@ -21,7 +21,10 @@
 /* logo — real flame mark + IGNIS wordmark, far left, separate from the nav */
 .brand { display: inline-flex; align-items: center; gap: 10px; }
 .brand .brand-mark { height: 34px; width: auto; display: block; }
-.brand .brand-word { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: 0.04em; color: var(--text); }
+.brand .brand-word { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: 0.04em; color: var(--text); transition: color 0.3s; }
+/* over a dark photo hero the dark wordmark and burger vanish; go light until the bar turns solid */
+body:has(.pagehero--bg) .topbar:not(.solid) .brand-word,
+body:has(.pagehero--bg) .topbar:not(.solid) .nav-burger { color: #fff; }
 
 .nav-right { display: flex; align-items: center; gap: 14px; }
 /* centered links pill — absolutely centered so logo/CTA widths don't shift it */
@@ -175,7 +178,7 @@
 .stats-card { display: grid; grid-template-columns: repeat(4, 1fr); border-radius: 22px; padding: 8px; }
 .stat { padding: 26px 24px; position: relative; text-align: center; }
 .stat + .stat::before { content: ''; position: absolute; left: 0; top: 22%; bottom: 22%; width: 1px; background: var(--line); }
-.stat .n { font-family: var(--font-mono); font-weight: 500; font-size: clamp(26px, 3.4vw, 44px); line-height: 1; letter-spacing: -0.02em; }
+.stat .n { white-space: nowrap; font-family: var(--font-mono); font-weight: 500; font-size: clamp(26px, 3.4vw, 44px); line-height: 1; letter-spacing: -0.02em; }
 .stat .n .u { color: var(--flame-lite); }
 .stat .l { display: block; margin-top: 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 .stat sup { color: var(--flame); font-size: 0.4em; }
@@ -482,6 +485,8 @@
 .channel-arrow { margin-left: auto; flex-shrink: 0; color: var(--faint); transition: transform 0.3s var(--ease), color 0.3s; }
 .channel-list a:hover .channel-arrow { color: var(--flame-lite); transform: translate(3px, -3px); }
 @media (max-width: 900px) { .channel-panel { grid-template-columns: 1fr; gap: 36px; } .channel-lead h2, .channel-lead p { max-width: 100%; } }
+/* phones: give the value the arrow's width so the email breaks at its hyphen, not mid-".com" */
+@media (max-width: 480px) { .channel-list a { gap: 14px; } .channel-list .v { font-size: 15px; overflow-wrap: break-word; } .channel-arrow { display: none; } }
 
 /* ---------- FAQ ---------- */
 .faq { display: flex; flex-direction: column; gap: 12px; max-width: 900px; }
@@ -612,7 +617,10 @@
   /* clear the mobile sticky CTA bar so neither covers the other */
   .cookie-bar { left: 12px; right: 12px; bottom: 84px; width: auto; padding: 18px; gap: 14px 12px; }
   .cookie-copy h2 { font-size: 16px; }
+  /* flex: none: in a column, flex: 1 means flex-basis 0 and the 44px height
+     collapsed to the 16px line box */
   .cookie-actions { flex-direction: column; }
+  .cookie-btn { flex: none; }
 }
 
 /* ---------- COOKIE POLICY TABLE ---------- */
