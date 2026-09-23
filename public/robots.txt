@@ -1,8 +1,9 @@
-# Everything is crawlable by default, so no blanket "Allow: /" line here: paired
-# with a Disallow it makes the rule ambiguous for crawlers that take the first
-# match rather than the longest one, and /thank-you then leaks into indexes.
+# Everything is crawlable. /thank-you and the 404 page are kept out of the index
+# with a noindex meta tag (and an X-Robots-Tag header), NOT a Disallow: a robots
+# block stops Google fetching the page, so it never sees the noindex and reports
+# "Indexed, though blocked by robots.txt" instead.
 User-agent: *
-Disallow: /thank-you
+Allow: /
 
 # Favicons, the web manifest and every other asset are deliberately unblocked so
 # Google can fetch the site icon for search results.

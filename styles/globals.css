@@ -178,7 +178,7 @@ select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
 /* on-load reveals (CSS, replacing framer-motion) */
 @keyframes blurUp { from { opacity: 0; transform: translateY(38px); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
-.blur-word { display: inline-block; white-space: pre; animation: blurUp 0.5s var(--ease) both; }
+.blur-word { display: inline-block; white-space: pre-wrap; animation: blurUp 0.5s var(--ease) both; }
 .fade-up { animation: fadeUp 0.7s var(--ease) both; }
 
 /* hairline gradient divider */

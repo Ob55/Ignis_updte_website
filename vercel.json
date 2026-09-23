@@ -29,10 +29,30 @@
           "value": "max-age=63072000; includeSubDomains; preload"
         }
       ]
+    },
+    {
+      "source": "/thank-you",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ignis-innovation.com"
+        }
+      ],
+      "destination": "https://ignis-innovation.com/:path*",
+      "permanent": true
+    },
     {
       "source": "/solutions",
       "destination": "/services",

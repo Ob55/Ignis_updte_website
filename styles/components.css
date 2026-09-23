@@ -80,7 +80,6 @@
   background: linear-gradient(100deg, rgba(6,22,13,0.95) 0%, rgba(6,22,13,0.82) 30%, rgba(6,22,13,0.46) 62%, rgba(6,22,13,0.12) 100%); }
 .pagehero--bg .ambient { z-index: 1; }
 .pagehero--bg .pagehero-h1 { color: #fff; max-width: 16ch; overflow-wrap: break-word; }
-.pagehero--bg .pagehero-h1 .blur-word { white-space: pre-wrap; }
 .pagehero--bg .pagehero-sub { color: rgba(255,255,255,0.82); max-width: 40ch; }
 .pagehero--bg .breadcrumbs, .pagehero--bg .breadcrumbs a, .pagehero--bg .breadcrumbs span { color: rgba(255,255,255,0.66); }
 .pagehero--bg .breadcrumbs a:hover { color: #fff; }
@@ -123,8 +122,11 @@
   background: linear-gradient(to bottom, transparent, #9fe0b0); animation: scrollPulse 2.2s ease-in-out infinite; }
 @keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(0.7); } 50% { opacity: 1; transform: scaleY(1); } }
 @media (max-width: 900px) {
+  /* grow with the copy instead of clipping it: a fixed 100dvh pushed the
+     headline's top under the nav on short phones */
+  .hero--video { height: auto; min-height: 100svh; }
   .hero--video .hero-inner { grid-template-columns: 1fr; gap: 26px; align-items: start; padding-bottom: 96px; }
-  .hero--video .hero-title { font-size: clamp(40px, 12vw, 72px); max-width: 100%; }
+  .hero--video .hero-title { font-size: clamp(36px, 10.5vw, 72px); max-width: 100%; overflow-wrap: break-word; }
   .hero-scrollline { display: none; }
 }
 

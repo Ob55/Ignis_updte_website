@@ -21,7 +21,9 @@ export function head(path) {
     `<title>${t}</title>`,
     `<meta name="description" content="${d}" />`,
     `<meta name="robots" content="${e.noindex ? 'noindex,nofollow' : 'index,follow'}" />`,
-    `<link rel="canonical" href="${url}" />`,
+    // A noindex page gets no canonical: pointing one at a URL we ask Google not
+    // to index (or at /404, which does not exist) is a contradictory signal.
+    !e.noindex && `<link rel="canonical" href="${url}" />`,
     `<meta property="og:site_name" content="${esc(SITE.legalName)}" />`,
     `<meta property="og:locale" content="en_KE" />`,
     `<meta property="og:title" content="${t}" />`,
@@ -36,7 +38,7 @@ export function head(path) {
     `<meta name="twitter:title" content="${t}" />`,
     `<meta name="twitter:description" content="${d}" />`,
     `<meta name="twitter:image" content="${img}" />`,
-  ].join('\n    ');
+  ].filter(Boolean).join('\n    ');
 }
 
 export function render(url) {
