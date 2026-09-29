@@ -1,2 +1,4 @@
-Pexels (Free/commercial, no attribution required): industry=33813584 delivery=15056622 financiers=7698707 solutions=24989144 cleancookiq=577210 blog=36535277. kitchen.jpg = user-provided (website IMAGE/landing page2.jpg).
-about.jpg = "Chefs at Work" (Unsplash, donated to Wikimedia Commons under CC0). Mirrored horizontally and cropped for the left-weighted hero scrim.
+Pexels (Free/commercial, no attribution required): industry=33813584 delivery=15056622 financiers=7698707 cleancookiq=577210 blog=36535277. kitchen.jpg = user-provided (website IMAGE/landing page2.jpg).
+institutions.jpg = "Situation in school kitchen" by SuSanA Secretariat (https://www.flickr.com/photos/gtzecosan/5324344316/), CC BY 2.0 (https://creativecommons.org/licenses/by/2.0/). Mirrored horizontally and resized.
+about-nairobi.jpg = "Buffalo and Nairobi skyline, Nairobi National Park" by Timothy A. Gonsalves (https://commons.wikimedia.org/wiki/File:Buffalo_Nairobi_Skyline_Savannah_Kenya_May19_R1600769.jpg), CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Resized.
+solutions-cookers.jpg = "Finished kitchen biogas setup" (Gachoire Girls High School, Kenya) by SuSanA Secretariat (https://www.flickr.com/photos/gtzecosan/5363273405/), CC BY 2.0. Cropped, mirrored and resized.

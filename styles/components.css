@@ -84,7 +84,8 @@ body:has(.pagehero--bg) .topbar:not(.solid) .nav-burger { color: #fff; }
 .pagehero--bg .ambient { z-index: 1; }
 .pagehero--bg .pagehero-h1 { color: #fff; max-width: 16ch; overflow-wrap: break-word; }
 .pagehero--bg .pagehero-sub { color: rgba(255,255,255,0.82); max-width: 40ch; }
-.pagehero--bg .breadcrumbs, .pagehero--bg .breadcrumbs a, .pagehero--bg .breadcrumbs span { color: rgba(255,255,255,0.66); }
+.pagehero--bg .breadcrumbs, .pagehero--bg .breadcrumbs a, .pagehero--bg .breadcrumbs span { color: rgba(255,255,255,0.8); }
+.pagehero--bg .breadcrumbs svg { color: #fff; }
 .pagehero--bg .breadcrumbs a:hover { color: #fff; }
 @media (max-width: 640px) {
   .pagehero--bg { min-height: 66vh; align-items: flex-end; }
@@ -104,16 +105,16 @@ body:has(.pagehero--bg) .topbar:not(.solid) .nav-burger { color: #fff; }
 .hero--video { min-height: 100vh; min-height: 100svh; height: 100vh; height: 100dvh; display: flex; align-items: flex-end; padding: 0; overflow: hidden; background: #08170e; }
 .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
 .hero-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(to top, rgba(6,22,13,0.88) 0%, rgba(6,22,13,0.42) 45%, rgba(6,22,13,0.12) 100%); }
+  background: linear-gradient(to top, rgba(6,22,13,0.9) 0%, rgba(6,22,13,0.55) 50%, rgba(6,22,13,0.35) 100%); }
 /* embers rise above the video + scrim, below the headline/content */
 .hero--video .ambient { z-index: 1; }
 .hero--video .hero-inner { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 30px; text-align: left;
   padding-top: calc(var(--nav-h) + 40px); padding-bottom: clamp(80px, 12vh, 140px); }
 .hero-eyebrow { display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #9fe0b0; margin-bottom: 22px; }
-.hero--video .hero-title { font-family: var(--font-display); font-weight: 750; font-style: normal; letter-spacing: -0.025em; line-height: 0.98; color: #fff; font-size: clamp(46px, 7.5vw, 104px); max-width: 18ch; margin: 0; text-wrap: balance; }
+.hero--video .hero-title { font-family: var(--font-display); font-weight: 750; font-style: normal; letter-spacing: -0.025em; line-height: 0.98; color: #fff; font-size: clamp(40px, min(7vw, 11vh), 96px); max-width: 18ch; margin: 0; text-wrap: balance; text-shadow: 0 2px 24px rgba(0,0,0,0.35); }
 .hero--video .hero-title .hero-accent { color: var(--flame); font-style: normal; }
 .hero-side { display: flex; flex-direction: column; align-items: flex-start; max-width: 620px; }
-.hero-desc { color: rgba(255,255,255,0.82); font-size: clamp(14px, 1.1vw, 16px); line-height: 1.6; max-width: 44ch; }
+.hero-desc { color: rgba(255,255,255,0.92); text-shadow: 0 1px 12px rgba(0,0,0,0.4); font-size: clamp(15px, 1.1vw, 17px); line-height: 1.6; max-width: 44ch; }
 .hero-pills { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
 .pill { display: inline-flex; align-items: center; height: 38px; padding: 0 18px; border-radius: 999px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
 .pill--gold { background: rgba(245, 166, 63, 0.18); color: #ffd9a8; border: 1px solid rgba(245, 166, 63, 0.45); }
@@ -129,7 +130,7 @@ body:has(.pagehero--bg) .topbar:not(.solid) .nav-burger { color: #fff; }
      headline's top under the nav on short phones */
   .hero--video { height: auto; min-height: 100svh; }
   .hero--video .hero-inner { grid-template-columns: 1fr; gap: 26px; align-items: start; padding-bottom: 96px; }
-  .hero--video .hero-title { font-size: clamp(36px, 10.5vw, 72px); max-width: 100%; overflow-wrap: break-word; }
+  .hero--video .hero-title { font-size: clamp(34px, min(10vw, 7.5vh), 64px); max-width: 100%; overflow-wrap: break-word; }
   .hero-scrollline { display: none; }
 }
 
@@ -574,7 +575,8 @@ body:has(.pagehero--bg) .topbar:not(.solid) .nav-burger { color: #fff; }
    A real consent card, not a nag strip: icon, heading, plain-language body, and
    two actions of equal visual weight so declining is as easy as accepting. */
 .cookie-bar {
-  position: fixed; left: 20px; bottom: 20px; z-index: 1200;
+  /* bottom-right: every hero is left-aligned, so this keeps its CTAs clear */
+  position: fixed; right: 20px; bottom: 20px; z-index: 1200;
   width: min(440px, calc(100vw - 40px));
   display: grid; grid-template-columns: auto 1fr; gap: 16px 14px;
   padding: 22px; border-radius: 20px;
@@ -617,10 +619,11 @@ body:has(.pagehero--bg) .topbar:not(.solid) .nav-burger { color: #fff; }
   /* clear the mobile sticky CTA bar so neither covers the other */
   .cookie-bar { left: 12px; right: 12px; bottom: 84px; width: auto; padding: 18px; gap: 14px 12px; }
   .cookie-copy h2 { font-size: 16px; }
-  /* flex: none: in a column, flex: 1 means flex-basis 0 and the 44px height
-     collapsed to the 16px line box */
-  .cookie-actions { flex-direction: column; }
-  .cookie-btn { flex: none; }
+  /* compact on phones: it was covering ~40% of the hero */
+  .cookie-bar { grid-template-columns: 1fr; padding: 16px; gap: 12px; }
+  .cookie-icon { display: none; }
+  .cookie-copy h2 { margin-bottom: 4px; }
+  .cookie-copy p { font-size: 13px; line-height: 1.5; }
 }
 
 /* ---------- COOKIE POLICY TABLE ---------- */

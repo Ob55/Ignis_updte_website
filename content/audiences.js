@@ -6,7 +6,7 @@ export const audiences = [
   {
     id: 'institutions',
     eyebrow: 'Institutions',
-    image: '/serve/schools.jpg',
+    image: '/img/institutions.jpg',
     // PageHero segments: strings, plus one accented serif fragment.
     segments: ['Clean energy for schools, hospitals,', { text: 'prisons and faith institutions.', className: 'serif grad-flame' }],
     intro:

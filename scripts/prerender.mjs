@@ -31,6 +31,8 @@ const STRIP = [
 function pageHtml(route, appHtml) {
   let out = template;
   for (const re of STRIP) out = out.replace(re, '');
+  // The hero poster only exists on the homepage; inner pages would fetch it for nothing.
+  if (route !== '/') out = out.replace(/\s*<link rel="preload" href="\/hero-poster\.jpg"[^>]*\/>/, '');
   out = out.replace('</head>', `  ${head(route)}\n  </head>`);
   // Mount point: real markup instead of an empty shell. The data-prerendered
   // flag is what main.jsx keys off to choose hydrateRoot over createRoot -- the

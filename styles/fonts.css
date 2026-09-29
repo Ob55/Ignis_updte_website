@@ -7,13 +7,6 @@
   font-weight: 400 800;
   font-display: swap;
 }
-/* Inter kept as a neutral UI/system fallback for display. */
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/inter-var.woff2') format('woff2');
-  font-weight: 400 700;
-  font-display: swap;
-}
 /* Body — Atkinson Hyperlegible, designed for maximum reading legibility. */
 @font-face {
   font-family: 'Atkinson Hyperlegible';
@@ -41,17 +34,23 @@
   font-weight: 500;
   font-display: swap;
 }
+
+/* Metric-matched local fallbacks (measured from the woff2 files against Arial /
+   Liberation Sans). Text painted before the webfont arrives takes up the same
+   space, so the swap no longer reflows or visibly jumps. */
 @font-face {
-  font-family: 'Instrument Serif';
-  src: url('/fonts/instrument-serif-regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+  font-family: 'Archivo Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 100.9%;
+  ascent-override: 87%;
+  descent-override: 20.8%;
+  line-gap-override: 0%;
 }
 @font-face {
-  font-family: 'Instrument Serif';
-  src: url('/fonts/instrument-serif-italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+  font-family: 'Atkinson Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 97%;
+  ascent-override: 97.9%;
+  descent-override: 29.9%;
+  line-gap-override: 0%;
 }

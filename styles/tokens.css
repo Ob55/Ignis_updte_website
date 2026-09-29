@@ -47,9 +47,9 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* fonts — one heading face (Archivo) everywhere, a distinct body face
-     (Atkinson), a mono for labels. Inter/Instrument kept only as fallbacks. */
-  --font-display: 'Archivo';
-  --font-body: 'Atkinson Hyperlegible';
+     (Atkinson), a mono for labels. *Fallback = metric-matched local faces. */
+  --font-display: 'Archivo', 'Archivo Fallback';
+  --font-body: 'Atkinson Hyperlegible', 'Atkinson Fallback';
   --font-mono: 'IBM Plex Mono';
-  --font-serif: 'Archivo';
+  --font-serif: 'Archivo', 'Archivo Fallback';
 }

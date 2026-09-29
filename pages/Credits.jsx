@@ -6,12 +6,13 @@ import { sources } from '@/content/sources';
 
 // Photography. Everything on the site is self-hosted; nothing is hotlinked.
 const PHOTOS = [
-  { file: 'about.jpg', use: 'About page hero', credit: '"Chefs at Work" (Unsplash, donated to Wikimedia Commons under CC0). Mirrored and cropped for the hero scrim.' },
+  { file: 'about-nairobi.jpg', use: 'About page hero', credit: '"Buffalo and Nairobi skyline, Nairobi National Park" by Timothy A. Gonsalves (Wikimedia Commons), CC BY-SA 4.0. Resized.' },
   { file: 'kitchen.jpg', use: 'Who we serve hero', credit: 'Ignis Innovation Africa — own photograph.' },
+  { file: 'institutions.jpg', use: 'Institutions page', credit: '"Situation in school kitchen" by SuSanA Secretariat (Flickr 5324344316), CC BY 2.0. Mirrored and resized.' },
   { file: 'industry.jpg', use: 'Industry page', credit: 'Pexels #33813584 — free for commercial use, no attribution required.' },
   { file: 'delivery.jpg', use: 'Delivery partners page', credit: 'Pexels #15056622 — free for commercial use, no attribution required.' },
   { file: 'financiers.jpg', use: 'Financiers page', credit: 'Pexels #7698707 — free for commercial use, no attribution required.' },
-  { file: 'solutions.jpg', use: 'Services hero', credit: 'Pexels #24989144 — free for commercial use, no attribution required.' },
+  { file: 'solutions-cookers.jpg', use: 'Services hero', credit: '"Finished kitchen biogas setup", Gachoire Girls High School, Kenya, by SuSanA Secretariat (Flickr 5363273405), CC BY 2.0. Cropped, mirrored and resized.' },
   { file: 'cleancookiq.jpg', use: 'Platform hero', credit: 'Pexels #577210 — free for commercial use, no attribution required.' },
   { file: 'blog.jpg', use: 'Field notes hero', credit: 'Pexels #36535277 — free for commercial use, no attribution required.' },
 ];
