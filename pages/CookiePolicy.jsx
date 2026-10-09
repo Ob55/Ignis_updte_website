@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSeo } from '@/lib/seo';
 import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
+import { HERO } from '@/content/hero-images';
 import { SITE } from '@/lib/site';
 import { openCookiePreferences } from '@/lib/consent';
 
@@ -26,6 +27,8 @@ export default function CookiePolicy() {
     <>
       <PageHero
         eyebrow="Cookies"
+        image={HERO['nairobi-uhuru-park'].src}
+        imageAlt={HERO['nairobi-uhuru-park'].alt}
         segments={['Cookie', { text: 'policy.', className: 'serif grad-flame' }]}
         sub="What this site stores on your device, why, and how to change your mind. Last updated September 2026."
       />

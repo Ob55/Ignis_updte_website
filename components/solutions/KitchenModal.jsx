@@ -17,12 +17,12 @@ export function KitchenModal({ open, onClose }) {
   if (!open) return null;
 
   return (
-    <div className="k-modal" role="dialog" aria-modal="true" aria-label="IGNIS 3D kitchen design" onClick={onClose}>
+    <div className="k-modal" role="dialog" aria-modal="true" aria-label="Ignis 3D kitchen design" onClick={onClose}>
       <div className="k-modal-frame" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="k-modal-close" onClick={onClose} aria-label="Close 3D kitchen design">
           <X size={20} strokeWidth={2} />
         </button>
-        <iframe src="/models/kitchen-3d.html" title="IGNIS 3D kitchen design" />
+        <iframe src="/models/kitchen-3d.html" title="Ignis 3D kitchen design" />
       </div>
     </div>
   );

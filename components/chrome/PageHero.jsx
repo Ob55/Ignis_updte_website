@@ -9,8 +9,10 @@ export function PageHero({
   segments,
   sub,
   image,
-  imageAlt = ""
+  imageAlt = "",
+  imagePosition, // optional CSS object-position focus, e.g. "74% 40%"
+  imageCredit // optional visible credit (required for e.g. OpenStreetMap tiles)
 }) {
   const hasImg = Boolean(image);
-  return <section className={`pagehero${hasImg ? " pagehero--bg" : ""}`}>{hasImg && <img className="pagehero-bg" src={image} alt={imageAlt} aria-hidden="true" />}{hasImg && <div className="pagehero-scrim" aria-hidden="true" />}<Ambient specks={hasImg} /><div className="hero-glow" aria-hidden="true" /><div className="wrap" style={{ position: "relative", zIndex: 3 }}><Breadcrumbs /><span className="eyebrow">{eyebrow}</span><BlurText as="h1" segments={segments} className="pagehero-h1" stagger={0.07} delay={0.1} /><p className="pagehero-sub">{sub}</p></div></section>;
+  return <section className={`pagehero${hasImg ? " pagehero--bg" : ""}`}>{hasImg && <img className="pagehero-bg" src={image} alt={imageAlt} aria-hidden="true" style={imagePosition ? { objectPosition: imagePosition } : undefined} />}{hasImg && <div className="pagehero-scrim" aria-hidden="true" />}<Ambient specks={hasImg} /><div className="hero-glow" aria-hidden="true" /><div className="wrap" style={{ position: "relative", zIndex: 3 }}><Breadcrumbs /><span className="eyebrow">{eyebrow}</span><BlurText as="h1" segments={segments} className="pagehero-h1" stagger={0.07} delay={0.1} />{sub && <p className="pagehero-sub">{sub}</p>}</div>{hasImg && imageCredit && <small className="pagehero-credit">{imageCredit}</small>}</section>;
 }

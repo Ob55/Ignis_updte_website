@@ -1,26 +1,22 @@
 import { Link } from "react-router-dom";
 import { SITE } from "@/lib/site";
+import { NAV, TALK } from "@/lib/nav";
+import { FOOTER_PHONE } from "@/content/flags";
 import { openCookiePreferences } from "@/lib/consent";
 
-const EXPLORE = [
-  { to: "/services", label: "Solutions" },
-  { to: "/where-we-work", label: "Where we work" },
-  { to: "/platform", label: "CleanCookIQ" },
-  { to: "/about", label: "About" },
-  { to: "/blog", label: "Blogs" },
-  { to: "/scoping-call", label: "Contact" },
+const EXPLORE = [...NAV.filter((l) => l.to !== "/"), TALK, { to: "/financing", label: "Financing" }];
+
+const LEGAL = [
   { to: "/privacy", label: "Privacy" },
   { to: "/terms", label: "Terms" },
   { to: "/cookie-policy", label: "Cookies" },
-  { to: "/credits", label: "Credits" }
+  { to: "/credits", label: "Credits" },
 ];
 
-// Sector references. Labels name exactly what each link opens — no placeholders.
-const SECTOR = [
-  { href: "https://ccak.or.ke", label: "Clean Cooking Association of Kenya" },
-  { href: "https://energy.go.ke", label: "Ministry of Energy & Petroleum" },
-  { href: "https://www.cleancookingalliance.org", label: "Clean Cooking Alliance" }
-];
+// Copyright years: "2025" in the first year, then a range ("2025–2026", …).
+const startYear = 2025;
+const currentYear = new Date().getFullYear();
+const yearText = currentYear > startYear ? `${startYear}–${currentYear}` : `${startYear}`;
 
 export function Footer() {
   return (
@@ -28,41 +24,51 @@ export function Footer() {
       <div className="wrap">
         <div className="fgrid">
           <div>
-            <img
-              src="/logo-full.png"
-              alt="IGNIS Innovation Africa, Cook Smarter, Live Better."
-              className="footer-logo"
-            />
-            <p className="tag">Energy services for institutions across Africa. Nairobi, Kenya.</p>
+            <Link to="/" className="footer-brand" aria-label="Ignis, home">
+              <img src="/logo-flame.png" alt="" className="footer-mark" />
+              <span>
+                <span className="footer-word">IGNIS</span>
+                <span className="footer-tagline">{SITE.tagline}</span>
+              </span>
+            </Link>
+            <address className="footer-address">
+              <strong>{SITE.legalName}</strong>
+              <span>The Pavilion, Lower Kabete Rd, Nairobi</span>
+              <span>{SITE.address.poBox}</span>
+              {/* TODO(data): phone number. Hidden until FOOTER_PHONE is set in content/flags.js. */}
+              {FOOTER_PHONE && (
+                <a href={`tel:${FOOTER_PHONE.replace(/\s/g, "")}`}>{FOOTER_PHONE}</a>
+              )}
+              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            </address>
           </div>
 
           <div>
-            <h4>Explore</h4>
+            <h2 className="footer-h">Explore</h2>
             {EXPLORE.map((l) => (
               <Link key={l.to} to={l.to}>{l.label}</Link>
             ))}
           </div>
 
           <div>
-            <h4>Sector</h4>
-            {SECTOR.map((l) => (
-              <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
-            ))}
+            <h2 className="footer-h">Connect</h2>
+            <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
 
           <div>
-            <h4>Connect</h4>
-            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-            <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-            <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href={SITE.social.x} target="_blank" rel="noopener noreferrer">X / @igaborafrica</a>
+            <h2 className="footer-h">Legal</h2>
+            {LEGAL.map((l) => (
+              <Link key={l.to} to={l.to}>{l.label}</Link>
+            ))}
           </div>
         </div>
       </div>
       <div className="fbot">
         <div className="wrap fbot-row">
-          <span>© 2026 {SITE.legalName}</span>
+          <p className="fbot-copy">
+            © {yearText} {SITE.legalName} · <span className="nowrap">Reg. No. {SITE.regNo}</span>
+          </p>
           <button type="button" className="fbot-link" onClick={openCookiePreferences}>
             Cookie preferences
           </button>

@@ -24,7 +24,7 @@ export function head(path) {
     // A noindex page gets no canonical: pointing one at a URL we ask Google not
     // to index (or at /404, which does not exist) is a contradictory signal.
     !e.noindex && `<link rel="canonical" href="${url}" />`,
-    `<meta property="og:site_name" content="${esc(SITE.legalName)}" />`,
+    `<meta property="og:site_name" content="${esc(SITE.name)}" />`,
     `<meta property="og:locale" content="en_KE" />`,
     `<meta property="og:title" content="${t}" />`,
     `<meta property="og:description" content="${d}" />`,
@@ -33,7 +33,7 @@ export function head(path) {
     `<meta property="og:image" content="${img}" />`,
     `<meta property="og:image:width" content="1200" />`,
     `<meta property="og:image:height" content="630" />`,
-    `<meta property="og:image:alt" content="${esc(SITE.legalName)}" />`,
+    `<meta property="og:image:alt" content="${esc(SITE.name)}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${t}" />`,
     `<meta name="twitter:description" content="${d}" />`,

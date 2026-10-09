@@ -54,28 +54,78 @@
       "permanent": true
     },
     {
+      "source": "/services",
+      "destination": "/what-we-do",
+      "permanent": true
+    },
+    {
       "source": "/solutions",
-      "destination": "/services",
+      "destination": "/what-we-do",
       "permanent": true
     },
     {
-      "source": "/cleancookiq",
-      "destination": "/platform",
+      "source": "/platform",
+      "destination": "/cleancookiq",
       "permanent": true
     },
     {
-      "source": "/who-we-serve",
-      "destination": "/where-we-work",
-      "permanent": true
-    },
-    {
-      "source": "/who-we-serve/:slug",
-      "destination": "/where-we-work/:slug",
+      "source": "/scoping-call",
+      "destination": "/talk-to-ignis",
       "permanent": true
     },
     {
       "source": "/contact",
-      "destination": "/scoping-call",
+      "destination": "/talk-to-ignis",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/our-work/field-notes",
+      "permanent": true
+    },
+    {
+      "source": "/where-we-work/institutions",
+      "destination": "/who-we-work-with/institutions",
+      "permanent": true
+    },
+    {
+      "source": "/where-we-work/financiers",
+      "destination": "/who-we-work-with/financiers",
+      "permanent": true
+    },
+    {
+      "source": "/where-we-work/delivery-partners",
+      "destination": "/who-we-work-with/technology-providers",
+      "permanent": true
+    },
+    {
+      "source": "/where-we-work/industry",
+      "destination": "/who-we-work-with",
+      "permanent": true
+    },
+    {
+      "source": "/who-we-serve",
+      "destination": "/who-we-work-with",
+      "permanent": true
+    },
+    {
+      "source": "/who-we-serve/institutions",
+      "destination": "/who-we-work-with/institutions",
+      "permanent": true
+    },
+    {
+      "source": "/who-we-serve/financiers",
+      "destination": "/who-we-work-with/financiers",
+      "permanent": true
+    },
+    {
+      "source": "/who-we-serve/delivery-partners",
+      "destination": "/who-we-work-with/technology-providers",
+      "permanent": true
+    },
+    {
+      "source": "/who-we-serve/:slug",
+      "destination": "/who-we-work-with",
       "permanent": true
     }
   ]

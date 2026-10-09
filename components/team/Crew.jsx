@@ -13,7 +13,7 @@ const CREW = [
     teaser: "Dennis leads Ignis, holding together the project pipeline, the financing that pays for it and the monitoring that proves the savings were real.",
     bio: [
       "Dennis is Managing Director at Ignis, where he leads pipeline development, financing and digital monitoring for institutional clean cooking. In practice that means holding three things together at once: the institutions that need cleaner kitchens, the capital that pays for them, and the evidence that the savings were real.",
-      "A lot of that work is financial plumbing in the least glamorous sense. Institutions rarely have a capital budget for a new kitchen, but every one of them already has a fuel bill. He structures blended finance and carbon revenue so that existing line item becomes the thing that funds the upgrade, with no upfront cost to a school, hospital or correctional facility.",
+      "A lot of that work is financial plumbing in the least glamorous sense. Institutions rarely have a capital budget for a new kitchen, but every one of them already has a fuel bill. He structures blended finance and carbon revenue so that existing line item becomes the thing that repays the upgrade over time.",
       "He is equally stubborn about measurement. Ignis meters its sites and reports what they actually burn, because a savings figure nobody can check is a brochure claim, and bursars, financiers and regulators have all been handed enough of those. The digital monitoring platform exists so that every number the company quotes can be traced back to a meter reading.",
       "He has spent his career in clean energy across African markets, and is most useful in the gap between a technology that works and an institution that cannot yet afford it. Closing that gap, at the scale the continent actually needs, is the job he took."
     ]
@@ -65,7 +65,7 @@ const CREW = [
 export function Crew() {
   const [active, setActive] = useState(null);
   return (
-    <section className="section">
+    <section id="team" className="section">
       <div className="wrap">
         <Reveal className="section-head">
           <h2>Meet the team <span className="serif grad-flame">behind it.</span></h2>

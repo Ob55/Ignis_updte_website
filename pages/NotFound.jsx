@@ -3,13 +3,14 @@ import { ArrowUpRight } from 'lucide-react';
 import { useSeo } from '@/lib/seo';
 import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
+import { HERO } from '@/content/hero-images';
 import { Reveal } from '@/components/motion/Reveal';
 
 const LINKS = [
-  { to: '/services', label: 'Solutions', sub: 'How the model works, end to end' },
-  { to: '/where-we-work', label: 'Where we work', sub: 'Institutions, industry, financiers, partners' },
-  { to: '/about', label: 'About', sub: 'The company and the team' },
-  { to: '/scoping-call', label: 'Book an assessment', sub: 'Send us your kitchen' },
+  { to: '/what-we-do', label: 'What We Do', sub: 'Institutional Steam, Electric Cooking, Clean-Cooking Programmes' },
+  { to: '/cleancookiq', label: 'CleanCookIQ', sub: 'The data behind every decision' },
+  { to: '/who-we-work-with', label: 'Who We Work With', sub: 'Find the page for your role' },
+  { to: '/talk-to-ignis', label: 'Talk to Ignis', sub: 'Request an Assessment or Partner with Ignis' },
 ];
 
 export default function NotFound() {
@@ -18,6 +19,8 @@ export default function NotFound() {
     <>
       <PageHero
         eyebrow="404"
+        image={HERO['kisumu'].src}
+        imageAlt={HERO['kisumu'].alt}
         segments={['This page has', { text: 'gone cold.', className: 'serif grad-flame' }]}
         sub="The page you were looking for does not exist or has moved. Here is the way back."
       />

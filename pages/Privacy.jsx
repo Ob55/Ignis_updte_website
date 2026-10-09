@@ -1,6 +1,7 @@
 import { useSeo } from '@/lib/seo';
 import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
+import { HERO } from '@/content/hero-images';
 import { SITE } from '@/lib/site';
 
 export default function Privacy() {
@@ -9,6 +10,8 @@ export default function Privacy() {
     <>
       <PageHero
         eyebrow="Privacy"
+        image={HERO['nairobi-uhuru-park'].src}
+        imageAlt={HERO['nairobi-uhuru-park'].alt}
         segments={['Privacy', { text: 'policy.', className: 'serif grad-flame' }]}
         sub="How we handle the information you share with us. Last updated September 2026."
       />

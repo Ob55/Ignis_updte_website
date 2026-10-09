@@ -7,19 +7,50 @@ import { isRateLimited } from "../scripts/rateLimit.mjs";
 const list = (v) => (v || "").split(",").map((s) => s.trim()).filter(Boolean);
 
 // ---- Input validation -------------------------------------------------------
-const LIMITS = { name: 120, phone: 40, email: 254 };
+// Two enquiry types share this endpoint: "assessment" (Request an Assessment)
+// and "partner" (Partner with Ignis). Mirrors components/contact/EnquiryForms.jsx.
+const LIMITS = { name: 120, phone: 40, email: 254, org: 160, message: 2000 };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[0-9+()\-.\s]{5,40}$/;
+const AMOUNT_RE = /^[0-9][0-9,.\s]{0,19}$/;
+// Keep in step with content/roles.js.
+const ROLES = {
+  "government-county": "Government / County",
+  financier: "Financier",
+  "technology-provider": "Technology Provider",
+  "development-partner": "Development Partner",
+};
+
+const str = (v) => (typeof v === "string" ? v.trim() : "");
 
 function validate(body) {
-  const name = typeof body.name === "string" ? body.name.trim() : "";
-  const phone = typeof body.phone === "string" ? body.phone.trim() : "";
-  const email = typeof body.email === "string" ? body.email.trim() : "";
+  const type = body.type === "partner" ? "partner" : "assessment";
+  const name = str(body.name);
+  const email = str(body.email);
 
   if (!name || name.length > LIMITS.name) return { error: "Invalid name" };
-  if (!PHONE_RE.test(phone)) return { error: "Invalid phone" };
   if (!email || email.length > LIMITS.email || !EMAIL_RE.test(email)) return { error: "Invalid email" };
-  return { data: { name, phone, email } };
+
+  if (type === "partner") {
+    const role = str(body.role);
+    const organisation = str(body.organisation);
+    const message = str(body.message);
+    if (!ROLES[role]) return { error: "Invalid role" };
+    if (organisation.length > LIMITS.org) return { error: "Invalid organisation" };
+    if (message.length > LIMITS.message) return { error: "Invalid message" };
+    return { data: { type, name, email, role: ROLES[role], organisation, message } };
+  }
+
+  const phone = str(body.phone);
+  const institution = str(body.institution);
+  const mealsRaw = str(body.meals_per_day).replace(/[,\s]/g, "");
+  const meals = Number(mealsRaw);
+  const fuel = str(body.monthly_fuel_spend_kes);
+  if (!PHONE_RE.test(phone)) return { error: "Invalid phone" };
+  if (institution.length > LIMITS.org) return { error: "Invalid institution" };
+  if (!Number.isInteger(meals) || meals < 1 || meals > 200000) return { error: "Invalid meals per day" };
+  if (fuel && !AMOUNT_RE.test(fuel)) return { error: "Invalid fuel spend" };
+  return { data: { type, name, email, phone, institution, mealsPerDay: meals, monthlyFuelSpendKes: fuel } };
 }
 
 // ---- CSRF / origin allow-list ----------------------------------------------
@@ -71,7 +102,6 @@ export default async function handler(req, res) {
       res.status(400).json({ error });
       return;
     }
-    const { name, phone, email } = data;
 
     const transport = makeTransport();
     const from = process.env.SMTP_FROM || process.env.SMTP_USER;
@@ -91,7 +121,7 @@ export default async function handler(req, res) {
     }
 
     // 1) Notify the team.
-    const lead = leadEmail({ name, phone, email });
+    const lead = leadEmail(data);
     await transport.sendMail({
       from,
       to: leadTo,
@@ -105,10 +135,10 @@ export default async function handler(req, res) {
     // 2) Confirm to the enquirer. The lead is already delivered at this point,
     // so a failure here must not turn a received enquiry into a 500 for the user.
     try {
-      const conf = confirmationEmail({ name });
+      const conf = confirmationEmail({ name: data.name });
       await transport.sendMail({
         from,
-        to: email,
+        to: data.email,
         subject: conf.subject,
         text: conf.text,
         html: conf.html,

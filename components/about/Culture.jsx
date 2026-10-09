@@ -14,7 +14,7 @@ export function Culture() {
           <Reveal delay={100}>
             <div className="who-body">
               <p>
-                At IGNIS, we thrive on collaboration, innovation, and impact-driven action. Our team
+                At Ignis, we thrive on collaboration, innovation, and impact-driven action. Our team
                 combines global expertise with deep local insights, working in agile loops of design,
                 testing, and deployment. We prioritize field realities, user feedback, and transparent
                 data to create solutions that truly work in African contexts.

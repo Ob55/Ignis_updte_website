@@ -6,6 +6,7 @@ import { MissionVision } from '@/components/about/MissionVision';
 import { CoreValues } from '@/components/about/CoreValues';
 import { Culture } from '@/components/about/Culture';
 import { Crew } from '@/components/team/Crew';
+import { AboutPartners } from '@/components/about/AboutPartners';
 
 export default function About() {
   useSeo(seoFor('/about'));
@@ -14,7 +15,7 @@ export default function About() {
       <PageHero
         eyebrow="About us"
         segments={['An energy services company,', { text: 'built in Kenya.', className: 'serif grad-flame' }]}
-        sub="Kenya-proven and working across Africa. We build the delivery and financing infrastructure for institutional clean energy, connecting the demand, the economics and the technology."
+        sub="We build the delivery and financing infrastructure for institutional clean cooking, connecting the demand, the economics and the technology."
         image="/img/about-nairobi.jpg"
         imageAlt="A buffalo grazing in Nairobi National Park with the Nairobi skyline behind"
       />
@@ -23,6 +24,7 @@ export default function About() {
       <CoreValues />
       <Culture />
       <Crew />
+      <AboutPartners />
     </>
   );
 }

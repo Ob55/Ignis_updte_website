@@ -1,7 +1,7 @@
 {
-  "name": "IGNIS Innovation Africa",
-  "short_name": "IGNIS",
-  "description": "Institutional clean cooking for schools, hospitals and prisons across Africa, paid from existing fuel budgets.",
+  "name": "Ignis",
+  "short_name": "Ignis",
+  "description": "Institutional clean cooking for schools, hospitals and prisons across Africa, financed from existing fuel budgets.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

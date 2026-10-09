@@ -30,7 +30,8 @@ export function Reveal({ children, className, as: Tag = "div", delay = 0, style 
     const show = () => el.classList.add("in");
 
     const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight * 0.9) {
+    // Already on screen, or no IntersectionObserver (very old browsers): show now.
+    if (r.top < window.innerHeight * 0.9 || !("IntersectionObserver" in window)) {
       show();
       return;
     }
@@ -43,18 +44,15 @@ export function Reveal({ children, className, as: Tag = "div", delay = 0, style 
             io.unobserve(e.target);
           }
         }),
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.1 }
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 }
     );
     io.observe(el);
+    // No timed fallback: a timer revealed every off-screen block after ~1s, so by
+    // the time a visitor scrolled down there was nothing left to flow in. Blocks
+    // now reveal only as they enter the viewport (print and reduced-motion CSS
+    // still force everything visible).
 
-    // Belt and braces: if the observer never fires, reveal anyway rather than
-    // leaving the text invisible.
-    const t = setTimeout(show, 1200);
-
-    return () => {
-      io.disconnect();
-      clearTimeout(t);
-    };
+    return () => io.disconnect();
   }, []);
 
   return (

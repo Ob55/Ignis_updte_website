@@ -1,6 +1,7 @@
 import { useSeo } from '@/lib/seo';
 import { seoFor } from '@/lib/seo-data';
 import { PageHero } from '@/components/chrome/PageHero';
+import { HERO } from '@/content/hero-images';
 import { SITE } from '@/lib/site';
 
 export default function Terms() {
@@ -9,6 +10,8 @@ export default function Terms() {
     <>
       <PageHero
         eyebrow="Terms"
+        image={HERO['nairobi-uhuru-park'].src}
+        imageAlt={HERO['nairobi-uhuru-park'].alt}
         segments={['Terms of', { text: 'use.', className: 'serif grad-flame' }]}
         sub="The terms on which we make this site available. Last updated September 2026."
       />

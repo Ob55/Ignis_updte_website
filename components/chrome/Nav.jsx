@@ -1,32 +1,18 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, MessageCircle } from 'lucide-react';
+import { SITE } from '@/lib/site';
+import { NAV, TALK } from '@/lib/nav';
+import { Button } from '@/components/ui/Button';
 
-// Merged information architecture: top-level routes plus a "Where we work"
-// dropdown of the four audiences (each its own /where-we-work/<id> page).
-const LINKS = [
-  { to: '/', label: 'Home' },
-  { to: '/services', label: 'Solutions' },
-  {
-    label: 'Where we work',
-    children: [
-      { to: '/where-we-work/institutions', label: 'Institutions' },
-      { to: '/where-we-work/industry', label: 'Industry' },
-      { to: '/where-we-work/financiers', label: 'Financiers' },
-      { to: '/where-we-work/delivery-partners', label: 'Delivery partners' },
-    ],
-  },
-  { to: '/platform', label: 'CleanCookIQ' },
-  { to: '/about', label: 'About' },
-  { to: '/blog', label: 'Blogs' },
-];
-
-// Top bar: standalone logo far-left, a glass pill of route links + flame CTA on
-// the right. NavLink adds the active class; real client-side routing.
+// Header: logo + "Cook Smarter, Live Better." at left, a pill of the primary
+// links in the middle (each parent is a real page; its sub-items open on hover
+// or keyboard focus), and "Talk to Ignis" as the primary action at right.
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
-  const [openGroup, setOpenGroup] = useState(null); // mobile: expanded dropdown
+  const [openGroup, setOpenGroup] = useState(null); // mobile: expanded group
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 20);
@@ -40,40 +26,49 @@ export function Nav() {
     setOpenGroup(null);
   };
 
+  // While the mobile menu is open: lock page scroll behind it and close on Escape.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => { if (e.key === 'Escape') closeMobile(); };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  const activeCls = ({ isActive }) => (isActive ? 'active' : undefined);
+
   return (
     <header className={`topbar${solid ? ' solid' : ''}`}>
-      <Link to="/" className="brand" aria-label="IGNIS Innovation Africa, home">
+      <Link to="/" className="brand" aria-label="Ignis, home">
         <img src="/logo-flame.png" alt="" className="brand-mark" />
-        <span className="brand-word">IGNIS</span>
+        <span className="brand-text">
+          <span className="brand-word">IGNIS</span>
+          <span className="brand-tagline">{SITE.tagline}</span>
+        </span>
       </Link>
 
       <div className="nav-pill glass">
         <nav className="nav-links" aria-label="Primary">
-          {LINKS.map((l) =>
+          {NAV.map((l) =>
             l.children ? (
               <div className="nav-dd" key={l.label}>
-                <button type="button" className="nav-dd-btn" aria-haspopup="true">
-                  {l.label} <ChevronDown size={13} strokeWidth={2.2} />
-                </button>
-                <div className="nav-menu glass" role="menu">
+                <NavLink to={l.to} className={activeCls}>
+                  {l.label} <ChevronDown size={13} strokeWidth={2.2} aria-hidden="true" />
+                </NavLink>
+                <ul className="nav-menu glass">
                   {l.children.map((c) => (
-                    <Link key={c.label} to={c.to} role="menuitem">
-                      {c.label}
-                    </Link>
+                    <li key={c.to}>
+                      <Link to={c.to}>{c.label}</Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-            ) : l.to.includes('#') ? (
-              <Link key={l.to} to={l.to}>
-                {l.label}
-              </Link>
             ) : (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                end={l.to === '/'}
-                className={({ isActive }) => (isActive ? 'active' : undefined)}
-              >
+              <NavLink key={l.to} to={l.to} end={l.to === '/'} className={activeCls}>
                 {l.label}
               </NavLink>
             )
@@ -82,10 +77,9 @@ export function Nav() {
       </div>
 
       <div className="nav-right">
-        <Link className="btn btn-flame nav-cta" to="/scoping-call">
-          Get in touch <ArrowUpRight size={15} />
-        </Link>
-
+        <Button to={TALK.to} variant="primary" className="nav-cta">
+          {TALK.label}
+        </Button>
         <button
           className="nav-burger"
           aria-label={open ? 'Close menu' : 'Open menu'}
@@ -96,54 +90,80 @@ export function Nav() {
         </button>
       </div>
 
-      {open && (
-        <div className="nav-overlay" role="dialog" aria-label="Menu">
-          <button className="nav-overlay-close" onClick={closeMobile} aria-label="Close menu">
-            <X size={28} />
-          </button>
-          {LINKS.map((l) =>
-            l.children ? (
-              <div className="nav-overlay-group" key={l.label}>
-                <button
-                  type="button"
-                  className={`nav-overlay-link nav-overlay-toggle${openGroup === l.label ? ' open' : ''}`}
-                  aria-expanded={openGroup === l.label}
-                  onClick={() => setOpenGroup((g) => (g === l.label ? null : l.label))}
-                >
-                  {l.label} <ChevronDown size={22} strokeWidth={2.2} />
-                </button>
-                {openGroup === l.label &&
-                  l.children.map((c) => (
-                    <Link
-                      key={c.label}
-                      to={c.to}
-                      onClick={closeMobile}
-                      className="nav-overlay-sublink"
-                    >
-                      {c.label}
-                    </Link>
-                  ))}
-              </div>
-            ) : l.to.includes('#') ? (
-              <Link key={l.to} to={l.to} onClick={closeMobile} className="nav-overlay-link">
-                {l.label}
-              </Link>
-            ) : (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                end={l.to === '/'}
-                onClick={closeMobile}
-                className={({ isActive }) => `nav-overlay-link${isActive ? ' active' : ''}`}
-              >
-                {l.label}
-              </NavLink>
-            )
-          )}
-          <Link className="btn btn-flame" to="/scoping-call" onClick={closeMobile} style={{ marginTop: 24, alignSelf: 'flex-start' }}>
-            Get in touch <ArrowUpRight size={16} />
-          </Link>
-        </div>
+      {/* Portalled to <body>: the header is its own stacking context (and gains a
+          backdrop-filter when scrolled, which would trap a fixed child inside it),
+          so the menu must live outside it to cover the sticky CTA and cookie card. */}
+      {open && createPortal(
+        <div className="nav-overlay" role="dialog" aria-modal="true" aria-label="Menu">
+          <div className="nav-overlay-head">
+            <Link to="/" className="brand" aria-label="Ignis, home" onClick={closeMobile}>
+              <img src="/logo-flame.png" alt="" className="brand-mark" />
+              <span className="brand-text">
+                <span className="brand-word">IGNIS</span>
+                <span className="brand-tagline">{SITE.tagline}</span>
+              </span>
+            </Link>
+            <button className="nav-overlay-close" onClick={closeMobile} aria-label="Close menu">
+              <X size={26} />
+            </button>
+          </div>
+
+          <nav aria-label="Primary" className="nav-overlay-nav">
+            <ul className="nav-overlay-list">
+              {NAV.map((l) => {
+                const expanded = openGroup === l.label;
+                const subId = `mnav-${l.to.replace(/\W/g, '') || 'home'}`;
+                return (
+                  <li key={l.label} className="nav-overlay-item">
+                    <div className="nav-overlay-row">
+                      <NavLink
+                        to={l.to}
+                        end={l.to === '/'}
+                        onClick={closeMobile}
+                        className={({ isActive }) => `nav-overlay-link${isActive ? ' active' : ''}`}
+                      >
+                        {l.label}
+                      </NavLink>
+                      {l.children && (
+                        <button
+                          type="button"
+                          className={`nav-overlay-toggle${expanded ? ' open' : ''}`}
+                          aria-expanded={expanded}
+                          aria-controls={subId}
+                          aria-label={`${expanded ? 'Hide' : 'Show'} ${l.label} pages`}
+                          onClick={() => setOpenGroup((g) => (g === l.label ? null : l.label))}
+                        >
+                          <ChevronDown size={22} strokeWidth={2.2} />
+                        </button>
+                      )}
+                    </div>
+                    {l.children && expanded && (
+                      <ul className="nav-overlay-sub" id={subId}>
+                        {l.children.map((c) => (
+                          <li key={c.to}>
+                            <Link to={c.to} onClick={closeMobile} className="nav-overlay-sublink">
+                              {c.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <div className="nav-overlay-foot">
+            <Button to={TALK.to} variant="primary" onClick={closeMobile} className="nav-overlay-cta">
+              {TALK.label}
+            </Button>
+            <a className="nav-overlay-wa" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer">
+              <MessageCircle size={18} aria-hidden="true" /> WhatsApp us
+            </a>
+          </div>
+        </div>,
+        document.body
       )}
     </header>
   );

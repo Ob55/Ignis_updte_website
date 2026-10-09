@@ -1,27 +1,24 @@
-import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Reveal } from "@/components/motion/Reveal";
+import { Button } from "@/components/ui/Button";
 
-// CleanCookIQ marketing strip on the home page. CleanCookIQ has its own detail
-// page (/cleancookiq); this teaser links there. Balanced section padding keeps
-// the card centered with breathing room from the sections above and below.
+// Block 8: CleanCookIQ, short. The platform step sequence lives on /cleancookiq
+// only — never on the homepage.
 export function CleanCookIQ() {
   return (
     <section id="cleancookiq" className="section">
       <div className="wrap">
-        <Reveal className="kitchen-cta kitchen-cta--center glass">
-          <div>
-            <span className="k">CleanCookIQ</span>
-            <h3>Measured, reported, verified.</h3>
-            <p>
-              Our standalone measurement, reporting and verification platform. Digital
-              monitoring runs from commissioning, tracking fuel savings, uptime and verified
-              impact at every site, the data that triggers payment and that financiers rely on.
-            </p>
+        <Reveal className="callout-panel">
+          <h2>CleanCookIQ: the data behind every decision.</h2>
+          <p>
+            CleanCookIQ is Ignis&apos;s digital infrastructure for collecting, validating, analysing
+            and managing institutional clean-cooking transition data. For institutions, it supports
+            a clear, costed transition pathway. For financiers and programme partners, it provides
+            structured information, project economics and performance evidence. For governments,
+            it gives portfolio-level visibility of demand and transition progress.
+          </p>
+          <div className="btn-row">
+            <Button to="/cleancookiq" variant="primary">Explore CleanCookIQ</Button>
           </div>
-          <Link className="btn btn-flame" to="/platform">
-            Explore CleanCookIQ <ArrowUpRight size={16} />
-          </Link>
         </Reveal>
       </div>
     </section>

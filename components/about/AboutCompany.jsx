@@ -3,7 +3,7 @@ import { Reveal } from "@/components/motion/Reveal";
 // Our Company + mission.
 export function AboutCompany() {
   return (
-    <section className="section">
+    <section id="who-we-are" className="section">
       <div className="wrap">
         <div className="who-grid">
           <Reveal>
@@ -16,8 +16,8 @@ export function AboutCompany() {
           <Reveal delay={100}>
             <div className="who-body">
               <p>
-                Founded in Kenya to close Africa&apos;s institutional clean cooking gap, IGNIS
-                Innovation Africa is an energy services company. Institutional energy transition
+                Founded in Kenya to close Africa&apos;s institutional clean cooking gap, Ignis
+                is an energy services company. Institutional energy transition
                 already has the demand, the economics, and the technology. What it lacked was the
                 delivery and financing infrastructure to connect them. We build it, funded from
                 the fuel budgets institutions already spend.

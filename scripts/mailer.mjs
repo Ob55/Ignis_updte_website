@@ -19,18 +19,32 @@ export function makeTransport() {
 const esc = (s = "") =>
   String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-// Internal notification to the sales team.
-export function leadEmail({ name, phone, email }) {
-  const rows = [
-    ["Name", name],
-    ["Phone", phone],
-    ["Email", email],
-  ].filter(([, v]) => v);
+// Internal notification to the sales team. `type` is "assessment" or "partner".
+export function leadEmail({ type = "assessment", name, phone, email, institution, mealsPerDay, monthlyFuelSpendKes, role, organisation, message }) {
+  const isPartner = type === "partner";
+  const rows = (isPartner
+    ? [
+        ["Name", name],
+        ["Email", email],
+        ["Role", role],
+        ["Organisation", organisation],
+        ["Message", message],
+      ]
+    : [
+        ["Name", name],
+        ["Phone", phone],
+        ["Email", email],
+        ["Institution", institution],
+        ["Meals per day", mealsPerDay],
+        ["Monthly fuel spend (KES)", monthlyFuelSpendKes],
+      ]
+  ).filter(([, v]) => v !== undefined && v !== null && v !== "");
+  const title = isPartner ? "New partner enquiry" : "New assessment request";
   return {
-    subject: `New assessment request: ${name || email || "enquiry"}`,
+    subject: `${title}: ${name || email || "enquiry"}`,
     text: rows.map(([k, v]) => `${k}: ${v}`).join("\n"),
     html:
-      `<h2 style="font-family:system-ui">New assessment request</h2>` +
+      `<h2 style="font-family:system-ui">${title}</h2>` +
       `<table style="font-family:system-ui;border-collapse:collapse">` +
       rows
         .map(
@@ -47,14 +61,14 @@ export function leadEmail({ name, phone, email }) {
 export function confirmationEmail({ name }) {
   const hi = name ? `Hi ${name},` : "Hi,";
   return {
-    subject: "We received your request — Ignis Innovation",
+    subject: "We received your request — Ignis",
     text:
-      `${hi}\n\nThank you for reaching out to Ignis Innovation. We have received your request and will get back to you shortly.\n\nWarm regards,\nIgnis Innovation\ninfo@ignis-innovation.com`,
+      `${hi}\n\nThank you for reaching out to Ignis. We have received your request and will get back to you shortly.\n\nWarm regards,\nIgnis\ninfo@ignis-innovation.com`,
     html:
       `<div style="font-family:system-ui;max-width:520px;line-height:1.6">` +
       `<p>${esc(hi)}</p>` +
-      `<p>Thank you for reaching out to <strong>Ignis Innovation</strong>. We have received your request and will get back to you shortly.</p>` +
-      `<p style="margin-top:24px">Warm regards,<br/>Ignis Innovation<br/><a href="mailto:info@ignis-innovation.com">info@ignis-innovation.com</a></p>` +
+      `<p>Thank you for reaching out to <strong>Ignis</strong>. We have received your request and will get back to you shortly.</p>` +
+      `<p style="margin-top:24px">Warm regards,<br/>Ignis<br/><a href="mailto:info@ignis-innovation.com">info@ignis-innovation.com</a></p>` +
       `</div>`,
   };
 }

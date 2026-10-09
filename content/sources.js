@@ -31,6 +31,28 @@ export const sources = [
     short: "Ignis site assessment",
     url: null,
   },
+  // Third-party efficiency figures for the "Share of fuel energy reaching the pot"
+  // chart (What We Do page) — NOT Ignis measurements.
+  // TODO(content): add the publication URLs for ids 5–7 (not supplied in the brief).
+  {
+    id: 5,
+    label:
+      "Aprovecho Research Center (2026), citing Urban et al.: 11.3% average across 254 field tests of open fires in Malawi, Ghana and Kenya.",
+    short: "Aprovecho Research Center, 2026",
+    url: null,
+  },
+  {
+    id: 6,
+    label: "Low-Tech Magazine (2014): well-tended open fires reach 20–30%.",
+    short: "Low-Tech Magazine, 2014",
+    url: null,
+  },
+  {
+    id: 7,
+    label: "Shengzhou Stove Manufacturer (2026): 62% for an improved institutional stove. Vendor figure.",
+    short: "Shengzhou Stove Manufacturer, 2026",
+    url: null,
+  },
 ];
 
 export const sourceById = Object.fromEntries(sources.map((s) => [s.id, s]));

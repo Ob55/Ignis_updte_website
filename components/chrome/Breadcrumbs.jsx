@@ -3,15 +3,25 @@ import { useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { SITE } from '@/lib/site';
 import { getAudience } from '@/content/audiences';
+import { getOffer } from '@/content/offers';
+import { getService } from '@/content/services';
+import { getFieldNote } from '@/content/field-notes';
+import { getAnyCaseStudy } from '@/content/case-studies';
 
-// Human labels for path segments. Audience slugs resolve from content.
+// Human labels for path segments. Content slugs resolve from content/.
 const LABELS = {
-  services: 'Services',
-  'where-we-work': 'Where we work',
-  platform: 'Platform',
+  'what-we-do': 'What We Do',
+  cleancookiq: 'CleanCookIQ',
+  'who-we-work-with': 'Who We Work With',
+  'where-we-work': 'Where We Work',
+  'our-work': 'Our Work',
+  projects: 'Projects',
+  'case-studies': 'Case Studies',
+  'field-notes': 'Field Notes',
+  methodology: 'How we measure',
+  financing: 'Financing',
   about: 'About',
-  blog: 'Blogs',
-  'scoping-call': 'Scoping call',
+  'talk-to-ignis': 'Talk to Ignis',
   credits: 'Credits',
   privacy: 'Privacy',
   terms: 'Terms',
@@ -23,6 +33,8 @@ function labelFor(seg) {
   if (LABELS[seg]) return LABELS[seg];
   const a = getAudience(seg);
   if (a) return a.eyebrow;
+  const named = getOffer(seg)?.name || getService(seg)?.name || getFieldNote(seg)?.headline || getAnyCaseStudy(seg)?.project;
+  if (named) return named;
   return seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' ');
 }
 

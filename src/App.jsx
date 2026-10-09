@@ -4,13 +4,22 @@ import { Nav } from '@/components/chrome/Nav';
 import { Footer } from '@/components/chrome/Footer';
 import { SkipLink } from '@/components/chrome/SkipLink';
 import Home from '@/pages/Home';
-import Solutions from '@/pages/Solutions';
-import WhoWeServe from '@/pages/WhoWeServe';
-import Audience from '@/pages/Audience';
-import About from '@/pages/About';
-import Blog from '@/pages/Blog';
+import WhatWeDo from '@/pages/WhatWeDo';
+import ContentPage from '@/pages/ContentPage';
+import Financing from '@/pages/Financing';
 import CleanCookIQ from '@/pages/CleanCookIQ';
-import Contact from '@/pages/Contact';
+import WhoWeWorkWith from '@/pages/WhoWeWorkWith';
+import Audience from '@/pages/Audience';
+import WhereWeWork from '@/pages/WhereWeWork';
+import OurWork from '@/pages/OurWork';
+import Projects from '@/pages/Projects';
+import CaseStudies from '@/pages/CaseStudies';
+import CaseStudy from '@/pages/CaseStudy';
+import FieldNotesIndex from '@/pages/FieldNotesIndex';
+import FieldNote from '@/pages/FieldNote';
+import Methodology from '@/pages/Methodology';
+import About from '@/pages/About';
+import TalkToIgnis from '@/pages/TalkToIgnis';
 import Privacy from '@/pages/Privacy';
 import Terms from '@/pages/Terms';
 import CookiePolicy from '@/pages/CookiePolicy';
@@ -20,6 +29,7 @@ import NotFound from '@/pages/NotFound';
 import { StickyCta } from '@/components/chrome/StickyCta';
 import { CookieConsent } from '@/components/chrome/CookieConsent';
 import { trackPageview } from '@/lib/analytics';
+import { useAutoReveal } from '@/lib/useAutoReveal';
 
 // Scroll on navigation: to a #section when the URL carries a hash, else to top.
 function ScrollToTop() {
@@ -51,6 +61,7 @@ function Analytics() {
 }
 
 export default function App() {
+  useAutoReveal();
   return (
     <>
       <SkipLink />
@@ -60,13 +71,22 @@ export default function App() {
       <main id="main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Solutions />} />
-          <Route path="/where-we-work" element={<WhoWeServe />} />
-          <Route path="/where-we-work/:audience" element={<Audience />} />
+          <Route path="/what-we-do" element={<WhatWeDo />} />
+          <Route path="/what-we-do/:slug" element={<ContentPage />} />
+          <Route path="/financing" element={<Financing />} />
+          <Route path="/cleancookiq" element={<CleanCookIQ />} />
+          <Route path="/who-we-work-with" element={<WhoWeWorkWith />} />
+          <Route path="/who-we-work-with/:audience" element={<Audience />} />
+          <Route path="/where-we-work" element={<WhereWeWork />} />
+          <Route path="/our-work" element={<OurWork />} />
+          <Route path="/our-work/projects" element={<Projects />} />
+          <Route path="/our-work/case-studies" element={<CaseStudies />} />
+          <Route path="/our-work/case-studies/:slug" element={<CaseStudy />} />
+          <Route path="/our-work/field-notes" element={<FieldNotesIndex />} />
+          <Route path="/our-work/field-notes/:slug" element={<FieldNote />} />
+          <Route path="/our-work/methodology" element={<Methodology />} />
           <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/platform" element={<CleanCookIQ />} />
-          <Route path="/scoping-call" element={<Contact />} />
+          <Route path="/talk-to-ignis" element={<TalkToIgnis />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />

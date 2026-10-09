@@ -1,27 +1,6 @@
 /* Self-hosted faces (replaces next/font). Served from /public/fonts. */
-/* Headings — Archivo (variable 400–800). One display face for every heading,
-   site-wide. A confident grotesque that reads as energy-infrastructure. */
-@font-face {
-  font-family: 'Archivo';
-  src: url('/fonts/archivo-var.woff2') format('woff2');
-  font-weight: 400 800;
-  font-display: swap;
-}
-/* Body — Atkinson Hyperlegible, designed for maximum reading legibility. */
-@font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('/fonts/atkinson-400.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('/fonts/atkinson-700.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* Headings use Times New Roman and body uses the system UI stack (brand rule),
+   so only the label mono is self-hosted. */
 @font-face {
   font-family: 'IBM Plex Mono';
   src: url('/fonts/plexmono-400.woff2') format('woff2');
@@ -35,22 +14,3 @@
   font-display: swap;
 }
 
-/* Metric-matched local fallbacks (measured from the woff2 files against Arial /
-   Liberation Sans). Text painted before the webfont arrives takes up the same
-   space, so the swap no longer reflows or visibly jumps. */
-@font-face {
-  font-family: 'Archivo Fallback';
-  src: local('Arial'), local('Liberation Sans'), local('Helvetica');
-  size-adjust: 100.9%;
-  ascent-override: 87%;
-  descent-override: 20.8%;
-  line-gap-override: 0%;
-}
-@font-face {
-  font-family: 'Atkinson Fallback';
-  src: local('Arial'), local('Liberation Sans'), local('Helvetica');
-  size-adjust: 97%;
-  ascent-override: 97.9%;
-  descent-override: 29.9%;
-  line-gap-override: 0%;
-}

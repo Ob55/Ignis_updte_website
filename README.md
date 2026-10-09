@@ -14,10 +14,10 @@ Plain, lightweight, fast:
 
 - **React 18** (JSX — no TypeScript)
 - **Vite 5** — dev server + build
-- **react-router-dom 6** — client-side routing
+- **react-router-dom 7** — client-side routing, prerendered to static HTML at build
 - **lucide-react** — icons
 - Plain **CSS** (custom design system, no Tailwind)
-- Self-hosted fonts (Archivo, IBM Plex Sans/Mono, Instrument Serif)
+- Headings in Times New Roman, body in the system UI stack, self-hosted IBM Plex Mono for small labels
 
 No framework heaviness — `npm run dev` is ready in ~1–2s.
 
@@ -46,22 +46,17 @@ ignis_Website/
 ├─ src/
 │  ├─ main.jsx              # entry — mounts <App> in BrowserRouter, imports global CSS
 │  └─ App.jsx               # routes + shared chrome (Nav, Footer, SkipLink)
-├─ pages/                   # one file per route
-│  ├─ Home.jsx              # /
-│  ├─ Solutions.jsx         # /solutions
-│  ├─ About.jsx             # /about   (About Us)
-│  ├─ Blog.jsx              # /blog     (Field Log)
-│  └─ Contact.jsx           # /contact
+├─ pages/                   # one file per route (see Routes below)
 ├─ components/
-│  ├─ chrome/               # Nav, Footer, SkipLink, PageHero
-│  ├─ home/                 # Hero, WhoWeAre, Highlights, Services, Products,
-│  │                        #   SavingsCalc, StatBar (impact), Geography, Partners, AssessmentCta
-│  ├─ about/                # AboutCompany, MissionVision, CoreValues, Culture
+│  ├─ ui/                   # Button (primary/secondary), Stepper, Accordion, Cards
+│  ├─ chrome/               # Nav, Footer, StickyCta, Breadcrumbs, PageHero, CookieConsent
+│  ├─ home/                 # the 15 homepage blocks (see pages/Home.jsx)
+│  ├─ about/                # AboutCompany, MissionVision, CoreValues, Culture, AboutPartners
 │  ├─ team/                 # Crew (team roster)
-│  ├─ contact/              # Channels, Faq
-│  └─ motion/               # Ambient, BlurText, Reveal, CountUp, ProgressRing, Manifesto, Marquee
-├─ lib/                     # site.js (site-wide constants), useTitle.js
-├─ content/                 # data: fuel-models.js, institutions.js, sources.js
+│  ├─ contact/              # EnquiryForms (assessment + partner), Channels, MapDirections, Faq
+│  └─ motion/               # Ambient, BlurText, Reveal
+├─ lib/                     # site.js (constants), nav.js (menu), seo-data.js (per-route head + prerender list)
+├─ content/                 # all copy-bearing data + content gates (flags.js) — see "Content gates"
 ├─ styles/
 │  ├─ tokens.css            # design tokens (colours, spacing, fonts)
 │  ├─ fonts.css             # @font-face declarations
@@ -79,36 +74,51 @@ ignis_Website/
 
 ## Routes
 
-| Path         | Page       | Contents |
-|--------------|------------|----------|
-| `/`          | Home       | Hero · Who We Are · Highlights · Services · Products · Savings calculator · Impact numbers · Geography · Partners |
-| `/solutions` | Solutions  | System flow · Who we serve · Model · Comparison · Financing |
-| `/about`     | About Us   | Company · Mission & Vision · Core Values · Culture · Team |
-| `/blog`      | Blog & Posts | Field Log entries |
-| `/contact`   | Contact    | Channels · Assessment request form · FAQ |
+Every route must also have an entry in `lib/seo-data.js` (title + 70–160 char
+description); that registry drives prerendering and the sitemap.
 
-The "Book a kitchen assessment" form lives on **About Us** and **Contact** only.
+| Path | Page |
+|---|---|
+| `/` | Home — 15 blocks per the Content Spec (30 Sept 2026) |
+| `/what-we-do`, `/what-we-do/:slug` | Offers + service lines (`content/offers.js`, `content/services.js`) |
+| `/financing` | Financing the transition (CESA flow) |
+| `/cleancookiq` | Platform, How It Works, For Institutions / Financiers / Governments |
+| `/who-we-work-with`, `/who-we-work-with/:audience` | Five audiences (`content/audiences.js`) |
+| `/where-we-work` | Countries with status labels |
+| `/our-work`, `/our-work/projects`, `/our-work/case-studies[/:slug]`, `/our-work/field-notes[/:slug]` | Our Work |
+| `/about` | Who We Are, Team, Partners |
+| `/talk-to-ignis` | `#assessment` and `#partner` forms → `api/assessment.js` |
+
+Old URLs (`/services`, `/platform`, `/scoping-call`, `/blog`, `/where-we-work/:audience`, …)
+301 to the new ones in `vercel.json`.
+
+## Content gates
+
+Nothing unverified renders. Gated items live in code comments tagged
+`TODO(content)`, `TODO(data)`, `TODO(confirm)` or `TODO(partner-approval)`
+(`grep -rn "TODO(" components pages content lib api`). Switches in `content/flags.js`:
+`SHOW_PROOF_STRIP`, `SHOW_TAITA_TAVETA`, `FOOTER_PHONE`. Case studies and partner logos
+render only when `published` / `approved` is true.
 
 ---
 
 ## Design system
 
-Defined once in `styles/tokens.css`. Theme = **dark cinematic green-black + emerald + orange flame**.
+Defined once in `styles/tokens.css`.
 
-| Token           | Value       | Use |
-|-----------------|-------------|-----|
-| `--bg`          | `#06120b`   | page background |
-| `--emerald`     | `#00712d`   | brand green |
-| `--emerald-lite`| `#21b45a`   | accents on dark |
-| `--flame`       | `#e8792b`   | fire / orange accent |
-| `--text`        | `#eef4ee`   | body text |
+| Token | Value | Use |
+|---|---|---|
+| `--emerald` | `#00712D` | primary: text, links, primary buttons (white on emerald 6.2:1) |
+| `--orange` | `#F58220` | icons, decoration, dark-text badges only — never text on light, never white text on it |
+| `--green-light` | `#E6F0E9` | cards and callouts (dark text 12.8:1) |
+| `--on-orange` | `#14140f` | the only text colour allowed on orange |
 
-Fonts: **Archivo** (display), **IBM Plex Sans** (body), **IBM Plex Mono** (labels/numbers),
-**Instrument Serif** (the italic accent word in headlines).
+Buttons: one `Button` component, `primary` (filled emerald) or `secondary` (outlined
+emerald), at most two per section. Site-wide actions: **Request an Assessment** and
+**Partner with Ignis**.
 
-Motion (all CSS / small hooks, respects `prefers-reduced-motion`): word-by-word blur reveals,
-fade-rise on scroll, count-up numbers, a flame progress ring, rising ember particles, and the
-partner logo marquee.
+Motion (all CSS / small hooks, respects `prefers-reduced-motion`): word-by-word blur reveals
+on page heroes, fade-rise on scroll, and rising ember particles.
 
 ---
 

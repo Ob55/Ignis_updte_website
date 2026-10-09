@@ -18,7 +18,7 @@ export function MapDirections() {
           <div className="map-frame glass">
             <iframe
               src={MAPS_EMBED}
-              title="IGNIS Innovation Africa office location"
+              title="Ignis office location"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
@@ -33,7 +33,7 @@ export function MapDirections() {
               {SITE.address.poBox}<br />
               Plus code: {SITE.address.plusCode}
             </p>
-            <a className="btn btn-flame" href={MAPS_DIRECTIONS} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn-secondary" href={MAPS_DIRECTIONS} target="_blank" rel="noopener noreferrer">
               <Navigation size={16} style={{ marginRight: 8 }} /> Get directions
             </a>
           </div>

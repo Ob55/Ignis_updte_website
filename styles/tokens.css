@@ -16,15 +16,27 @@
   --sacramento: #0d4715;
   --sap: #4c7a1e;         /* Sap Green, deepened for light bg */
 
-  /* flame accent (the fire / ignition) — deepened for legibility on light */
-  --flame: #e07b00;
-  --flame-lite: #a34d00;   /* burnt orange — small mono labels now clear 4.5:1 on light (≈5.3:1) */
-  --flame-deep: #b85e00;
-  --flame-on-dark: #f5a63f;/* lighter orange for small text on the dark-green footer/pills (≈5.4:1) */
+  /* Brand palette (Content Spec, 30 Sept 2026).
+     Contrast rules (WCAG 1.4.3):
+       white on emerald 6.2:1 OK · emerald on white 6.2:1 OK
+       white on orange 2.6:1 FAILS · orange text on white 2.6:1 FAILS
+       dark on orange 5.7:1 OK · dark on light green 12.8:1 OK
+     Emerald carries text and primary actions. Orange is for icons, decoration,
+     numbers on dark backgrounds and dark-text badges only — never text on light. */
+  --orange: #F58220;
+  --green-light: #E6F0E9;  /* cards and callouts */
+  --on-orange: #14140f;    /* the only text colour allowed on orange */
+
+  /* legacy aliases — every --flame* use is now decoration only; text that used
+     --flame-lite was moved to emerald */
+  --flame: var(--orange);
+  --flame-lite: var(--emerald);
+  --flame-deep: var(--sacramento);
+  --flame-on-dark: #ffffff;
 
   /* text — near-black warm on cream */
   --text: #14140f;
-  --muted: rgba(20, 20, 15, 0.60);
+  --muted: rgba(20, 20, 15, 0.78); /* ≥4.5:1 on both cream and the green tint */
   --faint: rgba(20, 20, 15, 0.40);
   /* placeholder/helper text: --faint is ~2.8:1 on the cream bg and fails WCAG AA.
      This clears 4.5:1 and is used wherever real words are shown, not hairlines. */
@@ -45,11 +57,14 @@
   /* motion */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* slow, gliding scroll reveals: long tail, no snap at the end */
+  --ease-glide: cubic-bezier(0.16, 0.84, 0.24, 1);
+  --reveal-dur: 1.5s;
 
-  /* fonts — one heading face (Archivo) everywhere, a distinct body face
-     (Atkinson), a mono for labels. *Fallback = metric-matched local faces. */
-  --font-display: 'Archivo', 'Archivo Fallback';
-  --font-body: 'Atkinson Hyperlegible', 'Atkinson Fallback';
+  /* fonts — headings in Times New Roman (brand rule), body in the system UI
+     sans stack, a mono for small labels only. */
+  --font-display: "Times New Roman", Times, serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: 'IBM Plex Mono';
-  --font-serif: 'Archivo', 'Archivo Fallback';
+  --font-serif: "Times New Roman", Times, serif;
 }
