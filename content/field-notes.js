@@ -5,6 +5,9 @@
 // one key number · one practical lesson · one link to the relevant service.
 // Until `body` is written, the story page shows only its headline, tags and
 // service link. Unpublished stories are not routed, listed or prerendered.
+// `coverImage` is THEMATIC cover art for the story card only (a credited stock
+// photo, not from the story). The story's own photo is `heroImage`, still
+// TODO(data) for every story; once set, it replaces the cover on the card too.
 
 // publishSchedule (internal): launch with three stories, then publish monthly.
 export const PUBLISH_SCHEDULE = "Launch with three stories, then publish monthly.";
@@ -12,6 +15,7 @@ export const PUBLISH_SCHEDULE = "Launch with three stories, then publish monthly
 export const FIELD_NOTES = [
   {
     slug: "what-a-1200-learner-kitchen-spends-on-firewood",
+    coverImage: "/img/hero/firewood.jpg", coverImageAlt: "Women carrying bundles of firewood along a forest path in Kenya",
     published: true,
     headline: "What a 1,200-learner kitchen really spends on firewood",
     type: "Cost story",
@@ -27,6 +31,7 @@ export const FIELD_NOTES = [
   },
   {
     slug: "wet-wood-late-lunch",
+    coverImage: "/img/hero/open-fire-cooking.jpg", coverImageAlt: "Women cooking in pots over open fires outside a home in Kenya",
     published: true,
     headline: "Wet wood, late lunch: how the rains hit firewood kitchens",
     type: "Operations story",
@@ -39,6 +44,7 @@ export const FIELD_NOTES = [
   },
   {
     slug: "a-day-in-a-steam-kitchen",
+    coverImage: "/img/hero/steam-kettle.jpg", coverImageAlt: "A chef cooking in a large steam-jacketed kettle",
     published: true,
     headline: "A day in a steam kitchen",
     type: "People story",
@@ -56,6 +62,7 @@ export const FIELD_NOTES = [
   },
   {
     slug: "checking-the-data-twice",
+    coverImage: "/img/hero/field-data-kenya.jpg", coverImageAlt: "A field worker in Kenya recording data on a phone",
     published: false,
     // TODO(partner-approval): keep unpublished until IRENA and partners approve.
     headline: "Checking the data twice: lessons from verifying institutional kitchens",
@@ -69,6 +76,7 @@ export const FIELD_NOTES = [
   },
   {
     slug: "why-steam-the-engineering-in-plain-words",
+    coverImage: "/img/solutions-cookers.jpg", coverImageAlt: "Installed cookers in a clean-cooking school kitchen in Kenya",
     published: true,
     headline: "Why steam? The engineering in plain words",
     type: "Explainer",

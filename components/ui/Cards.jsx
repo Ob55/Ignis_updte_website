@@ -58,8 +58,13 @@ export function ProjectCard({ project }) {
 export function StoryCard({ story }) {
   return (
     <Link className="story-card" to={`/our-work/field-notes/${story.slug}`}>
-      {story.heroImage ? (
-        <img className="story-card-img" src={story.heroImage} alt={story.heroImageAlt} loading="lazy" />
+      {story.heroImage || story.coverImage ? (
+        <img
+          className="story-card-img"
+          src={story.heroImage || story.coverImage}
+          alt={story.heroImage ? story.heroImageAlt : story.coverImageAlt}
+          loading="lazy"
+        />
       ) : (
         // TODO(data): story photo. Neutral block until a real photo exists.
         <div className="story-card-img story-card-img--empty" aria-hidden="true" />
