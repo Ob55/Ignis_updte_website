@@ -511,8 +511,9 @@ body:has(.pagehero--bg) .topbar:not(.solid) .nav-burger { color: #fff; }
    A real consent card, not a nag strip: icon, heading, plain-language body, and
    two actions of equal visual weight so declining is as easy as accepting. */
 .cookie-bar {
-  /* bottom-right: every hero is left-aligned, so this keeps its CTAs clear */
-  position: fixed; right: 20px; bottom: 20px; z-index: 1200;
+  /* bottom-right: every hero is left-aligned, so this keeps its CTAs clear.
+     Lifted above the "Ask Igni" button (bottom-right, ~50px tall) so both show. */
+  position: fixed; right: 20px; bottom: 84px; z-index: 1200;
   width: min(440px, calc(100vw - 40px));
   display: grid; grid-template-columns: auto 1fr; gap: 16px 14px;
   padding: 22px; border-radius: 20px;
@@ -1281,14 +1282,14 @@ body:has(.talk-hero) .topbar:not(.solid) .nav-burger { color: #fff; }
 
 /* ===== Igni chat assistant (components/chrome/IgniLauncher.jsx, IgniChat.jsx) ===== */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-/* z-index: above the phone action bar (150), below the cookie card (1200) */
+/* z-index: launcher above the phone action bar (150); the open panel (1300) sits above the cookie card (1200) */
 .igni-launcher { position: fixed; right: 20px; bottom: 20px; z-index: 1100; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px 12px 14px; border: none; border-radius: 999px; background: var(--emerald); color: #fff; font: 600 15px/1 var(--font-body); cursor: pointer; box-shadow: 0 10px 30px rgba(0,113,45,0.32), 0 2px 6px rgba(20,20,15,0.12); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), opacity 0.2s; }
 .igni-launcher img { width: 22px; height: 22px; border-radius: 50%; background: #fff; padding: 3px; }
 .igni-launcher:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,113,45,0.38), 0 2px 6px rgba(20,20,15,0.12); }
 .igni-launcher:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 .igni-launcher.is-hidden { opacity: 0; pointer-events: none; }
 
-.igni-panel { position: fixed; right: 20px; bottom: 20px; z-index: 1100; width: min(390px, calc(100vw - 40px)); height: min(600px, calc(100vh - 120px)); display: flex; flex-direction: column; background: var(--bg); border-radius: 22px; box-shadow: 0 24px 80px rgba(20,20,15,0.24), inset 0 0 0 1px var(--line); overflow: hidden; animation: igniIn 0.35s var(--ease-glide) both; }
+.igni-panel { position: fixed; right: 20px; bottom: 20px; z-index: 1300; width: min(390px, calc(100vw - 40px)); height: min(600px, calc(100vh - 120px)); display: flex; flex-direction: column; background: var(--bg); border-radius: 22px; box-shadow: 0 24px 80px rgba(20,20,15,0.24), inset 0 0 0 1px var(--line); overflow: hidden; animation: igniIn 0.35s var(--ease-glide) both; }
 .igni-panel[hidden] { display: none; }
 @keyframes igniIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
 .igni-head { display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 18px; background: var(--emerald); color: #fff; }
@@ -1337,10 +1338,9 @@ body:has(.talk-hero) .topbar:not(.solid) .nav-burger { color: #fff; }
    reserves room for it), so it never floats over page content; where the bar is
    hidden it floats bottom-right. The panel becomes a full-screen sheet. */
 @media (max-width: 760px) {
-  .sticky-cta { padding-right: 76px; }
-  .igni-launcher { right: 12px; bottom: calc(10px + env(safe-area-inset-bottom)); width: 54px; height: 54px; padding: 0; justify-content: center; box-shadow: 0 6px 18px rgba(0,113,45,0.3); }
-  .igni-launcher span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .igni-launcher img { width: 30px; height: 30px; padding: 4px; }
+  .sticky-cta { padding-right: 90px; }
+  .igni-launcher { right: 12px; bottom: calc(10px + env(safe-area-inset-bottom)); width: 70px; height: 56px; padding: 6px 4px; flex-direction: column; justify-content: center; gap: 3px; border-radius: 14px; font-size: 12px; line-height: 1; white-space: nowrap; box-shadow: 0 6px 18px rgba(0,113,45,0.3); }
+  .igni-launcher img { width: 26px; height: 26px; padding: 3px; }
   .igni-launcher--nobar { bottom: calc(16px + env(safe-area-inset-bottom)); }
 }
 @media (max-width: 600px) {
