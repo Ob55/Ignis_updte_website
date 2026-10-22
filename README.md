@@ -168,7 +168,8 @@ Igni is the "Ask Igni" button on every page.
 - **Environment (server-only):** `ANTHROPIC_API_KEY` (required for AI answers; without it
   Igni points visitors to the team), `IGNI_DAILY_CAP` (optional daily cap on AI answers,
   needs Upstash). Chat is rate-limited to 20 AI questions per IP per 10 minutes.
-- **Local testing of the API:** Vite dev does not serve `/api`; use `npx vercel dev`.
+- **Local testing of the API:** `npm run dev` serves `api/*.js` too (a dev-only Vite middleware in
+  `vite.config.js`) using the keys in `.env.local`, so Igni's AI answers and the forms work locally.
 - Tests: `tests/igni.test.mjs` pins which questions stay local and which go to the AI.
 
 ---
