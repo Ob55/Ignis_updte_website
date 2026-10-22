@@ -56,6 +56,11 @@ test("complex questions go to the AI", () => {
   assert.equal(complexity("and what about that one?", { lastWasAi: true }), "follow-up");
 });
 
+test("questions in non-Latin scripts go to the AI, not the greeting", () => {
+  // Amharic tokenises to nothing in the Latin-only matcher; that must not read as "hi".
+  assert.equal(ask("አሲሊ ምንድን ነው?").kind, "ai");
+});
+
 test("question words alone are not a match", () => {
   // "who" must not pull "Who owns the equipment?"
   assert.notEqual(ask("Who is the CEO?").id, "faq");
@@ -87,4 +92,15 @@ test("every picture Igni can show exists, and local answers carry valid ones", a
   }
   for (const it of INTENTS) for (const id of it.images || []) assert.ok(ids.has(id), `${it.id} -> unknown image ${id}`);
   assert.deepEqual(ask("What is Asili?").images, ["asili-front"]);
+});
+
+test("every chat language has every interface string", async () => {
+  const { IGNI_LANGS } = await import("../content/igni-i18n.js");
+  const shape = (o) => Object.keys(o).sort().map((k) => (typeof o[k] === "object" && !Array.isArray(o[k]) ? `${k}{${shape(o[k])}}` : k)).join(",");
+  const en = shape(IGNI_LANGS.en);
+  for (const [k, l] of Object.entries(IGNI_LANGS)) {
+    assert.equal(shape(l), en, `${k} is missing strings`);
+    assert.equal(l.suggestions.length, 4, `${k} suggestions`);
+    assert.ok(l.listen && l.speak.length, `${k} voice locales`);
+  }
 });

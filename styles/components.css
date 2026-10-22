@@ -1340,6 +1340,10 @@ body:has(.talk-hero) .topbar:not(.solid) .nav-burger { color: #fff; }
 .igni-tool:hover { background: rgba(255,255,255,0.14); color: #fff; }
 .igni-tool.is-on { background: rgba(255,255,255,0.2); color: #fff; }
 .igni-tool:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+.igni-tool:disabled { opacity: 0.45; cursor: default; }
+/* language picker: a native <select>, styled to sit in the green header */
+select.igni-lang { appearance: none; -webkit-appearance: none; height: 36px; align-self: center; padding: 0 26px 0 10px; border: 1px solid rgba(255,255,255,0.35); border-radius: 10px; font: 600 13px/1 var(--font-body); letter-spacing: 0; color: #fff; background: rgba(255,255,255,0.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='white' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") no-repeat right 9px center; max-width: 116px; }
+select.igni-lang option { color: var(--text); background: #fff; }
 
 .igni-pics { display: grid; gap: 6px; width: 100%; max-width: 300px; }
 .igni-pics--2 { grid-template-columns: 1fr 1fr; }
