@@ -42,8 +42,8 @@ function EcosystemDiagram() {
         <text x="645" y="230" className="dg-label" textAnchor="middle">Programme partners</text>
         {/* data layer */}
         <rect x="10" y="272" width="740" height="48" rx="12" className="dg-band" />
-        {/* CleanCookIQ mark, from cleancookiq.com */}
-        <image href="/img/cleancookiq/mark.png" x="196" y="279" width="34" height="34" />
+        {/* CleanCookIQ mark, from cleancookiq.com. Decorative: the band's text names it. */}
+        <image href="/img/cleancookiq/mark.png" x="196" y="279" width="34" height="34" aria-hidden="true" />
         <text x="398" y="302" className="dg-label dg-label--small" textAnchor="middle">
           CleanCookIQ: the data layer underneath
         </text>
