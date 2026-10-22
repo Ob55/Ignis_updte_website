@@ -75,6 +75,16 @@ export default function Privacy() {
               there too — the site will still work either way.
             </p>
 
+            {/* TODO(confirm): legal review of the Igni section (AI processor, retention). */}
+            <h2>Igni, our chat assistant</h2>
+            <p>
+              Igni answers simple questions directly from this website, in your browser. Questions it
+              cannot answer that way are sent, with the recent conversation, to our AI provider
+              Anthropic (Claude) to write a reply. We do not ask for your name or contact details in
+              the chat, and we ask you not to share personal information there. The conversation is
+              kept in your browser only until you close the tab.
+            </p>
+
             <h2>Terms of use</h2>
             <p>
               Our <a href="/terms">terms of use</a> cover the basis on which we make this site

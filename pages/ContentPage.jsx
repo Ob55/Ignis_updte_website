@@ -8,10 +8,11 @@ import { TodoPlaceholder } from '@/components/ui/Cards';
 import { getOffer } from '@/content/offers';
 import { getService } from '@/content/services';
 import NotFound from '@/pages/NotFound';
+import { AsiliShowcase } from '@/components/solutions/AsiliShowcase';
 
 // /what-we-do/<slug>: one page per offer (Institutional Steam, Electric Cooking,
 // Clean-Cooking Programmes) and per service line. Bodies are stubs until the
-// content is written.
+// content is written, except Electric Cooking, which leads with the Asili product.
 export default function ContentPage() {
   const { slug } = useParams();
   const offer = getOffer(slug);
@@ -27,6 +28,8 @@ export default function ContentPage() {
   return (
     <>
       <PageHero eyebrow="What We Do" segments={[name]} sub={intro} image={HERO[item.hero].src} imageAlt={HERO[item.hero].alt} imageCredit={HERO[item.hero].credit} imagePosition={HERO[item.hero].position} />
+      {/* Electric Cooking ends on the Asili showcase, which carries its own buttons. */}
+      {slug === 'electric-cooking' ? <AsiliShowcase /> : (
       <section className="section">
         <div className="wrap prose">
           {/* TODO(content): full page body for this offer / service line. */}
@@ -48,6 +51,7 @@ export default function ContentPage() {
           </div>
         </div>
       </section>
+      )}
     </>
   );
 }

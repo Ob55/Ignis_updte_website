@@ -7,11 +7,14 @@ import { audiences } from "@/content/audiences";
 export function WhoWeWorkWith() {
   return (
     <section id="who-we-work-with" className="section">
-      <div className="wrap">
-        <Reveal className="section-head">
-          <h2>Who we work with</h2>
-        </Reveal>
-        <div className="card-grid card-grid--5" style={{ marginTop: 40 }}>
+      <div className="wrap sticky-split">
+        {/* Desktop: the heading stays pinned while the cards scroll past it. */}
+        <div className="sticky-col">
+          <Reveal className="section-head">
+            <h2>Who we work with</h2>
+          </Reveal>
+        </div>
+        <div className="card-grid card-grid--5 sticky-cards">
           {audiences.map((a, i) => (
             <Reveal key={a.id} delay={i * 50}>
               <IconCard

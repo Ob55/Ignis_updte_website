@@ -2,3 +2,8 @@ Pexels (Free/commercial, no attribution required): industry=33813584 delivery=15
 institutions.jpg = "Situation in school kitchen" by SuSanA Secretariat (https://www.flickr.com/photos/gtzecosan/5324344316/), CC BY 2.0 (https://creativecommons.org/licenses/by/2.0/). Mirrored horizontally and resized.
 about-nairobi.jpg = "Buffalo and Nairobi skyline, Nairobi National Park" by Timothy A. Gonsalves (https://commons.wikimedia.org/wiki/File:Buffalo_Nairobi_Skyline_Savannah_Kenya_May19_R1600769.jpg), CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Resized.
 solutions-cookers.jpg = "Finished kitchen biogas setup" (Gachoire Girls High School, Kenya) by SuSanA Secretariat (https://www.flickr.com/photos/gtzecosan/5363273405/), CC BY 2.0. Cropped, mirrored and resized.
+asili/*.jpg = Ignis product photography (Asili electric pressure cooker), owned by Ignis Innovation Limited. Resized.
+offers/*.jpg = resized copies of hero/steam-kettle.jpg and hero/doho-school.jpg; see their credits.
+hero/steam-kitchen.jpg = adapted from hero/steam-kettle.jpg (Erikoinentunnus, Wikimedia Commons, CC BY-SA 3.0). Edited and resized. Supplied by Ignis.
+field-notes-kitchen.jpg, cleancookiq/mark.png = CleanCookIQ (an Ignis platform), from cleancookiq.com. Resized.
+offers/clean-cooking-programmes.jpg = resized copy of hero/partners-workshop.jpg; see its credit.

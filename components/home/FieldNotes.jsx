@@ -17,7 +17,7 @@ export function FieldNotes() {
             </p>
           </Reveal>
           <Reveal className="feature-photo" delay={120}>
-            <img src="/img/hero/likoni-cook.jpg" alt="A cook at work among large pots in a kitchen in Likoni, Mombasa" loading="lazy" />
+            <img src="/img/field-notes-kitchen.jpg" alt="A cook in a hairnet and chef's whites working at a stove in a commercial kitchen" loading="lazy" width="1600" height="900" />
           </Reveal>
         </div>
         <div className="card-grid card-grid--stories" style={{ marginTop: 40 }}>

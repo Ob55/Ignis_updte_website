@@ -44,7 +44,7 @@ export const FIELD_NOTES = [
   },
   {
     slug: "a-day-in-a-steam-kitchen",
-    coverImage: "/img/hero/steam-kettle.jpg", coverImageAlt: "A chef cooking in a large steam-jacketed kettle",
+    coverImage: "/img/hero/steam-kitchen.jpg", coverImageAlt: "A chef cooking in a large steam-jacketed kettle",
     published: true,
     headline: "A day in a steam kitchen",
     type: "People story",

@@ -4,12 +4,14 @@ export const OFFERS = [
   {
     slug: "institutional-steam",
     hero: "steam-kettle",
+    image: { src: "/img/offers/institutional-steam.jpg", alt: "A chef cooking beans in a large steam-jacketed kettle" },
     name: "Institutional Steam",
     body: "For high-volume kitchens in schools, hospitals, correctional facilities and other institutions where steam generation is an appropriate transition pathway. We assess actual meal volumes and kitchen conditions, size the system, coordinate deployment and support ongoing performance.",
   },
   {
     slug: "electric-cooking",
     hero: "electric-cooktop",
+    image: { src: "/img/asili/asili-02-sm.jpg", alt: "The Ignis Asili electric pressure cooker", product: true },
     name: "Electric Cooking",
     // TODO(confirm): Electric Cooking audience, institutional or household (decision D5).
     // Suggested if institutional: "Efficient electric cooking for smaller institutional
@@ -19,6 +21,7 @@ export const OFFERS = [
   {
     slug: "clean-cooking-programmes",
     hero: "doho-school",
+    image: { src: "/img/offers/clean-cooking-programmes.jpg", alt: "Programme partners in Kenya planning around a table with a flipchart" },
     name: "Clean-Cooking Programmes",
     body: "For counties, governments and development partners seeking coordinated transition across multiple institutions, from demand mapping and validation through financing, deployment and monitoring.",
   },

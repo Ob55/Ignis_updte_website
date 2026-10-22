@@ -3,6 +3,7 @@
 // creds from environment variables (never exposed to the client).
 import { makeTransport, leadEmail, confirmationEmail } from "../scripts/mailer.mjs";
 import { isRateLimited } from "../scripts/rateLimit.mjs";
+import { originAllowed } from "../scripts/originAllowed.mjs";
 
 const list = (v) => (v || "").split(",").map((s) => s.trim()).filter(Boolean);
 
@@ -51,24 +52,6 @@ function validate(body) {
   if (!Number.isInteger(meals) || meals < 1 || meals > 200000) return { error: "Invalid meals per day" };
   if (fuel && !AMOUNT_RE.test(fuel)) return { error: "Invalid fuel spend" };
   return { data: { type, name, email, phone, institution, mealsPerDay: meals, monthlyFuelSpendKes: fuel } };
-}
-
-// ---- CSRF / origin allow-list ----------------------------------------------
-// Only reject requests whose Origin is present AND not on the allow-list;
-// server-to-server callers (no Origin) still pass, but must clear the other gates.
-function originAllowed(req) {
-  const origin = req.headers.origin;
-  if (!origin) return true;
-  const allowed = list(process.env.ALLOWED_ORIGINS).concat([
-    "https://ignis-innovation.com",
-    "https://www.ignis-innovation.com",
-    "http://localhost:3000",
-    "http://localhost:5173",
-  ]);
-  if (allowed.includes(origin)) return true;
-  // allow Vercel preview deployments for this project
-  try { if (new URL(origin).hostname.endsWith(".vercel.app")) return true; } catch { /* noop */ }
-  return false;
 }
 
 export default async function handler(req, res) {

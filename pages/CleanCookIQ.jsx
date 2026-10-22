@@ -63,17 +63,20 @@ export default function CleanCookIQ() {
       />
 
       <section id="platform" className="section">
-        <div className="wrap">
-          <Reveal className="section-head">
-            <h2>The platform.</h2>
-            <p>
-              Clean cooking only pays for itself if the results can be shown. CleanCookIQ turns
-              kitchen data into a record that institutions, technology providers, financiers and
-              programme partners can all read from.
-            </p>
-          </Reveal>
+        {/* Desktop: the intro stays pinned while the three screenshots scroll past it. */}
+        <div className="wrap sticky-split">
+          <div className="sticky-col">
+            <Reveal className="section-head">
+              <h2>The platform.</h2>
+              <p>
+                Clean cooking only pays for itself if the results can be shown. CleanCookIQ turns
+                kitchen data into a record that institutions, technology providers, financiers and
+                programme partners can all read from.
+              </p>
+            </Reveal>
+          </div>
           {/* Live screenshots of cleancookiq.com (captured Oct 2026). Re-capture when the platform UI changes. */}
-          <div className="card-grid card-grid--3 platform-shots" style={{ marginTop: 32 }}>
+          <div className="card-grid card-grid--3 platform-shots sticky-stack">
             {PLATFORM_SHOTS.map((s) => (
               <figure key={s.src} className="platform-shot">
                 <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={`${s.title}: open on cleancookiq.com`}>

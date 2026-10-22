@@ -27,6 +27,7 @@ import Credits from '@/pages/Credits';
 import ThankYou from '@/pages/ThankYou';
 import NotFound from '@/pages/NotFound';
 import { StickyCta } from '@/components/chrome/StickyCta';
+import { IgniLauncher } from '@/components/chrome/IgniLauncher';
 import { CookieConsent } from '@/components/chrome/CookieConsent';
 import { trackPageview } from '@/lib/analytics';
 import { useAutoReveal } from '@/lib/useAutoReveal';
@@ -96,6 +97,7 @@ export default function App() {
         </Routes>
       </main>
       <StickyCta />
+      <IgniLauncher />
       <Footer />
       <CookieConsent />
     </>

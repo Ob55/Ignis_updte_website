@@ -15,11 +15,14 @@ const CHANGES = [
 export function KitchenChanges() {
   return (
     <section id="kitchen-changes" className="section">
-      <div className="wrap">
-        <Reveal className="section-head">
-          <h2>What changes in the kitchen?</h2>
-        </Reveal>
-        <div className="card-grid card-grid--3" style={{ marginTop: 40 }}>
+      <div className="wrap sticky-split">
+        {/* Desktop: the heading stays pinned while the six cards scroll past it. */}
+        <div className="sticky-col">
+          <Reveal className="section-head">
+            <h2>What changes in the kitchen?</h2>
+          </Reveal>
+        </div>
+        <div className="card-grid card-grid--3 sticky-cards">
           {CHANGES.map((c, i) => (
             <Reveal key={c.title} delay={i * 50}>
               <IconCard icon={c.icon} title={c.title}>

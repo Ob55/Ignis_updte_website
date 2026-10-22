@@ -1,0 +1,70 @@
+// Igni: which questions are answered locally (free) and which go to the AI.
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import { createAnswerer, complexity } from "../lib/igni/localAnswer.js";
+import { FAQS } from "../content/faqs.js";
+import { INTENTS } from "../content/igni-intents.js";
+import { createRateLimiter } from "../scripts/rateLimit.mjs";
+
+const kb = JSON.parse(fs.readFileSync(new URL("../content/igni-kb.json", import.meta.url), "utf8"));
+const ask = createAnswerer({ faqs: FAQS, intents: INTENTS, kb });
+
+test("knowledge base covers the core pages", () => {
+  assert.ok(kb.length >= 50, `only ${kb.length} sections`);
+  const urls = new Set(kb.map((e) => e.url));
+  for (const u of ["/", "/what-we-do", "/what-we-do/electric-cooking", "/cleancookiq", "/talk-to-ignis"]) {
+    assert.ok(urls.has(u), `missing ${u}`);
+  }
+  assert.ok(!kb.some((e) => /being prepared/.test(e.text)), "placeholder text leaked into the KB");
+  // aria-hidden chart labels must not leak: "saved" sat next to the steam running cost
+  assert.ok(!kb.some((e) => /saved KES/.test(e.text)), "aria-hidden label leaked into the KB");
+});
+
+test("simple questions are answered locally from the site", () => {
+  const cases = [
+    ["What is Asili?", "asili", "/what-we-do/electric-cooking"],
+    ["What is the capacity of Asili?", "asili-specs"],
+    ["How much does Asili cost?", "asili-price"],
+    ["Where is your office?", "location"],
+    ["Who owns the equipment?", "faq"],
+    ["How does financing work?", "faq"],
+    ["Who do you work with?", "audiences"],
+    ["What is CleanCookIQ?", "cleancookiq"],
+    ["Where do you work?", "where-we-work"],
+    ["hi", "greeting"],
+    ["Habari", "greeting"],
+  ];
+  for (const [q, id, url] of cases) {
+    const r = ask(q);
+    assert.equal(r.kind, "local", `${q} -> ${r.kind} (${r.reason})`);
+    assert.equal(r.id, id, `${q} -> ${r.id}`);
+    if (url) assert.equal(r.source?.url, url);
+  }
+});
+
+test("complex questions go to the AI", () => {
+  const cases = [
+    "My school serves 900 meals a day on firewood, how much could we save and how would financing work?",
+    "Why is steam better than firewood?",
+    "Compare Asili with an LPG cooker",
+    "Our hospital kitchen uses charcoal, what should we do?",
+    "What is the payback period? How long is the contract?",
+  ];
+  for (const q of cases) assert.equal(ask(q).kind, "ai", q);
+  // a follow-up to an AI answer stays with the AI
+  assert.equal(complexity("and what about that one?", { lastWasAi: true }), "follow-up");
+});
+
+test("question words alone are not a match", () => {
+  // "who" must not pull "Who owns the equipment?"
+  assert.notEqual(ask("Who is the CEO?").id, "faq");
+});
+
+test("chat rate limiter blocks after its budget (in-memory fallback)", async () => {
+  const limited = createRateLimiter({ prefix: "test", max: 3 });
+  const ip = `t-${Date.now()}`;
+  const results = [];
+  for (let i = 0; i < 5; i++) results.push(await limited(ip));
+  assert.deepEqual(results, [false, false, false, true, true]);
+});

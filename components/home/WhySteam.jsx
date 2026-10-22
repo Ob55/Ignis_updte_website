@@ -59,6 +59,7 @@ export function SteamDiagram() {
           </g>
         ))}
       </svg>
+      <p className="diagram-hint" aria-hidden="true">Swipe sideways to see the whole diagram →</p>
       <figcaption>
         <ol className="callout-list">
           {STEAM_CALLOUTS.map((c, i) => (

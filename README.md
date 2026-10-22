@@ -134,7 +134,7 @@ on page heroes, fade-rise on scroll, and rising ember particles.
 
 - **Phone / WhatsApp number** in `lib/site.js` (currently `+254XXXXXXXXX`).
 - **Team members + photos** in `components/team/Crew.jsx` (currently "Name Surname" placeholders).
-- **Asili product photo** in `components/home/Products.jsx` (currently a styled placeholder).
+- **Asili specs** (capacity, rated power, price) in `content/products.js`, hidden until filled. The product shows on `/what-we-do/electric-cooking` (`components/solutions/AsiliShowcase.jsx`) and on the homepage Electric Cooking card.
 - **Savings figures** in `content/fuel-models.js` are illustrative — replace with real assessment data.
 - Field Log posts in `components/home/LogTeaser.jsx` are sample entries.
 
@@ -151,6 +151,25 @@ paths serve `index.html`:
 - **Netlify** — add `_redirects` with: `/*  /index.html  200`
 - **Vercel** — add a rewrite: `{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }`
 - **Cloudflare Pages / Nginx** — enable single-page-app / `try_files ... /index.html`.
+
+## Igni chat assistant
+
+Igni is the "Ask Igni" button on every page.
+
+- **Simple questions** (what is Asili, where is the office, who owns the equipment…) are
+  answered in the browser by `lib/igni/localAnswer.js`, from `content/igni-intents.js`,
+  `content/faqs.js` and the page text in `igni-kb.json`. No API call, no cost.
+- **Complex questions** (calculations, comparisons, "my school…", multi-part, no confident
+  match) stream from `api/chat.js`, which calls Claude Haiku 5.5 with the site content as a
+  cached system prompt. Any local answer also offers "Ask Igni AI for more detail".
+- `npm run build` regenerates the knowledge base from the prerendered pages
+  (`scripts/build-igni-kb.mjs` → `content/igni-kb.json`, committed for the API, plus
+  `dist/igni-kb.json` for the browser). Commit the updated JSON after content changes.
+- **Environment (server-only):** `ANTHROPIC_API_KEY` (required for AI answers; without it
+  Igni points visitors to the team), `IGNI_DAILY_CAP` (optional daily cap on AI answers,
+  needs Upstash). Chat is rate-limited to 20 AI questions per IP per 10 minutes.
+- **Local testing of the API:** Vite dev does not serve `/api`; use `npx vercel dev`.
+- Tests: `tests/igni.test.mjs` pins which questions stay local and which go to the AI.
 
 ---
 

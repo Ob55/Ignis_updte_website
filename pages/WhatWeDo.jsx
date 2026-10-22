@@ -101,7 +101,8 @@ export default function WhatWeDo() {
               system puts far more of each kilogram to work.
             </p>
           </Reveal>
-          <div className="split" style={{ marginTop: 32 }}>
+          {/* Desktop: the diagram stays pinned while the five reasons scroll past. */}
+          <div className="split split--sticky" style={{ marginTop: 32 }}>
             <ol className="numbered-list">
               {WHY_STEAM.map((w, i) => (
                 <li key={w.h}>
@@ -113,7 +114,9 @@ export default function WhatWeDo() {
                 </li>
               ))}
             </ol>
-            <SteamDiagram />
+            <div className="sticky-col">
+              <SteamDiagram />
+            </div>
           </div>
           <EfficiencyChart />
           {SHOW_AROUND_HALF_LINE && <p className="section-kicker"><em>{AROUND_HALF_LINE}</em></p>}

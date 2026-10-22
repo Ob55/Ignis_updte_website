@@ -18,7 +18,7 @@ export const HERO = {
   'field-data-kenya': { src: '/img/hero/field-data-kenya.jpg', alt: "A field worker in Kenya recording data on a phone beside a paper notebook" },
   'analyst-laptop': { src: '/img/hero/analyst-laptop.jpg', alt: "An analyst reviewing data on a laptop" },
   'talk-contact': { src: '/img/hero/talk-contact.jpg', alt: "Nairobi's city lights at dusk, seen from above" },
-  'steam-kettle': { src: '/img/hero/steam-kettle.jpg', alt: "A chef cooking beans in a large steam-jacketed kettle in an institutional kitchen" },
+  'steam-kettle': { src: '/img/hero/steam-kitchen.jpg', alt: "A chef cooking beans in a large steam-jacketed kettle in an institutional kitchen" },
   'electric-cooktop': { src: '/img/hero/electric-cooktop.jpg', alt: "A pot boiling on an electric induction cooktop" },
   'likoni-cook': { src: '/img/hero/likoni-cook.jpg', alt: "A cook at work among large pots in a kitchen in Likoni, Mombasa" },
   'nairobi-uhuru-park': { src: '/img/hero/nairobi-uhuru-park.jpg', alt: "Nairobi's skyline seen across the trees of Uhuru Park" },

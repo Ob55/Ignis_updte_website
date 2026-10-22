@@ -5,7 +5,7 @@ import { ASSESSMENT_PATH } from '@/components/ui/Button';
 
 // Fixed bottom action bar on small screens only (hidden >=760px via CSS).
 // Suppressed on pages where it would be redundant.
-const HIDE_ON = ['/talk-to-ignis', '/thank-you'];
+export const HIDE_ON = ['/talk-to-ignis', '/thank-you'];
 
 export function StickyCta() {
   const { pathname } = useLocation();
