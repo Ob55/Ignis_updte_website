@@ -1,14 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { X, ArrowUp, Sparkles } from 'lucide-react';
+import { X, ArrowUp, Sparkles, Mic, Square, Volume2, VolumeX } from 'lucide-react';
 import { createAnswerer } from '@/lib/igni/localAnswer';
 import { FAQS } from '@/content/faqs';
 import { INTENTS, LINKS } from '@/content/igni-intents';
+import { IGNI_IMAGES } from '@/content/igni-images';
+import { useVoice, VOICE_LANGS } from '@/lib/igni/useVoice';
 import { trackEvent } from '@/lib/analytics';
 
 // The Igni panel (lazy-loaded by IgniLauncher). Simple questions are answered
 // here from the site's content; complex ones stream from /api/chat (Claude).
 // The conversation lives in sessionStorage so it survives page changes.
+// Voice: the mic turns speech into a question; with "read aloud" on, Igni
+// speaks its answers (lib/igni/useVoice.js). Pictures come only from
+// content/igni-images.js, by id.
 
 const STORE = 'igni:v1';
 const SUGGESTIONS = ['What is Asili?', 'How is the transition financed?', 'Where do you work?', 'How do I get started?'];
@@ -26,6 +31,24 @@ const load = () => {
     return [];
   }
 };
+const VOICE_STORE = 'igni:voice';
+const loadPref = (key, fallback) => {
+  try { return sessionStorage.getItem(key) ?? fallback; } catch { return fallback; }
+};
+const savePref = (key, value) => {
+  try { sessionStorage.setItem(key, value); } catch { /* ignore */ }
+};
+
+// ---- pictures: [[image:id]] tags (AI) or `images` ids (local answers) -------
+const IMAGE_BY_ID = new Map(IGNI_IMAGES.map((i) => [i.id, i]));
+const IMAGE_TAG = /\[\[image:([a-z0-9-]+)\]\]/g;
+// Also hides a half-streamed tag ("[[image:asi") until it completes.
+const stripImageTags = (text) => text.replace(IMAGE_TAG, '').replace(/\[\[(?:i(?:m(?:a(?:g(?:e(?::[a-z0-9-]*\]?)?)?)?)?)?)?$/, '');
+function imagesFor(m) {
+  const ids = [...(m.images || []), ...[...(m.text || '').matchAll(IMAGE_TAG)].map((x) => x[1])];
+  return [...new Set(ids)].map((id) => IMAGE_BY_ID.get(id)).filter(Boolean).slice(0, 2);
+}
+
 const save = (msgs) => {
   try {
     sessionStorage.setItem(STORE, JSON.stringify(msgs.slice(-30)));
@@ -61,7 +84,7 @@ function SafeLink({ to, children, onNavigate }) {
 function Rich({ text, onNavigate }) {
   const blocks = [];
   let list = null;
-  text.split('\n').forEach((line, i) => {
+  stripImageTags(text).split('\n').forEach((line, i) => {
     const item = line.match(/^\s*(?:[-*•]|\d+\.)\s+(.*)$/);
     if (item) {
       if (!list) blocks.push((list = { type: 'ul', items: [], key: i }));
@@ -103,6 +126,16 @@ export default function IgniChat({ open, onClose }) {
   const field = useRef(null);
   const list = useRef(null);
   const abort = useRef(null);
+  const [lang, setLang] = useState(() => (loadPref(VOICE_STORE + ':lang', 'en') === 'sw' ? 'sw' : 'en'));
+  const [readAloud, setReadAloud] = useState(() => loadPref(VOICE_STORE, 'off') === 'on');
+  const readRef = useRef(readAloud);
+  readRef.current = readAloud;
+  const voice = useVoice({ onFinal: (text) => submit(text, { spoken: true }) });
+
+  useEffect(() => savePref(VOICE_STORE, readAloud ? 'on' : 'off'), [readAloud]);
+  useEffect(() => savePref(VOICE_STORE + ':lang', lang), [lang]);
+  useEffect(() => { if (!open) { voice.stopListening(); voice.stopSpeaking(); } }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
+  const sayIfOn = (text) => { if (readRef.current) voice.speak(text, lang); };
 
   useEffect(() => save(msgs.filter((m) => !m.pending)), [msgs]);
   useEffect(() => { list.current?.scrollTo({ top: list.current.scrollHeight }); }, [msgs, open]);
@@ -167,9 +200,12 @@ export default function IgniChat({ open, onClose }) {
           update(id, { text });
         }
       }
-      update(id, { text: text || "Sorry, I couldn't get an answer just now.", pending: false, links: [LINKS.assessment] });
+      const finalText = text || "Sorry, I couldn't get an answer just now.";
+      update(id, { text: finalText, pending: false, links: [LINKS.assessment] });
+      sayIfOn(finalText);
     } catch (err) {
       if (err?.name === 'AbortError') return;
+      sayIfOn("I couldn't reach my AI helper just now. The team can answer directly.");
       update(id, {
         text: "I couldn't reach my AI helper just now. The team can answer directly:",
         pending: false,
@@ -180,10 +216,14 @@ export default function IgniChat({ open, onClose }) {
     }
   }
 
-  function submit(raw) {
+  function submit(raw, { spoken = false } = {}) {
     const q = raw.trim().slice(0, 1000);
     if (!q || busy) return;
     setInput('');
+    voice.stopSpeaking();
+    // Speaking a question turns on spoken answers: it's a voice conversation now.
+    if (spoken && voice.canSpeak && !readRef.current) { readRef.current = true; setReadAloud(true); }
+    if (spoken) trackEvent('igni_voice_question', { lang });
     const history = msgs;
     const lastWasAi = [...msgs].reverse().find((m) => m.role === 'assistant')?.kind === 'ai';
     const next = [...msgs, { id: `u${Date.now()}`, role: 'user', text: q }];
@@ -191,7 +231,8 @@ export default function IgniChat({ open, onClose }) {
     const r = ask(q, { lastWasAi });
     if (r.kind === 'local') {
       trackEvent('igni_local_answer', { intent: r.id });
-      setMsgs([...next, { id: `l${Date.now()}`, role: 'assistant', kind: 'local', text: r.text, links: r.links, source: r.source, q }]);
+      setMsgs([...next, { id: `l${Date.now()}`, role: 'assistant', kind: 'local', text: r.text, links: r.links, source: r.source, images: r.images, q }]);
+      sayIfOn(r.text);
     } else {
       askAi(q, history);
     }
@@ -220,6 +261,31 @@ export default function IgniChat({ open, onClose }) {
           <h2 id="igni-title">Igni</h2>
           <p>Ignis assistant</p>
         </div>
+        <div className="igni-head-tools">
+          {(voice.canListen || voice.canSpeak) && (
+            <button
+              type="button"
+              className="igni-tool igni-lang"
+              onClick={() => setLang((l) => (l === 'en' ? 'sw' : 'en'))}
+              aria-label={`Voice language: ${VOICE_LANGS[lang].name}. Switch to ${VOICE_LANGS[lang === 'en' ? 'sw' : 'en'].name}`}
+              title={`Voice language: ${VOICE_LANGS[lang].name}`}
+            >
+              {VOICE_LANGS[lang].label}
+            </button>
+          )}
+          {voice.canSpeak && (
+            <button
+              type="button"
+              className={`igni-tool${readAloud ? ' is-on' : ''}`}
+              onClick={() => { if (readAloud) voice.stopSpeaking(); setReadAloud(!readAloud); }}
+              aria-pressed={readAloud}
+              aria-label={readAloud ? 'Stop reading answers aloud' : 'Read answers aloud'}
+              title={readAloud ? 'Reading answers aloud' : 'Read answers aloud'}
+            >
+              {readAloud ? <Volume2 size={18} aria-hidden="true" /> : <VolumeX size={18} aria-hidden="true" />}
+            </button>
+          )}
+        </div>
         <button type="button" className="igni-close" onClick={onClose} aria-label="Close chat">
           <X size={20} aria-hidden="true" />
         </button>
@@ -234,6 +300,15 @@ export default function IgniChat({ open, onClose }) {
             <div className="igni-bubble">
               {m.pending && !m.text ? <span className="igni-typing" aria-label="Igni is typing"><i /><i /><i /></span> : <Rich text={m.text} onNavigate={onClose} />}
             </div>
+            {m.role === 'assistant' && imagesFor(m).length > 0 && (
+              <div className={`igni-pics igni-pics--${imagesFor(m).length}`}>
+                {imagesFor(m).map((img) => (
+                  <a key={img.id} href={img.src} target="_blank" rel="noopener noreferrer" className="igni-pic">
+                    <img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+                  </a>
+                ))}
+              </div>
+            )}
             {!m.pending && (m.links?.length || m.source || (m.kind === 'local' && m.q)) ? (
               <div className="igni-actions">
                 {m.source && <Link className="igni-source" to={m.source.url} onClick={onClose}>From: {m.source.title}</Link>}
@@ -254,6 +329,15 @@ export default function IgniChat({ open, onClose }) {
         )}
       </div>
 
+      {(voice.listening || voice.error) && (
+        <p className={`igni-voice-status${voice.error ? ' is-error' : ''}`} role="status">
+          {voice.error
+            ? voice.error === 'not-allowed' || voice.error === 'service-not-allowed'
+              ? 'Microphone is blocked. Allow it in your browser settings, or type your question.'
+              : "I couldn't hear that. Try again, or type your question."
+            : voice.interim || `Listening in ${VOICE_LANGS[lang].name}…`}
+        </p>
+      )}
       <form className="igni-form" onSubmit={(e) => { e.preventDefault(); submit(input); }}>
         <label htmlFor="igni-input" className="sr-only">Ask Igni a question</label>
         <textarea
@@ -262,15 +346,27 @@ export default function IgniChat({ open, onClose }) {
           rows={1}
           value={input}
           maxLength={1000}
-          placeholder="Ask a question…"
+          placeholder={voice.canListen ? 'Ask a question, or tap the mic…' : 'Ask a question…'}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(input); } }}
         />
+        {voice.canListen && (
+          <button
+            type="button"
+            className={`igni-mic${voice.listening ? ' is-listening' : ''}`}
+            onClick={() => (voice.listening ? voice.stopListening() : voice.listen(lang))}
+            disabled={busy}
+            aria-pressed={voice.listening}
+            aria-label={voice.listening ? 'Stop listening' : `Speak your question (${VOICE_LANGS[lang].name})`}
+          >
+            {voice.listening ? <Square size={16} aria-hidden="true" /> : <Mic size={18} aria-hidden="true" />}
+          </button>
+        )}
         <button type="submit" className="igni-send" disabled={busy || !input.trim()} aria-label="Send">
           <ArrowUp size={18} aria-hidden="true" />
         </button>
       </form>
-      <p className="igni-note">Detailed questions are answered by AI (Claude). Please don&apos;t share personal information.</p>
+      <p className="igni-note">Detailed questions are answered by AI (Claude); voice uses your browser&apos;s speech service. Please don&apos;t share personal information.</p>
     </div>
   );
 }

@@ -1334,6 +1334,29 @@ body:has(.talk-hero) .topbar:not(.solid) .nav-burger { color: #fff; }
 .igni-send:focus-visible, .igni-chips button:focus-visible, .igni-more:focus-visible, .igni-action:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 .igni-note { padding: 0 16px 12px; font-size: 12px; color: var(--muted); text-align: center; }
 
+.igni-head-tools { margin-left: auto; display: flex; gap: 4px; }
+.igni-head-tools + .igni-close { margin-left: 0; }
+.igni-tool { display: grid; place-items: center; min-width: 44px; height: 44px; padding: 0 8px; border: none; border-radius: 12px; background: transparent; color: rgba(255,255,255,0.85); font: 700 13px/1 var(--font-mono), ui-monospace, monospace; letter-spacing: 0.04em; cursor: pointer; }
+.igni-tool:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.igni-tool.is-on { background: rgba(255,255,255,0.2); color: #fff; }
+.igni-tool:focus-visible { outline: 2px solid #fff; outline-offset: -4px; }
+
+.igni-pics { display: grid; gap: 6px; width: 100%; max-width: 300px; }
+.igni-pics--2 { grid-template-columns: 1fr 1fr; }
+.igni-pic { display: block; border-radius: 14px; overflow: hidden; background: #e8e6ea; box-shadow: inset 0 0 0 1px var(--line); }
+.igni-pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.4s var(--ease); }
+.igni-pic:hover img { transform: scale(1.03); }
+.igni-pic:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+.igni-mic { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border: none; border-radius: 12px; background: var(--green-light); color: var(--emerald); cursor: pointer; }
+.igni-mic:hover:not(:disabled) { background: var(--tint); }
+.igni-mic:disabled { opacity: 0.4; cursor: default; }
+.igni-mic:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.igni-mic.is-listening { background: #c62828; color: #fff; animation: igniPulse 1.4s ease-out infinite; }
+@keyframes igniPulse { 0% { box-shadow: 0 0 0 0 rgba(198,40,40,0.45); } 70% { box-shadow: 0 0 0 10px rgba(198,40,40,0); } 100% { box-shadow: 0 0 0 0 rgba(198,40,40,0); } }
+.igni-voice-status { margin: 4px 14px 0; padding: 8px 12px; border-radius: 12px; background: var(--green-light); color: var(--text); font-size: 14px; }
+.igni-voice-status.is-error { background: #fdecea; color: #8a1c14; }
+
 /* phones: Igni becomes a round button docked in the bottom action bar (which
    reserves room for it), so it never floats over page content; where the bar is
    hidden it floats bottom-right. The panel becomes a full-screen sheet. */
@@ -1349,6 +1372,6 @@ body:has(.talk-hero) .topbar:not(.solid) .nav-burger { color: #fff; }
 }
 @media print { .igni-launcher, .igni-panel { display: none !important; } }
 @media (prefers-reduced-motion: reduce) {
-  .igni-panel, .igni-typing i { animation: none; }
+  .igni-panel, .igni-typing i, .igni-mic.is-listening { animation: none; }
   .igni-launcher { transition: none; }
 }

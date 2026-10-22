@@ -68,3 +68,23 @@ test("chat rate limiter blocks after its budget (in-memory fallback)", async () 
   for (let i = 0; i < 5; i++) results.push(await limited(ip));
   assert.deepEqual(results, [false, false, false, true, true]);
 });
+
+test("spoken answers drop markdown, links, paths and image tags", async () => {
+  const { speakable, looksSwahili } = await import("../lib/igni/useVoice.js");
+  const s = speakable("**Asili** is our cooker. See [Electric Cooking](/what-we-do/electric-cooking) or /talk-to-ignis.\n[[image:asili-front]]\n- 6 L pot");
+  assert.ok(s.startsWith("Asili is our cooker. See Electric Cooking"), s);
+  assert.ok(!/\[|\]|\//.test(s), s);
+  assert.ok(looksSwahili("Ignis husaidia shule kubadilisha kutoka kuni na kupika kwa ufanisi katika jiko"));
+  assert.ok(!looksSwahili("Asili is an electric pressure cooker with a sealed lid."));
+});
+
+test("every picture Igni can show exists, and local answers carry valid ones", async () => {
+  const { IGNI_IMAGES } = await import("../content/igni-images.js");
+  const ids = new Set(IGNI_IMAGES.map((i) => i.id));
+  for (const img of IGNI_IMAGES) {
+    assert.ok(fs.existsSync(new URL(`../public${img.src}`, import.meta.url)), `missing ${img.src}`);
+    assert.ok(img.alt && img.about, `${img.id} needs alt and about`);
+  }
+  for (const it of INTENTS) for (const id of it.images || []) assert.ok(ids.has(id), `${it.id} -> unknown image ${id}`);
+  assert.deepEqual(ask("What is Asili?").images, ["asili-front"]);
+});

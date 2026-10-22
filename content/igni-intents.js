@@ -6,7 +6,7 @@ import { OFFERS } from "./offers.js";
 // (contact details, Asili specs) and the conversational basics. Matched in the
 // browser by lib/igni/localAnswer.js before anything reaches the AI.
 // `keywords` are plain words; the matcher stems them. Only facts already
-// published on the site belong here.
+// published on the site belong here. `images` are ids from content/igni-images.js.
 const spec = (label) => ASILI.specs.find((s) => s.label === label)?.value;
 const offer = (slug) => OFFERS.find((o) => o.slug === slug);
 
@@ -58,6 +58,7 @@ export const INTENTS = [
   },
   {
     id: "asili",
+    images: ["asili-front"],
     keywords: ["asili", "cooker", "electric", "pressure", "product", "epc"],
     text: `Asili is the Ignis electric pressure cooker: a ${spec("Capacity")} pot, ${spec("Power")}, a sealed locking lid and twelve one-touch programmes, including githeri, uji, rice, stews and kuku, labelled in English and Kiswahili.`,
     links: [LINKS.asili],
@@ -72,6 +73,7 @@ export const INTENTS = [
   },
   {
     id: "asili-programmes",
+    images: ["asili-panel"],
     keywords: ["asili", "programme", "program", "button", "cook", "dish", "githeri", "uji", "rice", "menu", "mode"],
     text: `Asili has ${ASILI.programmes.length} one-touch programmes: ${ASILI.programmes.join(", ")}. The panel also has Low/High Pressure, Less/Normal/More, Delay Start and Warm/Cancel.`,
     links: [LINKS.asili],
@@ -85,6 +87,7 @@ export const INTENTS = [
   },
   {
     id: "about",
+    images: ["school-meal"],
     keywords: ["company", "about", "business", "mission"],
     phrases: [/\bwhat (do|does) (you|ignis) do\b/i, /\bwho (are|is) (you|ignis)\b/i, /\babout ignis\b/i],
     text: `${SITE.description} We assess real demand, structure projects, connect the right technology and finance, deliver the transition and measure what happens.`,
@@ -93,6 +96,7 @@ export const INTENTS = [
   },
   {
     id: "steam",
+    images: ["steam-kitchen"],
     keywords: ["steam", "institutional", "kettle", "jacketed", "generator", "boiler"],
     text: `Institutional Steam: ${offer("institutional-steam").body}`,
     links: [{ label: "Explore Institutional Steam", to: "/what-we-do/institutional-steam" }],
@@ -100,6 +104,7 @@ export const INTENTS = [
   },
   {
     id: "programmes",
+    images: ["partners-workshop"],
     keywords: ["programme", "programmes", "county", "counties", "government", "multiple", "clean-cooking"],
     text: `Clean-Cooking Programmes: ${offer("clean-cooking-programmes").body}`,
     links: [{ label: "Explore Clean-Cooking Programmes", to: "/what-we-do/clean-cooking-programmes" }],
@@ -107,6 +112,7 @@ export const INTENTS = [
   },
   {
     id: "cleancookiq",
+    images: ["cciq-map"],
     keywords: ["cleancookiq", "clean", "cook", "iq", "platform", "data", "dashboard", "monitoring"],
     text: "CleanCookIQ is Ignis's digital infrastructure for collecting, validating, analysing and managing institutional clean-cooking transition data: a national institution map, fuel and county intelligence, and tracking from assessment to monitoring.",
     links: [{ label: "About CleanCookIQ", to: "/cleancookiq" }, { label: "Visit cleancookiq.com", to: "https://cleancookiq.com/" }],
@@ -123,6 +129,7 @@ export const INTENTS = [
   {
     // Keep in step with the country list in components/home/Geography.jsx.
     id: "where-we-work",
+    images: ["kisumu"],
     keywords: ["countries", "country", "operate", "uganda", "ethiopia", "mozambique", "sierra", "leone", "africa"],
     phrases: [/\bwhere (do|does) (you|ignis) (work|operate)\b/i, /\bwhich countries\b/i],
     text: "Our active work is in Kenya. We are in market development in Ethiopia, Sierra Leone, Mozambique and Uganda, building from Kenyan delivery experience towards a model that can work across African markets.",

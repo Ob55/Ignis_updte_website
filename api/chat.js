@@ -13,6 +13,7 @@ import { originAllowed, clientIp } from "../scripts/originAllowed.mjs";
 import { FAQS } from "../content/faqs.js";
 import { INTENTS } from "../content/igni-intents.js";
 import { SITE } from "../lib/site.js";
+import { IGNI_IMAGES } from "../content/igni-images.js";
 
 const require = createRequire(import.meta.url);
 const KB = require("../content/igni-kb.json");
@@ -32,13 +33,16 @@ How to answer:
 - Stay on Ignis, its solutions and clean cooking. Politely decline anything unrelated.
 - Reply in the visitor's language: Kiswahili if they write in Kiswahili, otherwise English.
 - Be brief and warm: two to five short sentences or a short list. Link pages as markdown links with site paths, e.g. [Electric Cooking](/what-we-do/electric-cooking).
-- Never ask for or repeat personal details (names, phone numbers, emails, ID numbers).`;
+- Never ask for or repeat personal details (names, phone numbers, emails, ID numbers).
+- You can show the visitor a picture: put [[image:ID]] on its own line, using only an ID from <images>. Show at most two, and only when a picture genuinely helps (they ask what something looks like, or the answer is about Asili, steam kitchens, CleanCookIQ or the problem with firewood). Never describe a picture you did not show.
+- Your reply may be read aloud, so write plain sentences; avoid tables and long lists.`;
 
 function knowledge() {
   const pages = KB.map((e) => `### ${e.title} - ${e.section} (${e.url})\n${e.text}`).join("\n\n");
   const faq = FAQS.map(([q, a]) => `Q: ${q}\nA: ${a}`).join("\n\n");
   const facts = INTENTS.filter((i) => !i.small).map((i) => `- ${i.text}`).join("\n");
-  return `<website_content>\n${pages}\n</website_content>\n\n<faq>\n${faq}\n</faq>\n\n<key_facts>\n${facts}\n</key_facts>`;
+  const images = IGNI_IMAGES.map((i) => `- ${i.id}: ${i.about}`).join("\n");
+  return `<website_content>\n${pages}\n</website_content>\n\n<faq>\n${faq}\n</faq>\n\n<key_facts>\n${facts}\n</key_facts>\n\n<images>\n${images}\n</images>`;
 }
 const SYSTEM = [
   { type: "text", text: RULES },

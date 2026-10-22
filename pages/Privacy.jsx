@@ -84,6 +84,12 @@ export default function Privacy() {
               the chat, and we ask you not to share personal information there. The conversation is
               kept in your browser only until you close the tab.
             </p>
+            <p>
+              If you use the microphone to ask Igni a question, your browser turns your speech into
+              text using its own speech service (for example Google in Chrome, Microsoft in Edge,
+              Apple in Safari), and your browser may ask for permission first. Reading answers aloud
+              happens on your device. We do not record or store any audio.
+            </p>
 
             <h2>Terms of use</h2>
             <p>

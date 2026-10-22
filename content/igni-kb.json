@@ -405,7 +405,7 @@
   "url": "/privacy",
   "title": "Privacy Policy",
   "section": "Igni, our chat assistant",
-  "text": "Igni answers simple questions directly from this website, in your browser. Questions it cannot answer that way are sent, with the recent conversation, to our AI provider Anthropic (Claude) to write a reply. We do not ask for your name or contact details in the chat, and we ask you not to share personal information there. The conversation is kept in your browser only until you close the tab."
+  "text": "Igni answers simple questions directly from this website, in your browser. Questions it cannot answer that way are sent, with the recent conversation, to our AI provider Anthropic (Claude) to write a reply. We do not ask for your name or contact details in the chat, and we ask you not to share personal information there. The conversation is kept in your browser only until you close the tab.\nIf you use the microphone to ask Igni a question, your browser turns your speech into text using its own speech service (for example Google in Chrome, Microsoft in Edge, Apple in Safari), and your browser may ask for permission first. Reading answers aloud happens on your device. We do not record or store any audio."
  },
  {
   "url": "/privacy",
