@@ -17,7 +17,16 @@ const { render, head, PRERENDER_ROUTES } = await import(
   path.join(root, '.ssr-dist', 'entry-server.js')
 );
 
-const template = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
+// Inline the built stylesheet. With a separate CSS file, any failed request for
+// it (flaky connection, blocked by an extension, a stale hash after a deploy)
+// leaves visitors with raw, unstyled HTML. Inlined, the styles arrive with the page.
+const CSS_LINK = /<link rel="stylesheet"[^>]*href="\/assets\/([^"]+\.css)"[^>]*>/;
+let template = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
+const cssMatch = template.match(CSS_LINK);
+if (!cssMatch) throw new Error('prerender: no /assets/*.css stylesheet link found in dist/index.html');
+const css = await fs.readFile(path.join(dist, 'assets', cssMatch[1]), 'utf8');
+if (/<\/style/i.test(css)) throw new Error('prerender: built CSS contains "</style" and cannot be inlined');
+template = template.replace(cssMatch[0], () => `<style>${css}</style>`);
 
 // Strip the placeholder head tags baked into index.html; each route supplies its own.
 const STRIP = [
